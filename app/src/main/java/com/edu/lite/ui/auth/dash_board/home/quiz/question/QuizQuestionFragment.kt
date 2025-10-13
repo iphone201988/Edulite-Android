@@ -307,6 +307,7 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
                     }
 
                     onTimerFinished?.invoke()
+                    
                 } else {
                     updateCountdown(text)
                     remainingTimeMillis -= 1000L
