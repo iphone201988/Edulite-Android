@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.edu.lite.ui.auth.AuthCommonVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.auth.WelcomeActivity">
+
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/authNavigationHost"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+        <com.edu.lite.utils.bottomnavigationview.CustomBottomView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cbn_dotColor="@color/transparent"
+            app:cbn_dotSize="@dimen/_12sdp"
+            app:cbn_endColor="@color/end_color"
+            app:cbn_fabEndColor="@color/end_color"
+            app:cbn_fabStartColor="@color/start_color"
+            app:cbn_iconSize="14dp"
+            app:cbn_selectedColor="@color/white"
+            app:cbn_startColor="@color/start_color"
+            app:cbn_textColor="@color/transparent"
+            app:cbn_textSize="@dimen/_12sdp"
+            app:cbn_unSelectedColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

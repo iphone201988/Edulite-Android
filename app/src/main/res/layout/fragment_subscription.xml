@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.edu.lite.ui.auth.dash_board.profile.ProfileFragmentVM" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="@dimen/_18sdp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.auth.dash_board.profile.subscription.SubscriptionFragment">
+
+            <include
+                android:id="@+id/clHeader"
+                layout="@layout/header_item_layout" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clHeader">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLogin"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="@string/subscription"
+                    android:textColor="@color/hint_color"
+                    android:textSize="@dimen/_17ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBackButton"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/iv_back_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvLogin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvLogin" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCircle"
+                    android:layout_width="230dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:src="@drawable/subscription_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivBackButton" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPrice"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="$7.99"
+                    android:textColor="@color/start_color"
+                    android:textSize="36sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCircle"
+                    app:layout_constraintEnd_toEndOf="@+id/ivCircle"
+                    app:layout_constraintStart_toStartOf="@+id/ivCircle"
+                    app:layout_constraintTop_toTopOf="@+id/ivCircle" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMonth"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="/month"
+                    android:textColor="@color/start_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivCircle"
+                    app:layout_constraintStart_toStartOf="@+id/ivCircle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPrice" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFeature"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_17sdp"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="@string/features"
+                    android:textColor="@color/start_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivCircle"
+                    app:layout_constraintStart_toStartOf="@+id/ivCircle"
+                    app:layout_constraintTop_toBottomOf="@+id/ivCircle" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvUnlimited"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="@string/unlimited_learning_access"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="@+id/ivBackButton"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFeature" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDownload"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="start"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:layout_marginEnd="@dimen/_18sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:text="• Download all videos, notes, and quizzes"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tvUnlimited"
+                    app:layout_constraintTop_toBottomOf="@+id/tvUnlimited" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvAccess"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="start"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="• Access to all grades (4–8) and subjects"
+                    android:layout_marginEnd="@dimen/_18sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tvUnlimited"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDownload" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFull"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="start"
+                    android:layout_marginEnd="@dimen/_18sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="• Full offline mode after downloading"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tvUnlimited"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAccess" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMultilingual"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="@string/multilingual_amp_accessible"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="@+id/ivBackButton"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFull" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInstant"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="start"
+                    android:layout_marginEnd="@dimen/_18sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="• Instant local language toggle (e.g., English ↔ \n   Swahili/French)"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tvUnlimited"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMultilingual" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvSpeech"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="start"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:layout_marginEnd="@dimen/_18sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:text="• Text-to-speech and voiceover support (Phase 2)s"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tvUnlimited"
+                    app:layout_constraintTop_toBottomOf="@+id/tvInstant" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInteractive"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="@string/interactive_quizzes_amp_progress_tracking"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="@+id/ivBackButton"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSpeech" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvQuizzes"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:gravity="start"
+                    android:layout_marginEnd="@dimen/_18sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="• Unlimited quizzes with instant results"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tvUnlimited"
+                    app:layout_constraintTop_toBottomOf="@+id/tvInteractive" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPersonalized"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_6ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginEnd="@dimen/_18sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:gravity="start"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="• Personalized progress dashboard with insights\n   and recommendations"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tvUnlimited"
+                    app:layout_constraintTop_toBottomOf="@+id/tvQuizzes" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTerms"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingVertical="@dimen/_6sdp"
+                    android:text="Terms &amp; Conditions and Privacy Policy"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_8ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPersonalized" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnCreate"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="58dp"
+                    android:layout_marginHorizontal="@dimen/_18sdp"
+                    android:background="@drawable/gradient_btn_bg"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="@string/subscribe"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTerms" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRestore"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10ssp"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingVertical="@dimen/_6sdp"
+                    android:text="@string/restore"
+                    android:textColor="@color/end_color"
+                    android:textSize="@dimen/_9ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnCreate" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.edu.lite.ui.auth.AuthCommonVM" />
+
+        <variable
+            name="selectType"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.auth.languages.LanguageFragment">
+
+        <include
+            android:id="@+id/clHeader"
+            layout="@layout/header_item_layout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clHeader">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLanguage"
+                style="@style/TextView.bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:text="@string/language"
+                android:textColor="@color/hint_color"
+                android:textSize="@dimen/_17ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivBackButton"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_marginStart="@dimen/_14sdp"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/iv_back_icon"
+                app:layout_constraintBottom_toBottomOf="@+id/tvLanguage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvLanguage" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clEnglish"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_95sdp"
+                android:layout_marginHorizontal="@dimen/_18sdp"
+                android:layout_marginTop="@dimen/_28sdp"
+                android:background="@{selectType==1?@drawable/selected_language_bg:@drawable/un_selected_language_bg}"
+                android:elevation="@dimen/_2sdp"
+                android:onClick="@{v->vm.onClick(v)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLanguage">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivEnglish"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:src="@drawable/english_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvEnglish"
+                    style="@style/TextView.bold"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/english"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivEnglish"
+                    app:layout_constraintStart_toStartOf="@+id/ivEnglish"
+                    app:layout_constraintTop_toBottomOf="@+id/ivEnglish" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clFrench"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_95sdp"
+
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@{selectType==2?@drawable/selected_language_bg:@drawable/un_selected_language_bg}"
+                android:elevation="@dimen/_2sdp"
+                android:onClick="@{v->vm.onClick(v)}"
+                app:layout_constraintEnd_toEndOf="@+id/clEnglish"
+                app:layout_constraintStart_toStartOf="@+id/clEnglish"
+                app:layout_constraintTop_toBottomOf="@+id/clEnglish">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivFrench"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:src="@drawable/french_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFrench"
+                    style="@style/TextView.bold"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/french"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivFrench"
+                    app:layout_constraintStart_toStartOf="@+id/ivFrench"
+                    app:layout_constraintTop_toBottomOf="@+id/ivFrench" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clArabic"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_95sdp"
+
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@{selectType==3?@drawable/selected_language_bg:@drawable/un_selected_language_bg}"
+                android:elevation="@dimen/_2sdp"
+                android:onClick="@{v->vm.onClick(v)}"
+                app:layout_constraintEnd_toEndOf="@+id/clEnglish"
+                app:layout_constraintStart_toStartOf="@+id/clEnglish"
+                app:layout_constraintTop_toBottomOf="@+id/clFrench">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivArabic"
+                    android:layout_width="@dimen/_28sdp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:src="@drawable/arabic_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvArabic"
+                    style="@style/TextView.bold"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text="@string/arabic"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/ivArabic"
+                    app:layout_constraintStart_toStartOf="@+id/ivArabic"
+                    app:layout_constraintTop_toBottomOf="@+id/ivArabic" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNext"
+            style="@style/TextView.semibold"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/gradient_btn_bg"
+            android:gravity="center"
+            android:onClick="@{v->vm.onClick(v)}"
+            android:textSize="@dimen/_14ssp"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

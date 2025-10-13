@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_navigation">
+
+    <!--    action    -->
+
+    <action
+        android:id="@+id/navigateToLanguageFragment"
+        app:destination="@id/fragmentLanguage" />
+
+    <action
+        android:id="@+id/navigateToSplashFragment"
+        app:destination="@id/fragmentSplash" />
+    <action
+        android:id="@+id/navigateToLoginFragment"
+        app:destination="@id/fragmentLogin" />
+    <action
+        android:id="@+id/navigateToSignupFragment"
+        app:destination="@id/fragmentSignup" />
+
+    <action
+        android:id="@+id/navigateToForgotFragment"
+        app:destination="@id/fragmentForgot" />
+
+    <action
+        android:id="@+id/navigateToOtpFragment"
+        app:destination="@id/fragmentOtp" />
+
+    <action
+        android:id="@+id/navigateToNewPasswordFragment"
+        app:destination="@id/fragmentNewPassword" />
+
+
+    <action
+        android:id="@+id/navigateToHomeFragment"
+        app:destination="@id/fragmentHome" />
+
+    <!--    <action-->
+    <!--        android:id="@+id/navigateToQuizFragment"-->
+    <!--        app:destination="@id/fragmentQuiz" />-->
+
+    <!--    <action-->
+    <!--        android:id="@+id/navigateToDownloadFragment"-->
+    <!--        app:destination="@id/fragmentDownload" />-->
+
+    <!--    <action-->
+    <!--        android:id="@+id/navigateToProfileFragment"-->
+    <!--        app:destination="@id/fragmentProfile" />-->
+
+
+    <action
+        android:id="@+id/navigateToChooseGradeFragment"
+        app:destination="@id/fragmentChooseGrade" />
+
+
+    <action
+        android:id="@+id/navigateToTodayThemeFragment"
+        app:destination="@id/fragmentTodayTheme" />
+
+    <action
+        android:id="@+id/navigateToPickSubjectFragment"
+        app:destination="@id/fragmentPickSubject" />
+
+    <action
+        android:id="@+id/navigateToLetPlayLearnFragment"
+        app:destination="@id/fragmentLetPlayLearn" />
+
+    <action
+        android:id="@+id/navigateToFeaturedQuizzesFragment"
+        app:destination="@id/fragmentFeaturedQuizzes" />
+
+    <action
+        android:id="@+id/navigateToQuizQuestionFragment"
+        app:destination="@id/fragmentQuizQuestion" />
+
+    <action
+        android:id="@+id/navigateToPracticeTestFragment"
+        app:destination="@id/fragmentPracticeTest" />
+    <action
+        android:id="@+id/navigateToVideoLessonsFragment"
+        app:destination="@id/fragmentVideoLessons" />
+
+    <action
+        android:id="@+id/navigateToCreativeProjectsFragment"
+        app:destination="@id/fragmentCreativeProjects" />
+
+    <action
+        android:id="@+id/navigateToCreativeProjectsDetailsFragment"
+        app:destination="@id/fragmentCreativeProjectsDetails" />
+
+    <action
+        android:id="@+id/navigateToChangePasswordFragment"
+        app:destination="@id/fragmentChangePassword" />
+
+    <action
+        android:id="@+id/navigateToEditProfileFragment"
+        app:destination="@id/fragmentEditProfile" />
+
+    <action
+        android:id="@+id/navigateToNotificationFragment"
+        app:destination="@id/fragmentNotification" />
+
+    <action
+        android:id="@+id/navigateToSubscriptionFragment"
+        app:destination="@id/fragmentSubscription" />
+    <action
+        android:id="@+id/navigateToProfileDownloadFragment"
+        app:destination="@id/fragmentProfileDownload" />
+
+    <!--    fragment   -->
+
+    <fragment
+        android:id="@+id/fragmentLanguage"
+        android:name="com.edu.lite.ui.auth.languages.LanguageFragment"
+        tools:layout="@layout/fragment_language" >
+
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentSplash"
+        android:name="com.edu.lite.ui.auth.splash.SplashFragment"
+        tools:layout="@layout/fragment_splash" />
+    <fragment
+        android:id="@+id/fragmentLogin"
+        android:name="com.edu.lite.ui.auth.login.LoginFragment"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/fragmentSignup"
+        android:name="com.edu.lite.ui.auth.signup.SignupFragment"
+        tools:layout="@layout/fragment_signup" />
+    <fragment
+        android:id="@+id/fragmentForgot"
+        android:name="com.edu.lite.ui.auth.forgot.ForgotEmailFragment"
+        tools:layout="@layout/fragment_forgot_email" />
+    <fragment
+        android:id="@+id/fragmentOtp"
+        android:name="com.edu.lite.ui.auth.forgot.OtpFragment"
+        tools:layout="@layout/fragment_otp">
+
+        <argument
+            android:name="email"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="type"
+            android:defaultValue="0"
+            app:argType="integer" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentNewPassword"
+        android:name="com.edu.lite.ui.auth.forgot.NewPasswordFragment"
+        tools:layout="@layout/fragment_new_password">
+
+        <argument
+            android:name="email"
+            app:argType="string"
+            android:defaultValue="" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentHome"
+        android:name="com.edu.lite.ui.auth.dash_board.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/fragmentQuiz"
+        android:name="com.edu.lite.ui.auth.dash_board.quiz.QuizFragment"
+        tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/fragmentDownload"
+        android:name="com.edu.lite.ui.auth.dash_board.download.DownloadFragment"
+        tools:layout="@layout/fragment_download" />
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="com.edu.lite.ui.auth.dash_board.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/fragmentChooseGrade"
+        android:name="com.edu.lite.ui.auth.dash_board.home.grade.ChooseGradeFragment"
+        tools:layout="@layout/fragment_choose_grade">
+        <action
+            android:id="@+id/navigateToTodayThemeFragment"
+            app:destination="@id/fragmentTodayTheme" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragmentTodayTheme"
+        android:name="com.edu.lite.ui.auth.dash_board.home.theams.TodayThemeFragment"
+        tools:layout="@layout/fragment_today_theme">
+
+        <argument
+            android:name="gradeId"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="grade"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragmentPickSubject"
+        android:name="com.edu.lite.ui.auth.dash_board.home.pick_subject.PickSubjectFragment"
+        tools:layout="@layout/fragment_pick_subject">
+        <argument
+            android:name="subjectId"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="grade"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragmentLetPlayLearn"
+        android:name="com.edu.lite.ui.auth.dash_board.home.play_learn.LetPlayLearnFragment"
+        tools:layout="@layout/fragment_let_play_learn" >
+
+        <argument
+            android:name="subjectId"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="subjectData"
+            app:argType="com.edu.lite.data.model.SubjectData" />
+
+        <argument
+            android:name="grade"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentFeaturedQuizzes"
+        android:name="com.edu.lite.ui.auth.dash_board.home.quiz.FeaturedQuizzesFragment"
+        tools:layout="@layout/fragment_featured_quizzes" >
+
+        <argument
+            android:name="subject"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="featuredType"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragmentQuizQuestion"
+        android:name="com.edu.lite.ui.auth.dash_board.home.quiz.question.QuizQuestionFragment"
+        tools:layout="@layout/fragment_quiz_question" >
+
+        <argument
+            android:name="quizId"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragmentPracticeTest"
+        android:name="com.edu.lite.ui.auth.dash_board.home.practice.PracticeTestFragment"
+        tools:layout="@layout/fragment_practice_test">
+
+        <argument
+            android:name="subject"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="practiceTest"
+            android:defaultValue=""
+            app:argType="string" />
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fragmentVideoLessons"
+        android:name="com.edu.lite.ui.auth.dash_board.home.video_lessons.VideoLessonsFragment"
+        tools:layout="@layout/fragment_video_lessons" />
+
+
+    <fragment
+        android:id="@+id/fragmentCreativeProjects"
+        android:name="com.edu.lite.ui.auth.dash_board.home.creative_project.CreativeProjectsFragment"
+        tools:layout="@layout/fragment_creative_projects">
+
+        <argument
+            android:name="subjectId"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="grade"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentCreativeProjectsDetails"
+        android:name="com.edu.lite.ui.auth.dash_board.home.creative_project.CreativeProjectsDetailsFragment"
+        tools:layout="@layout/fragment_creative_projects_details" >
+        <argument
+            android:name="creativeProjectId"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentChangePassword"
+        android:name="com.edu.lite.ui.auth.dash_board.profile.change_password.ChangePasswordFragment"
+        tools:layout="@layout/fragment_change_password" />
+
+    <fragment
+        android:id="@+id/fragmentEditProfile"
+        android:name="com.edu.lite.ui.auth.dash_board.profile.edit_profile.EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+        android:id="@+id/fragmentNotification"
+        android:name="com.edu.lite.ui.auth.dash_board.profile.notifications.NotificationFragment"
+        tools:layout="@layout/fragment_notification" />
+
+    <fragment
+        android:id="@+id/fragmentSubscription"
+        android:name="com.edu.lite.ui.auth.dash_board.profile.subscription.SubscriptionFragment"
+        tools:layout="@layout/fragment_subscription" />
+    <fragment
+        android:id="@+id/fragmentProfileDownload"
+        android:name="com.edu.lite.ui.auth.dash_board.profile.download.ProfileDownloadFragment"
+        tools:layout="@layout/fragment_profile_download" />
+
+
+</navigation>

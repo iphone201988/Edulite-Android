@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CurvedBottomNavigationView">
+        <attr name="cbn_selectedColor" format="color" />
+        <attr name="cbn_unSelectedColor" format="color" />
+        <attr name="cbn_animDuration" format="integer" />
+        <attr name="cbn_fabElevation" format="dimension" />
+        <attr name="cbn_elevation" format="dimension"/>
+        <attr name="cbn_fabBg" format="color" />
+        <attr name="cbn_bg" format="color" />
+        <attr name="cbn_textSize" format="dimension" />
+        <attr name="cbn_textColor" format="color" />
+        <attr name="cbn_dotColor" format="color" />
+        <attr name="cbn_dotSize" format="dimension"/>
+        <attr name="fontFamily" format="reference|string"/>
+        <attr name="cbn_iconSize" format="dimension" />
+        <attr name="cbn_fabStartColor" format="color"/>
+        <attr name="cbn_fabEndColor" format="color"/>
+
+        <attr name="cbn_startColor" format="color"/>
+        <attr name="cbn_endColor" format="color"/>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="MyCustomView">
+        <attr name="roundcorner" format="boolean"/>
+        <attr name="circlebackgroundcolor" format="color"/>
+        <attr name="startcolor" format="color"/>
+        <attr name="endcolor" format="color"/>
+        <attr name="progess" format="integer"/>
+        <attr name="circlestrokewidth" format="dimension"/>
+    </declare-styleable>
+
+</resources>

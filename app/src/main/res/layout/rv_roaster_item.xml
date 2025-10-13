@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.edu.lite.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.edu.lite.data.model.RoastedModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clPreview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:background="@drawable/radius_6"
+        android:backgroundTint="@color/yellow_40"
+        android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+        android:paddingVertical="@dimen/_4sdp">
+
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAva"
+            style="@style/TextView.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.ava}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvXp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Ava" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvXp"
+            style="@style/TextView.regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.xp}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:layout_constraintEnd_toStartOf="@+id/tvLevel"
+            app:layout_constraintStart_toEndOf="@+id/tvAva"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="XP 100" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLevel"
+            style="@style/TextView.regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.level}"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toEndOf="@+id/tvXp"
+            app:layout_constraintEnd_toStartOf="@+id/tvStreak"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="LVL 6" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvStreak"
+            style="@style/TextView.regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.streak}"
+            android:textColor="@color/black"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintEnd_toStartOf="@+id/tvPercentage"
+            app:layout_constraintStart_toEndOf="@+id/tvLevel"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Streak 9" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvPercentage"
+            style="@style/TextView.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{bean.percetageValue}"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toEndOf="@+id/tvStreak"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="80%" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

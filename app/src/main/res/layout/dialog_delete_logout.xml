@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="callback"
+            type="com.edu.lite.utils.BaseCustomDialog.Listener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/quests_third_bg"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/_10sdp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            style="@style/TextView.extraBold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/delete_account"
+            android:textSize="@dimen/_13ssp"
+            android:textColor="@color/hint_color"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvSubHeading"
+            style="@style/TextView.semibold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_14ssp"
+            android:text="@string/are_you_sure_to_logout"
+            android:gravity="center"
+            android:textColor="@color/hint_color"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/TextView.semibold"
+            android:padding="@dimen/_6sdp"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:gravity="center"
+            android:background="@drawable/practice_category_unselected_bg"
+            android:text="@string/cancel"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/tvSubHeading"
+            app:layout_constraintStart_toStartOf="@id/tvTitle"
+            app:layout_constraintEnd_toStartOf="@id/tvLogout"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLogout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/TextView.semibold"
+            android:background="@drawable/practice_category_selected_bg"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:padding="@dimen/_6sdp"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="@id/tvCancel"
+            app:layout_constraintStart_toEndOf="@+id/tvCancel"
+            app:layout_constraintEnd_toEndOf="@id/tvTitle"
+            app:layout_constraintBottom_toBottomOf="@id/tvCancel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
