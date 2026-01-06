@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.edu.lite.ui.dash_board.home.HomeFragmentVM" />
+
+    </data>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            tools:context=".ui.dash_board.home.creative_project.add.AddCreativeProjectFragment">
+
+            <include
+                android:id="@+id/clHeader"
+                layout="@layout/header_item_layout" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/clHeader">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLogin"
+                    style="@style/TextView.bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_13sdp"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="@string/add_creative_project"
+                    android:textColor="@color/hint_color"
+                    android:textSize="@dimen/_17ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivBackButton"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/iv_back_icon"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvLogin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvLogin" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAdd"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_160sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:src="@drawable/add_crete_bg_2"
+                    app:layout_constraintEnd_toEndOf="@+id/etProjectTitle"
+                    app:layout_constraintStart_toStartOf="@+id/etProjectTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/ivBackButton" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/upload_img"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivAdd"
+                    app:layout_constraintEnd_toEndOf="@+id/ivAdd"
+                    app:layout_constraintStart_toStartOf="@+id/ivAdd"
+                    app:layout_constraintTop_toTopOf="@+id/ivAdd" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etProjectTitle"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    android:background="@drawable/et_bg"
+                    android:gravity="start"
+                    android:hint="Project Title"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="noExcludeDescendants"
+                    android:inputType="textPersonName"
+                    android:nextFocusForward="@+id/etProjectDescription"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingVertical="@dimen/_14sdp"
+                    android:paddingStart="@dimen/_18sdp"
+                    android:paddingEnd="@dimen/_18sdp"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivAdd" />
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etProjectDescription"
+                    style="@style/EditText"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_14sdp"
+                    android:background="@drawable/add_crete_bg_1"
+                    android:gravity="start"
+                    android:hint="Project Description"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="noExcludeDescendants"
+                    android:inputType="textImeMultiLine"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingVertical="@dimen/_14sdp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_12sdp"
+                    android:singleLine="false"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/etProjectTitle"
+                    app:layout_constraintStart_toStartOf="@+id/etProjectTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/etProjectTitle" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnAdd"
+                    style="@style/TextView.semibold"
+                    android:layout_width="0dp"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="@dimen/_68sdp"
+                    android:background="@drawable/gradient_btn_bg"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="@string/add"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/etProjectTitle"
+                    app:layout_constraintStart_toStartOf="@+id/etProjectTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/etProjectDescription" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

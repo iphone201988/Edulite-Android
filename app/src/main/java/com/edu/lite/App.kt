@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Intent
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.edu.lite.base.AppLifecycleListener
+import com.google.firebase.FirebaseApp
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -15,8 +16,12 @@ class App : Application() {
     }
     override fun onCreate() {
         super.onCreate()
+        FirebaseApp.initializeApp(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(AppLifecycleListener(this@App))
+
+
     }
+
 
     private fun restartApp() {
         if (!isRestarting) {

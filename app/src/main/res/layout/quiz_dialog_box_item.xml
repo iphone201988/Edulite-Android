@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@drawable/quests_third_bg"
+        android:background="@drawable/dailog_bg"
         android:backgroundTint="@color/white"
         android:layout_height="wrap_content">
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_9sdp"
             android:gravity="center"
-            android:text="You have been scored"
+            android:text="@string/you_have_been_scored"
             android:layout_marginEnd="@dimen/_65sdp"
             android:textColor="@color/hint_color"
             android:textSize="@dimen/_11ssp"
@@ -92,7 +92,7 @@
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:gravity="center"
-                android:text="Ques"
+                android:text="@string/ques"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +136,7 @@
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:gravity="center"
-                android:text="Correct"
+                android:text="@string/correct"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -179,7 +179,7 @@
                 android:layout_marginTop="@dimen/_6sdp"
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:gravity="center"
-                android:text="Wrong"
+                android:text="@string/wrong"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_9ssp"
                 app:layout_constraintEnd_toEndOf="parent"

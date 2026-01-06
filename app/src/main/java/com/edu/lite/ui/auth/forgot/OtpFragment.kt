@@ -1,6 +1,5 @@
 package com.edu.lite.ui.auth.forgot
 
-import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -18,7 +17,6 @@ import com.edu.lite.data.model.CommonApiResponse
 import com.edu.lite.data.model.SignupResponse
 import com.edu.lite.databinding.FragmentOtpBinding
 import com.edu.lite.ui.auth.AuthCommonVM
-import com.edu.lite.ui.auth.dash_board.home.HomeFragmentDirections
 import com.edu.lite.utils.BindingUtils
 import com.edu.lite.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,7 +69,12 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
                 }
 
                 R.id.tvResendOtp -> {
-
+                    val language = sharedPrefManager.getLanguage()
+                    val data = HashMap<String, Any>()
+                    data["email"] = email.toString()
+                    data["type"] = type
+                    data["language"] = language
+                    viewModel.resendOtp(Constants.RESEND_OTP, data)
                 }
             }
 
@@ -86,31 +89,66 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
                 Status.LOADING -> {
                     showLoading()
                 }
+
                 Status.SUCCESS -> {
                     when (it.message) {
                         "codeVerificationApi" -> {
                             runCatching {
                                 val jsonData = it.data?.toString().orEmpty()
-                                val model: CommonApiResponse? = BindingUtils.parseJson(jsonData)
-                                if (model?.success == true) {
-                                    showSuccessToast(model.message.toString())
+                                val model: SignupResponse? = BindingUtils.parseJson(jsonData)
+                                val loginData = model?.user
+                                if (loginData != null) {
+                                    loginData.let { it1 ->
+                                        sharedPrefManager.setLoginData(it1)
+                                    }
+                                    loginData.token.let {
+                                        sharedPrefManager.setToken(it.toString())
+                                    }
                                     when (type) {
                                         2 -> {
-                                            val action = OtpFragmentDirections.navigateToNewPasswordFragment(email = email.toString())
-                                            BindingUtils.navigateWithSlide(findNavController(), action)
+                                            val action =
+                                                OtpFragmentDirections.navigateToNewPasswordFragment(
+                                                    email = email.toString()
+                                                )
+                                            BindingUtils.navigateWithSlide(
+                                                findNavController(),
+                                                action
+                                            )
                                         }
+
                                         1 -> {
-                                            val action = OtpFragmentDirections.navigateToHomeFragment()
-                                            BindingUtils.navigateWithSlide(findNavController(), action)
+                                            val action =
+                                                OtpFragmentDirections.navigateToChooseGradeFragment()
+                                            BindingUtils.navigateWithSlide(
+                                                findNavController(),
+                                                action
+                                            )
                                         }
                                     }
                                 } else {
-                                    showErrorToast("Something went wrong")
+                                    showErrorToast(getString(R.string.something_went_wrong))
                                 }
                             }.onFailure { e ->
                                 showErrorToast(e.message.toString())
+                            }.onFailure { e ->
+                                Log.e("apiErrorOccurred", "Error: ${e.message}", e)
+                                showErrorToast(e.message.toString())
+                            }.also {
+                                hideLoading()
                             }
-                                .onFailure { e ->
+                        }
+
+
+                        "resendOtp" -> {
+                            runCatching {
+                                val jsonData = it.data?.toString().orEmpty()
+                                val model: CommonApiResponse? = BindingUtils.parseJson(jsonData)
+                                if (model?.message?.isNotEmpty() == true) {
+                                    showSuccessToast(model.message.toString())
+                                }
+                            }.onFailure { e ->
+                                showErrorToast(e.message.toString())
+                            }.onFailure { e ->
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
                                 showErrorToast(e.message.toString())
                             }.also {

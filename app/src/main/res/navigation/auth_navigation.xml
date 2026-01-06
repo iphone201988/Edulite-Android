@@ -31,6 +31,9 @@
     <action
         android:id="@+id/navigateToNewPasswordFragment"
         app:destination="@id/fragmentNewPassword" />
+    <action
+        android:id="@+id/navigateToVideoPlayFragment"
+        app:destination="@id/fragmentVideoPlay" />
 
 
     <action
@@ -99,6 +102,10 @@
         app:destination="@id/fragmentEditProfile" />
 
     <action
+        android:id="@+id/navigateToSettingsFragment"
+        app:destination="@id/fragmentSettings" />
+
+    <action
         android:id="@+id/navigateToNotificationFragment"
         app:destination="@id/fragmentNotification" />
 
@@ -109,17 +116,26 @@
         android:id="@+id/navigateToProfileDownloadFragment"
         app:destination="@id/fragmentProfileDownload" />
 
+
+    <action
+        android:id="@+id/navigateToRewardsFragment"
+        app:destination="@id/fragmentRewards" />
+
+    <action
+        android:id="@+id/navigateToBadgesFragment"
+        app:destination="@id/fragmentBadges" />
+
     <!--    fragment   -->
 
     <fragment
         android:id="@+id/fragmentLanguage"
         android:name="com.edu.lite.ui.auth.languages.LanguageFragment"
-        tools:layout="@layout/fragment_language" >
+        tools:layout="@layout/fragment_language">
 
         <argument
             android:name="title"
-            app:argType="string"
-            android:defaultValue="" />
+            android:defaultValue=""
+            app:argType="string" />
     </fragment>
 
     <fragment
@@ -129,7 +145,9 @@
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.edu.lite.ui.auth.login.LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+
+    </fragment>
     <fragment
         android:id="@+id/fragmentSignup"
         android:name="com.edu.lite.ui.auth.signup.SignupFragment"
@@ -161,30 +179,34 @@
 
         <argument
             android:name="email"
-            app:argType="string"
-            android:defaultValue="" />
+            android:defaultValue=""
+            app:argType="string" />
 
     </fragment>
     <fragment
         android:id="@+id/fragmentHome"
-        android:name="com.edu.lite.ui.auth.dash_board.home.HomeFragment"
+        android:name="com.edu.lite.ui.dash_board.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/fragmentQuiz"
-        android:name="com.edu.lite.ui.auth.dash_board.quiz.QuizFragment"
+        android:name="com.edu.lite.ui.dash_board.quiz.QuizFragment"
         tools:layout="@layout/fragment_quiz" />
     <fragment
         android:id="@+id/fragmentDownload"
-        android:name="com.edu.lite.ui.auth.dash_board.download.DownloadFragment"
+        android:name="com.edu.lite.ui.dash_board.download.DownloadFragment"
         tools:layout="@layout/fragment_download" />
     <fragment
         android:id="@+id/fragmentProfile"
-        android:name="com.edu.lite.ui.auth.dash_board.profile.ProfileFragment"
+        android:name="com.edu.lite.ui.dash_board.profile.ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/fragmentRoadmap"
+        android:name="com.edu.lite.ui.dash_board.road_map.RoadmapFragment"
+        tools:layout="@layout/fragment_roadmap" />
 
     <fragment
         android:id="@+id/fragmentChooseGrade"
-        android:name="com.edu.lite.ui.auth.dash_board.home.grade.ChooseGradeFragment"
+        android:name="com.edu.lite.ui.dash_board.home.grade.ChooseGradeFragment"
         tools:layout="@layout/fragment_choose_grade">
         <action
             android:id="@+id/navigateToTodayThemeFragment"
@@ -194,7 +216,7 @@
 
     <fragment
         android:id="@+id/fragmentTodayTheme"
-        android:name="com.edu.lite.ui.auth.dash_board.home.theams.TodayThemeFragment"
+        android:name="com.edu.lite.ui.dash_board.home.theams.TodayThemeFragment"
         tools:layout="@layout/fragment_today_theme">
 
         <argument
@@ -212,7 +234,7 @@
 
     <fragment
         android:id="@+id/fragmentPickSubject"
-        android:name="com.edu.lite.ui.auth.dash_board.home.pick_subject.PickSubjectFragment"
+        android:name="com.edu.lite.ui.dash_board.home.pick_subject.PickSubjectFragment"
         tools:layout="@layout/fragment_pick_subject">
         <argument
             android:name="subjectId"
@@ -228,8 +250,8 @@
 
     <fragment
         android:id="@+id/fragmentLetPlayLearn"
-        android:name="com.edu.lite.ui.auth.dash_board.home.play_learn.LetPlayLearnFragment"
-        tools:layout="@layout/fragment_let_play_learn" >
+        android:name="com.edu.lite.ui.dash_board.home.play_learn.LetPlayLearnFragment"
+        tools:layout="@layout/fragment_let_play_learn">
 
         <argument
             android:name="subjectId"
@@ -248,8 +270,8 @@
 
     <fragment
         android:id="@+id/fragmentFeaturedQuizzes"
-        android:name="com.edu.lite.ui.auth.dash_board.home.quiz.FeaturedQuizzesFragment"
-        tools:layout="@layout/fragment_featured_quizzes" >
+        android:name="com.edu.lite.ui.dash_board.home.quiz.FeaturedQuizzesFragment"
+        tools:layout="@layout/fragment_featured_quizzes">
 
         <argument
             android:name="subject"
@@ -266,8 +288,8 @@
 
     <fragment
         android:id="@+id/fragmentQuizQuestion"
-        android:name="com.edu.lite.ui.auth.dash_board.home.quiz.question.QuizQuestionFragment"
-        tools:layout="@layout/fragment_quiz_question" >
+        android:name="com.edu.lite.ui.dash_board.home.quiz.question.QuizQuestionFragment"
+        tools:layout="@layout/fragment_quiz_question">
 
         <argument
             android:name="quizId"
@@ -279,7 +301,7 @@
 
     <fragment
         android:id="@+id/fragmentPracticeTest"
-        android:name="com.edu.lite.ui.auth.dash_board.home.practice.PracticeTestFragment"
+        android:name="com.edu.lite.ui.dash_board.home.practice.PracticeTestFragment"
         tools:layout="@layout/fragment_practice_test">
 
         <argument
@@ -298,13 +320,23 @@
 
     <fragment
         android:id="@+id/fragmentVideoLessons"
-        android:name="com.edu.lite.ui.auth.dash_board.home.video_lessons.VideoLessonsFragment"
-        tools:layout="@layout/fragment_video_lessons" />
+        android:name="com.edu.lite.ui.dash_board.home.video_lessons.VideoLessonsFragment"
+        tools:layout="@layout/fragment_video_lessons" >
+        <argument
+            android:name="subjectId"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="grade"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 
 
     <fragment
         android:id="@+id/fragmentCreativeProjects"
-        android:name="com.edu.lite.ui.auth.dash_board.home.creative_project.CreativeProjectsFragment"
+        android:name="com.edu.lite.ui.dash_board.home.creative_project.CreativeProjectsFragment"
         tools:layout="@layout/fragment_creative_projects">
 
         <argument
@@ -320,8 +352,8 @@
 
     <fragment
         android:id="@+id/fragmentCreativeProjectsDetails"
-        android:name="com.edu.lite.ui.auth.dash_board.home.creative_project.CreativeProjectsDetailsFragment"
-        tools:layout="@layout/fragment_creative_projects_details" >
+        android:name="com.edu.lite.ui.dash_board.home.creative_project.CreativeProjectsDetailsFragment"
+        tools:layout="@layout/fragment_creative_projects_details">
         <argument
             android:name="creativeProjectId"
             android:defaultValue=""
@@ -330,27 +362,68 @@
 
     <fragment
         android:id="@+id/fragmentChangePassword"
-        android:name="com.edu.lite.ui.auth.dash_board.profile.change_password.ChangePasswordFragment"
+        android:name="com.edu.lite.ui.dash_board.profile.change_password.ChangePasswordFragment"
         tools:layout="@layout/fragment_change_password" />
 
     <fragment
         android:id="@+id/fragmentEditProfile"
-        android:name="com.edu.lite.ui.auth.dash_board.profile.edit_profile.EditProfileFragment"
+        android:name="com.edu.lite.ui.dash_board.profile.edit_profile.EditProfileFragment"
         tools:layout="@layout/fragment_edit_profile" />
 
     <fragment
         android:id="@+id/fragmentNotification"
-        android:name="com.edu.lite.ui.auth.dash_board.profile.notifications.NotificationFragment"
+        android:name="com.edu.lite.ui.dash_board.profile.notifications.NotificationFragment"
         tools:layout="@layout/fragment_notification" />
 
     <fragment
         android:id="@+id/fragmentSubscription"
-        android:name="com.edu.lite.ui.auth.dash_board.profile.subscription.SubscriptionFragment"
+        android:name="com.edu.lite.ui.dash_board.profile.subscription.SubscriptionFragment"
         tools:layout="@layout/fragment_subscription" />
     <fragment
         android:id="@+id/fragmentProfileDownload"
-        android:name="com.edu.lite.ui.auth.dash_board.profile.download.ProfileDownloadFragment"
-        tools:layout="@layout/fragment_profile_download" />
+        android:name="com.edu.lite.ui.dash_board.profile.download.ProfileDownloadFragment"
+        tools:layout="@layout/fragment_profile_download">
+        <argument
+            android:name="internet"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/fragmentAddCreateProject"
+        android:name="com.edu.lite.ui.dash_board.home.creative_project.add.AddCreativeProjectFragment"
+        tools:layout="@layout/fragment_add_creative_project" />
+
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="com.edu.lite.ui.dash_board.profile.settings.SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
+
+
+    <fragment
+        android:id="@+id/fragmentRewards"
+        android:name="com.edu.lite.ui.dash_board.profile.rewards.RewardsFragment"
+        tools:layout="@layout/fragment_rewards" />
+
+    <fragment
+        android:id="@+id/fragmentBadges"
+        android:name="com.edu.lite.ui.dash_board.profile.badges.BadgesFragment"
+        tools:layout="@layout/fragment_badges" />
+
+
+    <fragment
+        android:id="@+id/fragmentVideoPlay"
+        android:name="com.edu.lite.ui.dash_board.video_play.VideoPlayFragment"
+        tools:layout="@layout/fragment_video_play" >
+        <argument
+            android:name="videoPath"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="videoUrl"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 
 </navigation>

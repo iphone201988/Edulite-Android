@@ -40,16 +40,16 @@ class ApiHelperImpl @Inject constructor(private val apiService: ApiService, priv
         return apiService.apiGetOnlyAuthToken(url,getTokenFromSPref())
     }
 
-    override suspend fun apiGetWithQuery(data: HashMap<String, String>, url: String): Response<JsonObject> {
+    override suspend fun apiGetWithQuery(data: HashMap<String, Any>, url: String): Response<JsonObject> {
         return apiService.apiGetWithQuery(getTokenFromSPref(),url,data)
     }
 
+
     override suspend fun apiForPostMultipart(
         url: String,
-        map: HashMap<String, RequestBody>?,
         part: MultipartBody.Part?,
     ): Response<JsonObject> {
-        return apiService.apiForPostMultipart(url,getTokenFromSPref(), map, part)
+        return apiService.apiForPostMultipart(url,getTokenFromSPref(), part)
     }
 
     override suspend fun apiForMultipartPut(

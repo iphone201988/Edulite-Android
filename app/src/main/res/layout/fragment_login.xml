@@ -62,8 +62,8 @@
                 android:hint="@string/your_email"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:paddingVertical="@dimen/_14sdp"
+                android:inputType="textEmailAddress"
                 android:paddingStart="@dimen/_38sdp"
-                android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvLogin" />

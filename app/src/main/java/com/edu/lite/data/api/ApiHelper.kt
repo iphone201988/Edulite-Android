@@ -12,9 +12,10 @@ interface ApiHelper {
     suspend fun apiForFormDataPut(data: HashMap<String, Any>,url: String): Response<JsonObject>
     suspend fun apiGetOutWithQuery(url:String): Response<JsonObject>
     suspend fun apiGetOnlyAuthToken(url:String): Response<JsonObject>
-    suspend fun apiGetWithQuery(data: HashMap<String, String>,url: String): Response<JsonObject>
-    suspend fun apiForPostMultipart(url: String,map: HashMap<String, RequestBody>?, part: MultipartBody.Part?): Response<JsonObject>
+    suspend fun apiGetWithQuery(data: HashMap<String, Any>,url: String): Response<JsonObject>
+    suspend fun apiForPostMultipart(url: String, part: MultipartBody.Part?): Response<JsonObject>
     suspend fun apiForMultipartPut(url: String,map: HashMap<String, RequestBody>?, part: MultipartBody.Part?): Response<JsonObject>
     suspend fun apiPutForRawBody(url: String,map: HashMap<String, Any>): Response<JsonObject>
+
 
 }

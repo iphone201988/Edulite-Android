@@ -3,11 +3,14 @@ package com.edu.lite.base.module
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.room.Room
 import com.edu.lite.utils.event.NetworkErrorHandler
 import com.edu.lite.data.api.ApiHelper
 import com.edu.lite.data.api.ApiHelperImpl
 import com.edu.lite.data.api.ApiService
 import com.edu.lite.data.api.Constants
+import com.edu.lite.data.room_moduel.AppDb
+import com.edu.lite.data.room_moduel.RoomDataBaseQueryPage
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -40,31 +43,11 @@ class ApplicationModule {
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .connectTimeout(5, TimeUnit.MINUTES)
-            .writeTimeout(5, TimeUnit.MINUTES)
-            .readTimeout(5, TimeUnit.MINUTES)
+            .connectTimeout(50, TimeUnit.SECONDS)
+            .writeTimeout(50, TimeUnit.SECONDS)
+            .readTimeout(50, TimeUnit.SECONDS)
         .build()
     }
-
-//    @Provides
-//    @Singleton
-//    fun provideOkHttpClient() = if (BuildConfig.DEBUG) {
-//        val loggingInterceptor = HttpLoggingInterceptor()
-//        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-//        OkHttpClient.Builder()
-//            .addInterceptor(loggingInterceptor)
-//            .connectTimeout(5, TimeUnit.MINUTES)
-//            .writeTimeout(5, TimeUnit.MINUTES) // write timeout
-//            .readTimeout(5, TimeUnit.MINUTES) // read timeout
-//            /*.addInterceptor(BasicAuthInterceptor(Constants.USERNAME, Constants.PASSWORD))*/
-//            .build()
-//    } else OkHttpClient
-//        .Builder()
-//        .connectTimeout(5, TimeUnit.MINUTES)
-//        .writeTimeout(5, TimeUnit.MINUTES) // write timeout
-//        .readTimeout(5, TimeUnit.MINUTES) // read timeout
-//        .build()
-
 
     @Provides
     @Singleton
@@ -90,5 +73,23 @@ class ApplicationModule {
     @Singleton
     fun provideSharedPref(application: Application): SharedPreferences {
         return application.getSharedPreferences(application.packageName, Context.MODE_PRIVATE)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRoomDatabase(application: Application): AppDb {
+        return Room.databaseBuilder(
+            application,
+            AppDb::class.java,
+            "edu_lite_db"
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideVideoDao(db: AppDb): RoomDataBaseQueryPage {
+        return db.connectAbstractClassConnection()
     }
 }

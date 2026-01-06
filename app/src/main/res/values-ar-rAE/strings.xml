@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Edu Lite</string>
+    <string name="session_expired">انتهت الجلسة</string>
+    <string name="alert">تنبيه</string>
+    <string name="post_detail">تفاصيل المنشور</string>
+    <string name="please_try_again">يرجى المحاولة مرة أخرى</string>
+    <string name="plz_wait">يرجى الانتظار</string>
+    <string name="error_found">تم العثور على خطأ</string>
+    <string name="click_me">اضغط هنا</string>
+    <string name="android_base_2025">قاعدة أندرويد 2025</string>
+    <string name="todo">قائمة المهام</string>
+    <string name="hello_blank_fragment">مرحبًا بالواجهة الفارغة</string>
+
+    <string name="french">الفرنسية</string>
+    <string name="english">الإنجليزية</string>
+    <string name="arabic">العربية</string>
+    <string name="language">اللغة</string>
+    <string name="next">التالي</string>
+
+    <string name="login">تسجيل الدخول</string>
+    <string name="your_email">بريدك الإلكتروني</string>
+    <string name="password">كلمة المرور</string>
+    <string name="forgot_password">هل نسيت كلمة المرور؟</string>
+    <string name="don_t_have_an_account_sign_up">ليس لديك حساب؟ أنشئ حسابًا</string>
+    <string name="signup">إنشاء حساب</string>
+    <string name="already_have_an_account_login">لديك حساب بالفعل؟ تسجيل الدخول</string>
+
+    <string name="your_name">اسمك</string>
+    <string name="date_of_birth">تاريخ الميلاد</string>
+    <string name="phone_number">رقم الهاتف</string>
+
+    <string name="verify_your_email">تحقق من بريدك الإلكتروني</string>
+    <string name="verify">تحقق</string>
+
+    <string name="create_new_password">إنشاء كلمة مرور جديدة</string>
+    <string name="create">إنشاء</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
+    <string name="re_enter_password">إعادة إدخال كلمة المرور</string>
+
+    <string name="today_s_progress">تقدم اليوم</string>
+    <string name="daily_goal">الهدف اليومي</string>
+    <string name="daily_quests">المهام اليومية</string>
+    <string name="finish_5_problems">حل 5 مسائل</string>
+    <string name="streak">سلسلة الإنجاز</string>
+    <string name="start_today_s_journey">ابدأ رحلة اليوم</string>
+    <string name="completed">مكتمل</string>
+    <string name="start">ابدأ</string>
+    <string name="skip">تخطي</string>
+    <string name="later">لاحقًا</string>
+
+    <string name="class_overview">نظرة عامة على الصف</string>
+    <string name="weekly_digest">الملخص الأسبوعي</string>
+    <string name="unit_mastery">إتقان الوحدات</string>
+    <string name="roaster_snapshot">لمحة عن القائمة</string>
+    <string name="time_on_task_min">الوقت المستغرق (دقيقة)</string>
+    <string name="badges_earned">الشارات المكتسبة</string>
+    <string name="reflection_highlight">أبرز التأملات</string>
+
+    <string name="i_was_the_risk_taker_by_trying_the_hard_windmill_challenge_twice">
+«كنت مغامرًا بمحاولة تحدي الطاحونة الصعب مرتين»
+</string>
+
+    <string name="what_s_next">ما التالي</string>
+    <string name="book_teacher_chat">حجز محادثة مع المعلم</string>
+    <string name="download_home_pack">تحميل حزمة المنزل</string>
+
+    <string name="choose_your_grade">اختر صفك الدراسي</string>
+    <string name="today_s_theme">موضوع اليوم</string>
+    <string name="who_we_are_me_as_a_learner">من نحن – أنا كمتعلم</string>
+    <string name="start_mission">ابدأ المهمة</string>
+    <string name="pick_a_subject">اختر مادة</string>
+
+    <string name="let_s_play_amp_learn">هيا نلعب ونتعلم!</string>
+
+    <string name="featured_quizzes">الاختبارات المميزة</string>
+    <string name="practice_test">اختبار تدريبي</string>
+    <string name="video_lessons">دروس فيديو</string>
+    <string name="creative_projects">مشاريع إبداعية</string>
+
+    <string name="how_well_do_you_know_geometry">ما مدى معرفتك</string>
+
+    <string name="test_your_knowledge_of_the_decade_of_big_hair_neon_colors_and_synthesizers">
+اختبر معرفتك بعقد التسريحات الكبيرة والألوان النيون وأجهزة السينثسايزر!
+</string>
+
+    <string name="introduction_to_machine_learning">مقدمة في تعلم الآلة</string>
+    <string name="join_our_expert_instructor_as_they_demystify_the_basics_of_ai_and_machine_learning">
+انضم إلى مدربنا الخبير لاكتشاف أساسيات الذكاء الاصطناعي وتعلم الآلة
+</string>
+
+    <string name="watch_now">شاهد الآن</string>
+    <string name="watch_now_start">ابدأ</string>
+    <string name="watch_now_resume">متابعة</string>
+    <string name="watch_now_completed">مكتمل</string>
+
+    <string name="have_a_project_to_share">هل لديك مشروع لمشاركته؟</string>
+    <string name="showcase_your_creativity">اعرض إبداعك</string>
+    <string name="my_lego_castle">قلعة الليغو الخاصة بي</string>
+
+    <string name="your_downloads">تنزيلاتك</string>
+    <string name="delete_profile">حذف الملف الشخصي</string>
+    <string name="change">تغيير</string>
+    <string name="change_password">تغيير كلمة المرور</string>
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="edit_profile">تعديل الملف الشخصي</string>
+    <string name="edit">تعديل</string>
+
+    <string name="notifications">الإشعارات</string>
+    <string name="subscription">الاشتراك</string>
+    <string name="features">المميزات</string>
+    <string name="unlimited_learning_access">وصول غير محدود للتعلم</string>
+    <string name="multilingual_amp_accessible">متعدد اللغات وسهل الوصول</string>
+    <string name="interactive_quizzes_amp_progress_tracking">
+اختبارات تفاعلية وتتبع التقدم
+</string>
+
+    <string name="subscribe">اشترك</string>
+    <string name="restore">استعادة</string>
+    <string name="previous">السابق</string>
+
+    <string name="logout">تسجيل الخروج</string>
+    <string name="delete_account">حذف الحساب</string>
+    <string name="are_you_sure_to_delete_account">
+هل أنت متأكد أنك تريد حذف هذا الحساب؟
+</string>
+    <string name="are_you_sure_to_logout">هل أنت متأكد أنك تريد تسجيل الخروج؟</string>
+    <string name="delete">حذف</string>
+    <string name="cancel">إلغاء</string>
+
+    <string name="please_enter_email">يرجى إدخال البريد الإلكتروني</string>
+    <string name="please_enter_a_valid_email">يرجى إدخال بريد إلكتروني صالح</string>
+    <string name="password_must_contain_at_least_one_uppercase_letter">
+يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل
+</string>
+    <string name="password_must_be_at_least_6_characters">
+يجب ألا تقل كلمة المرور عن 6 أحرف
+</string>
+    <string name="please_enter_password">يرجى إدخال كلمة المرور</string>
+    <string name="please_enter_name">يرجى إدخال الاسم</string>
+    <string name="please_enter_date_of_birth">يرجى إدخال تاريخ الميلاد</string>
+    <string name="please_enter_phone_number">يرجى إدخال رقم الهاتف</string>
+
+    <string name="select_country">اختر الدولة</string>
+    <string name="search_here">ابحث هنا</string>
+    <string name="resend_otp">إعادة إرسال الرمز</string>
+
+    <string name="early_grades">الصفوف المبكرة</string>
+    <string name="daily_team_quests">مهام الفريق اليومية</string>
+    <string name="add_creative_project">إضافة مشروع إبداعي</string>
+    <string name="add">إضافة</string>
+
+    <string name="badges">الشارات</string>
+    <string name="rewards">المكافآت</string>
+    <string name="no_quizzes_here_yet">لا توجد اختبارات بعد</string>
+    <string name="no_video_here_yet">لا توجد فيديوهات بعد</string>
+
+    <string name="_10_xp">+10 نقاط خبرة</string>
+    <string name="great_job">عمل رائع!</string>
+    <string name="you_nailed_it_that_s_the_correct_answer">
+أحسنت! هذه هي الإجابة الصحيحة
+</string>
+
+    <string name="xp">نقاط الخبرة</string>
+    <string name="tokens">الرموز</string>
+    <string name="level_up_ready">جاهز للانتقال إلى المستوى التالي!</string>
+    <string name="claim">استلام</string>
+    <string name="you_have_been_scored">تم احتساب نتيجتك</string>
+
+    <string name="ques">سؤال</string>
+    <string name="correct">صحيح</string>
+    <string name="wrong">خطأ</string>
+
+    <string name="milestone_reward">مكافأة الإنجاز</string>
+    <string name="missed_it">لم تصب</string>
+    <string name="almost_there_don_t_give_up_you_can_ntry_again">
+قريب جدًا! لا تستسلم — يمكنك المحاولة مرة أخرى
+</string>
+
+    <string name="try_again">حاول مرة أخرى</string>
+    <string name="get_a_hint_10_xp">احصل على تلميح (-10 نقاط خبرة)</string>
+
+    <string name="camera">الكاميرا</string>
+    <string name="choose">اختيار</string>
+    <string name="gallery">المعرض</string>
+
+    <string name="student_preview">معاينة الطالب</string>
+    <string name="teacher_dashboard">لوحة تحكم المعلم</string>
+    <string name="parent_digest">ملخص ولي الأمر</string>
+
+    <string name="photograph_builder">منشئ الصور</string>
+    <string name="food_chains">السلاسل الغذائية</string>
+    <string name="inquirer">مستكشف</string>
+
+    <string name="solve_5_math_problems">حل 5 مسائل رياضية</string>
+    <string name="read_10_minutes">القراءة لمدة 10 دقائق</string>
+    <string name="practice_spelling_3_words">التدرب على الإملاء (3 كلمات)</string>
+
+    <string name="all">الكل</string>
+    <string name="news">جديد</string>
+    <string name="in_progress">قيد التنفيذ</string>
+
+    <string name="nebula_theme">سمة السديم</string>
+    <string name="pixel_background">خلفية بكسل</string>
+    <string name="gold_avatar_frame">إطار صورة رمزية ذهبي</string>
+    <string name="diamond_profile_icon">أيقونة ملف شخصي ماسية</string>
+
+    <string name="theme">السمة</string>
+    <string name="avatar">الصورة الرمزية</string>
+
+    <string name="mastered_fractions">إتقان الكسور</string>
+    <string name="completed_all_fractions_units">تم إكمال جميع وحدات الكسور</string>
+
+    <string name="persistence_i_fractions">المثابرة I – الكسور</string>
+    <string name="used_3_retry_tokens_in_one_lesson">
+تم استخدام 3 رموز إعادة في درس واحد
+</string>
+
+    <string name="calculus_conqueror">متقن التفاضل والتكامل</string>
+    <string name="completed_all_calculus_lessons">
+تم إكمال جميع دروس التفاضل والتكامل
+</string>
+
+    <string name="first_try_ace">نجاح من المحاولة الأولى</string>
+    <string name="scored_100_on_a_hard_problem">
+حصل على 100٪ في مسألة صعبة
+</string>
+
+    <string name="_7_day_streak">سلسلة 7 أيام</string>
+    <string name="logged_in_for_a_full_week">
+تم تسجيل الدخول لمدة أسبوع كامل
+</string>
+
+    <string name="resilient_learner">متعلم مرن</string>
+    <string name="completed_5_tasks_after_initial_failure">
+إكمال 5 مهام بعد فشل أولي
+</string>
+
+    <string name="sat_math_section_practice">تدريب قسم الرياضيات SAT</string>
+    <string name="by_jane_doe">بواسطة Jane Doe</string>
+    <string name="_25_min">25 دقيقة</string>
+    <string name="no_practice_here_yet">لا يوجد اختبار تدريبي هنا بعد</string>
+    <string name="notification">إشعار</string>
+    <string name="downloads">التنزيلات</string>
+    <string name="faq">الأسئلة الشائعة</string>
+    <string name="terms_conditions">الشروط والأحكام</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="contact_us">اتصل بنا</string>
+
+    <string name="sign_up">إنشاء حساب</string>
+    <string name="something_went_wrong">حدث خطأ ما</string>
+
+
+</resources>

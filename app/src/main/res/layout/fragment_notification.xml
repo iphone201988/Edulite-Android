@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.profile.ProfileFragmentVM" />
+            type="com.edu.lite.ui.dash_board.profile.ProfileFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,6 +73,22 @@
                 android:paddingBottom="@dimen/_18sdp"
                 tools:itemCount="5"
                 tools:listitem="@layout/rv_notification_item" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/listEmpty"
+                style="@style/TextView.medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:text="Not yet notification"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

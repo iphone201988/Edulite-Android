@@ -1,5 +1,6 @@
 package com.edu.lite.base
 
+import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -14,14 +15,18 @@ import androidx.databinding.ViewDataBinding
 import com.edu.lite.App
 import com.edu.lite.BR
 import com.edu.lite.R
-import com.edu.lite.base.local.SharedPrefManager
+import com.edu.lite.ThemeHelper
 import com.edu.lite.base.connectivity.ConnectivityProvider
+import com.edu.lite.base.local.SharedPrefManager
 import com.edu.lite.base.network.ErrorCodes
 import com.edu.lite.base.network.NetworkError
+import com.edu.lite.ui.auth.WelcomeActivity
+import com.edu.lite.ui.dash_board.profile.download.ProfileDownloadFragment
 import com.edu.lite.utils.AlertManager
+import com.edu.lite.utils.Resource
 import com.edu.lite.utils.event.NoInternetSheet
-import com.edu.lite.databinding.ViewProgressSheetBinding
 import com.edu.lite.utils.hideKeyboard
+import java.util.Locale
 import javax.inject.Inject
 
 abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
@@ -29,6 +34,7 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
 
     lateinit var progressDialogAvl: ProgressDialogAvl
     open val onRetry: (() -> Unit)? = null
+
     lateinit var binding: Binding
     val app: App
         get() = application as App
@@ -38,8 +44,8 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(ThemeHelper.getThemeResId(this))
         super.onCreate(savedInstanceState)
-
         val layout: Int = getLayoutResource()
         binding = DataBindingUtil.setContentView(this, layout)
         binding.setVariable(BR.vm, getViewModel())
@@ -50,6 +56,11 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
         setStatusBarDarkText()
         onCreateView()
 
+        val deviceLanguage = Locale.getDefault().language
+        val savedLanguage = sharedPrefManager.getLanguage()
+        if (savedLanguage != deviceLanguage && savedLanguage != "") {
+            setLocale(savedLanguage)
+        }
         val vm = getViewModel()
         binding.setVariable(BR.vm, vm)
         vm.onUnAuth.observe(this) {
@@ -57,10 +68,19 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
         }
     }
 
+
+    private fun setLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val configuration: Configuration = resources.configuration
+        configuration.setLocale(locale)
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+    }
+
     fun showUnauthorised() {
-        sharedPrefManager.clear()
-       // startActivity(LoginActivity.newIntent(this))
-       // finishAffinity()
+        sharedPrefManager.clearAllExceptLanguage()
+        // startActivity(LoginActivity.newIntent(this))
+        // finishAffinity()
     }
 
     private fun setStatusBarColor(colorResId: Int) {
@@ -112,16 +132,12 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
                 }
 
                 else -> AlertManager.showNegativeAlert(
-                    this,
-                    error.message,
-                    getString(R.string.alert)
+                    this, error.message, getString(R.string.alert)
                 )
             }
         } else {
             AlertManager.showNegativeAlert(
-                this,
-                getString(R.string.please_try_again),
-                getString(R.string.alert)
+                this, getString(R.string.please_try_again), getString(R.string.alert)
             )
         }
     }
@@ -137,11 +153,20 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
             noInternetSheet?.isCancelable = false
         }
         if (state.hasInternet()) {
-            if (noInternetSheet?.isVisible == true)
-                noInternetSheet?.dismiss()
+            ProfileDownloadFragment.data = 1
+            if (noInternetSheet?.isVisible == true) noInternetSheet?.dismiss()
+
         } else {
-            if (noInternetSheet?.isVisible == false)
-                noInternetSheet?.show(supportFragmentManager, noInternetSheet?.tag)
+            if (noInternetSheet?.isVisible == false) {
+                ProfileDownloadFragment.data = 2
+                WelcomeActivity.observeActivity.postValue(
+                    Resource.success(
+                        "checkInternet",
+                        true
+                    )
+                )
+            }
+            // noInternetSheet?.show(supportFragmentManager, noInternetSheet?.tag)
         }
     }
 

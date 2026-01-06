@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.edu.lite.utils.BaseCustomDialog.Listener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_20ssp"
+        android:background="@drawable/dailog_bg"
+        android:backgroundTint="@color/white">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCancel"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:padding="@dimen/_9sdp"
+            android:src="@drawable/cancle_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/circularProgressBar"
+            style="@style/TextView.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:textColor="@color/start_color"
+            android:textSize="@dimen/_24ssp"
+            android:text="@string/_10_xp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivCancel" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvGreat"
+            style="@style/TextView.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:text="@string/great_job"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circularProgressBar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvNailed"
+            style="@style/TextView.regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_2sdp"
+            android:gravity="center"
+            android:text="@string/you_nailed_it_that_s_the_correct_answer"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGreat" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnNext"
+            style="@style/TextView.semibold"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:background="@drawable/gradient_btn_bg"
+            android:backgroundTint="@color/end_color"
+            android:gravity="center"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:text="@string/next"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNailed" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

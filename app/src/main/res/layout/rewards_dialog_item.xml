@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.edu.lite.utils.BaseCustomDialog.Listener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dailog_bg"
+        android:paddingBottom="@dimen/_16sdp"
+        android:backgroundTint="@color/white">
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvMilestone"
+            style="@style/TextView.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:gravity="center"
+            android:text="@string/milestone_reward"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/congrateAnimate"
+            android:layout_width="284dp"
+            android:layout_height="284dp"
+            android:layout_marginTop="-32dp"
+            android:src="@drawable/congre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMilestone" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageAnimate"
+            android:layout_width="134dp"
+            android:layout_height="134dp"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:src="@drawable/reward"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMilestone" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnClaim"
+            style="@style/TextView.semibold"
+            android:layout_width="0dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:background="@drawable/gradient_btn_bg"
+            android:gravity="center"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:text="@string/claim"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageAnimate" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

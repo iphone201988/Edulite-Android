@@ -14,49 +14,45 @@
 
         <variable
             name="bean"
-            type="com.edu.lite.data.model.NotificationModel" />
+            type="com.edu.lite.data.model.NotificationData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clNotification"
-        changeBgNotification="@{bean.type}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="@dimen/_11sdp"
         android:layout_marginHorizontal="@dimen/_7sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:background="@drawable/notification_first_bg"
-        android:onClick="@{v->callback.onItemClick(v,bean,pos)}">
-
+        android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+        android:paddingVertical="@dimen/_11sdp">
+        <!--       changeBgNotification="@{bean.type}"-->
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDesc"
             style="@style/TextView.semibold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{bean.title}"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="@{bean.description}"
             android:textColor="@color/black"
             android:textSize="@dimen/_9ssp"
-            android:layout_marginStart="@dimen/_10sdp"
             app:layout_constraintEnd_toStartOf="@+id/tvTime"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTime"
             style="@style/TextView.semibold"
+            setTime="@{bean.createdAt}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:text="@{bean.time}"
             android:textColor="@color/start_color"
             android:textSize="@dimen/_8ssp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
-
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

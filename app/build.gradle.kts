@@ -54,7 +54,6 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.fragment.ktx.v277)
     implementation(libs.androidx.navigation.ui.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -65,17 +64,14 @@ dependencies {
     implementation (libs.okhttp)
     implementation (libs.logging.interceptor)
     implementation (libs.play.services.location)
-    implementation (libs.androidx.fragment.ktx)
     implementation (libs.glide)
     implementation (libs.sdp.android)
     implementation (libs.ssp.android)
-    implementation (libs.gson)
     kapt(libs.dagger.compiler)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     implementation (libs.lottie)
     implementation (libs.converter.gson)
-
 
     // mp chart
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
@@ -89,6 +85,17 @@ dependencies {
     //svg images
     implementation  ("com.caverock:androidsvg:1.4")
 
+// Room Database
+    val roomVersion = "2.8.4"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
 
+
+
+    // exo player
+    implementation("androidx.media3:media3-exoplayer:1.8.0")
+    implementation("androidx.media3:media3-ui:1.8.0")
 
 }
+

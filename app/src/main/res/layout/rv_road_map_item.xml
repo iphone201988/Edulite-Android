@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.edu.lite.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.edu.lite.data.model.RoadMapQuizze" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clSnapShot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:paddingVertical="@dimen/_6sdp">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/leftSide"
+            handelCLick="@{bean.userResponse.status}"
+            setRoadMapRadius="@{bean.userResponse.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_65sdp"
+            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+            android:paddingHorizontal="@dimen/_9sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            android:visibility="@{pos % 2 != 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvFractions"
+                style="@style/TextView.bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:gravity="center"
+                android:text="Fractions Mastery"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toEndOf="@+id/ivFractions"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCompleted"
+                style="@style/TextView.regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="center"
+                android:text="Completed: 850XP"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toStartOf="@+id/tvFractions"
+                app:layout_constraintTop_toBottomOf="@+id/tvFractions" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivFractions"
+                setRoadMapImage="@{bean.userResponse.status}"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvCompleted"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvFractions" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rightSide"
+            handelCLick="@{bean.userResponse.status}"
+            setRoadMapRadius="@{bean.userResponse.status}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_65sdp"
+            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+            android:paddingHorizontal="@dimen/_9sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            android:visibility="@{pos % 2 == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAva"
+                style="@style/TextView.bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:gravity="center"
+                android:text="Fractions Mastery"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toEndOf="@+id/ivRoadMap"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvXp"
+                style="@style/TextView.regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:gravity="center"
+                android:text="Completed: 850XP"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintStart_toStartOf="@+id/tvAva"
+                app:layout_constraintTop_toBottomOf="@+id/tvAva" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivRoadMap"
+                setRoadMapImage="@{bean.userResponse.status}"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_2sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvXp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvAva" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Edu Lite</string>
+    <string name="session_expired">Session expirée</string>
+    <string name="alert">Alerte</string>
+    <string name="post_detail">Détail du post</string>
+    <string name="please_try_again">Veuillez réessayer</string>
+    <string name="plz_wait">Veuillez patienter</string>
+    <string name="error_found">Erreur trouvée</string>
+    <string name="click_me">Cliquez ici</string>
+    <string name="android_base_2025">Base Android 2025</string>
+    <string name="todo">À faire</string>
+    <string name="hello_blank_fragment">Bonjour fragment vide</string>
+
+    <string name="french">Français</string>
+    <string name="english">Anglais</string>
+    <string name="arabic">Arabe</string>
+    <string name="language">Langue</string>
+    <string name="next">Suivant</string>
+
+    <string name="login">Connexion</string>
+    <string name="your_email">Votre e-mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="forgot_password">Mot de passe oublié ?</string>
+    <string name="don_t_have_an_account_sign_up">Vous n’avez pas de compte ? Inscrivez-vous</string>
+    <string name="signup">S’inscrire</string>
+    <string name="already_have_an_account_login">Vous avez déjà un compte ? Connectez-vous</string>
+
+    <string name="your_name">Votre nom</string>
+    <string name="date_of_birth">Date de naissance</string>
+    <string name="phone_number">Numéro de téléphone</string>
+
+    <string name="verify_your_email">Vérifiez votre e-mail</string>
+    <string name="verify">Vérifier</string>
+
+    <string name="create_new_password">Créer un nouveau mot de passe</string>
+    <string name="create">Créer</string>
+    <string name="new_password">Nouveau mot de passe</string>
+    <string name="re_enter_password">Confirmez le mot de passe</string>
+
+    <string name="today_s_progress">Progression d’aujourd’hui</string>
+    <string name="daily_goal">Objectif quotidien</string>
+    <string name="daily_quests">Quêtes quotidiennes</string>
+    <string name="finish_5_problems">Résoudre 5 problèmes</string>
+    <string name="streak">Série</string>
+    <string name="start_today_s_journey">Commencez l’aventure d’aujourd’hui</string>
+    <string name="completed">Terminé</string>
+    <string name="start">Démarrer</string>
+    <string name="skip">Passer</string>
+    <string name="later">Plus tard</string>
+
+    <string name="class_overview">Aperçu de la classe</string>
+    <string name="weekly_digest">Résumé hebdomadaire</string>
+    <string name="unit_mastery">Maîtrise des unités</string>
+    <string name="roaster_snapshot">Aperçu du groupe</string>
+    <string name="time_on_task_min">Temps passé (min)</string>
+    <string name="badges_earned">Badges obtenus</string>
+    <string name="reflection_highlight">Moment clé de réflexion</string>
+
+    <string name="i_was_the_risk_taker_by_trying_the_hard_windmill_challenge_twice">
+« J’ai pris des risques en essayant deux fois le défi difficile du moulin. »
+</string>
+
+    <string name="what_s_next">Et ensuite</string>
+    <string name="book_teacher_chat">Réserver un échange avec l’enseignant</string>
+    <string name="download_home_pack">Télécharger le pack maison</string>
+
+    <string name="choose_your_grade">Choisissez votre niveau</string>
+    <string name="today_s_theme">Thème du jour</string>
+    <string name="who_we_are_me_as_a_learner">Qui sommes-nous – Moi en tant qu’apprenant</string>
+    <string name="start_mission">Démarrer la mission</string>
+    <string name="pick_a_subject">Choisissez une matière</string>
+
+    <string name="let_s_play_amp_learn">Jouons et apprenons !</string>
+
+    <string name="featured_quizzes">Quiz en vedette</string>
+    <string name="practice_test">Test d’entraînement</string>
+    <string name="video_lessons">Leçons vidéo</string>
+    <string name="creative_projects">Projets créatifs</string>
+
+    <string name="how_well_do_you_know_geometry">À quel point connaissez-vous</string>
+    <string name="test_your_knowledge_of_the_decade_of_big_hair_neon_colors_and_synthesizers">
+Testez vos connaissances sur la décennie des coiffures volumineuses, des couleurs néon et des synthétiseurs !
+</string>
+
+    <string name="introduction_to_machine_learning">Introduction au Machine Learning</string>
+    <string name="join_our_expert_instructor_as_they_demystify_the_basics_of_ai_and_machine_learning">
+Rejoignez notre expert pour découvrir les bases de l’IA et du machine learning.
+</string>
+
+    <string name="watch_now">Regarder maintenant</string>
+    <string name="watch_now_start">Commencer</string>
+    <string name="watch_now_resume">Reprendre</string>
+    <string name="watch_now_completed">Terminé</string>
+
+    <string name="have_a_project_to_share">Vous avez un projet à partager ?</string>
+    <string name="showcase_your_creativity">Montrez votre créativité</string>
+    <string name="my_lego_castle">Mon château LEGO</string>
+
+    <string name="your_downloads">Vos téléchargements</string>
+    <string name="delete_profile">Supprimer le profil</string>
+    <string name="change">Modifier</string>
+    <string name="change_password">Changer le mot de passe</string>
+    <string name="old_password">Ancien mot de passe</string>
+    <string name="edit_profile">Modifier le profil</string>
+    <string name="edit">Modifier</string>
+
+    <string name="notifications">Notifications</string>
+    <string name="subscription">Abonnement</string>
+    <string name="features">Fonctionnalités</string>
+    <string name="unlimited_learning_access">Accès illimité à l’apprentissage</string>
+    <string name="multilingual_amp_accessible">Multilingue et accessible</string>
+    <string name="interactive_quizzes_amp_progress_tracking">Quiz interactifs et suivi des progrès</string>
+
+    <string name="subscribe">S’abonner</string>
+    <string name="restore">Restaurer</string>
+    <string name="previous">Précédent</string>
+
+    <string name="logout">Se déconnecter</string>
+    <string name="delete_account">Supprimer le compte</string>
+    <string name="are_you_sure_to_delete_account">
+Êtes-vous sûr de vouloir supprimer ce compte ?
+</string>
+    <string name="are_you_sure_to_logout">Êtes-vous sûr de vouloir vous déconnecter ?</string>
+    <string name="delete">Supprimer</string>
+    <string name="cancel">Annuler</string>
+
+    <string name="please_enter_email">Veuillez entrer votre e-mail</string>
+    <string name="please_enter_a_valid_email">Veuillez entrer un e-mail valide</string>
+    <string name="password_must_contain_at_least_one_uppercase_letter">
+Le mot de passe doit contenir au moins une majuscule
+</string>
+    <string name="password_must_be_at_least_6_characters">
+Le mot de passe doit contenir au moins 6 caractères
+</string>
+    <string name="please_enter_password">Veuillez entrer le mot de passe</string>
+    <string name="please_enter_name">Veuillez entrer votre nom</string>
+    <string name="please_enter_date_of_birth">Veuillez entrer votre date de naissance</string>
+    <string name="please_enter_phone_number">Veuillez entrer votre numéro de téléphone</string>
+
+    <string name="select_country">Sélectionner un pays</string>
+    <string name="search_here">Rechercher ici</string>
+    <string name="resend_otp">Renvoyer le code</string>
+
+    <string name="early_grades">Premières classes</string>
+    <string name="daily_team_quests">Quêtes d’équipe quotidiennes</string>
+    <string name="add_creative_project">Ajouter un projet créatif</string>
+    <string name="add">Ajouter</string>
+
+    <string name="badges">Badges</string>
+    <string name="rewards">Récompenses</string>
+    <string name="no_quizzes_here_yet">Aucun quiz pour le moment</string>
+    <string name="no_video_here_yet">Aucune vidéo pour le moment</string>
+
+    <string name="_10_xp">+10 XP</string>
+    <string name="great_job">Excellent travail !</string>
+    <string name="you_nailed_it_that_s_the_correct_answer">
+Bien joué ! C’est la bonne réponse
+</string>
+
+    <string name="xp">XP</string>
+    <string name="tokens">Jetons</string>
+    <string name="level_up_ready">Prêt à passer au niveau supérieur !</string>
+    <string name="claim">Réclamer</string>
+    <string name="you_have_been_scored">Votre score a été calculé</string>
+
+    <string name="ques">Question</string>
+    <string name="correct">Correct</string>
+    <string name="wrong">Incorrect</string>
+
+    <string name="milestone_reward">Récompense de palier</string>
+    <string name="missed_it">Raté</string>
+    <string name="almost_there_don_t_give_up_you_can_ntry_again">
+Presque ! N’abandonnez pas — vous pouvez réessayer.
+</string>
+
+    <string name="try_again">Réessayer</string>
+    <string name="get_a_hint_10_xp">Obtenir un indice (-10 XP)</string>
+
+    <string name="camera">Caméra</string>
+    <string name="choose">Choisir</string>
+    <string name="gallery">Galerie</string>
+
+    <string name="student_preview">Aperçu élève</string>
+    <string name="teacher_dashboard">Tableau de bord enseignant</string>
+    <string name="parent_digest">Résumé parent</string>
+
+    <string name="photograph_builder">Créateur de photos</string>
+    <string name="food_chains">Chaînes alimentaires</string>
+    <string name="inquirer">Explorateur</string>
+
+    <string name="solve_5_math_problems">Résoudre 5 problèmes de maths</string>
+    <string name="read_10_minutes">Lire pendant 10 minutes</string>
+    <string name="practice_spelling_3_words">Pratiquer l’orthographe (3 mots)</string>
+
+    <string name="all">Tous</string>
+    <string name="news">Nouveau</string>
+    <string name="in_progress">En cours</string>
+
+    <string name="nebula_theme">Thème Nébuleuse</string>
+    <string name="pixel_background">Fond pixel</string>
+    <string name="gold_avatar_frame">Cadre d’avatar or</string>
+    <string name="diamond_profile_icon">Icône de profil diamant</string>
+
+    <string name="theme">Thème</string>
+    <string name="avatar">Avatar</string>
+
+    <string name="mastered_fractions">Fractions maîtrisées</string>
+    <string name="completed_all_fractions_units">Toutes les unités de fractions terminées</string>
+
+    <string name="persistence_i_fractions">Persévérance I – Fractions</string>
+    <string name="used_3_retry_tokens_in_one_lesson">
+3 jetons de reprise utilisés dans une leçon
+</string>
+
+    <string name="calculus_conqueror">Maître du calcul</string>
+    <string name="completed_all_calculus_lessons">Toutes les leçons de calcul terminées</string>
+
+    <string name="first_try_ace">Réussite du premier coup</string>
+    <string name="scored_100_on_a_hard_problem">
+Score de 100 % sur un problème difficile
+</string>
+
+    <string name="_7_day_streak">Série de 7 jours</string>
+    <string name="logged_in_for_a_full_week">
+Connecté pendant une semaine complète
+</string>
+
+    <string name="resilient_learner">Apprenant résilient</string>
+    <string name="completed_5_tasks_after_initial_failure">
+5 tâches accomplies après un échec initial
+</string>
+
+    <string name="sat_math_section_practice">Entraînement math SAT</string>
+    <string name="by_jane_doe">Par Jane Doe</string>
+    <string name="_25_min">25 min</string>
+
+    <string name="notification">Notification</string>
+    <string name="downloads">Téléchargements</string>
+    <string name="faq">FAQ</string>
+    <string name="terms_conditions">Conditions générales</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="contact_us">Contactez-nous</string>
+    <string name="sign_up">S\'inscrire</string>
+    <string name="something_went_wrong">Une erreur s\'est produite</string>
+    <string name="no_practice_here_yet">Aucun test d\'entraînement pour le moment</string>
+
+
+</resources>

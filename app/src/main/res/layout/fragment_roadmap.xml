@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.edu.lite.ui.dash_board.road_map.RoadmapFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.dash_board.road_map.RoadmapFragment">
+
+
+        <include
+            android:id="@+id/clHeader"
+            layout="@layout/header_item_layout" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clMain"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="-10dp"
+            android:background="@drawable/bg_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clHeader">
+
+            <com.edu.lite.ui.dash_board.road_map.VerticalLineView
+                android:id="@+id/ivView"
+                android:layout_width="154dp"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:layout_gravity="center"
+                android:background="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRoadmap"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:clipToPadding="false"
+                android:paddingBottom="@dimen/_65sdp"
+                tools:itemCount="5"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/rv_road_map_item"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/practice_category_unselected_bg"
+                android:paddingVertical="@dimen/_5sdp"
+                android:layout_margin="@dimen/_12sdp"
+                android:paddingHorizontal="@dimen/_12sdp"
+                android:onClick="@{v->vm.onClick(v)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvFilter"
+                    style="@style/TextView.medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/english"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivFractions"
+                    android:layout_width="@dimen/_7sdp"
+                    android:layout_height="@dimen/_7sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:src="@drawable/next_icon"
+                    android:rotation="90"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvFilter"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

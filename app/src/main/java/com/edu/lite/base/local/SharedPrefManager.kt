@@ -2,6 +2,7 @@ package com.edu.lite.base.local
 
 import android.content.SharedPreferences
 import com.edu.lite.data.model.SignupData
+import com.edu.lite.utils.saveValue
 import com.google.gson.Gson
 import javax.inject.Inject
 
@@ -12,6 +13,7 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         const val LANGUAGE = "language"
         const val USER_DATA = "user_data"
         const val TOKEN = "token"
+        const val LOCALE = "locale_language"
     }
 
     private val gson = Gson()
@@ -39,9 +41,6 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
     }
 
 
-
-
-
     fun saveLanguage(token: String) {
         sharedPreferences.edit().apply {
             putString(KEY.LANGUAGE, token)
@@ -54,7 +53,13 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
     }
 
 
-    fun clear() {
+    fun clearAllExceptLanguage() {
+        val lang = getLanguage()
+
         sharedPreferences.edit().clear().apply()
+
+        saveLanguage(lang)
     }
+
+
 }

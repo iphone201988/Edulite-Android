@@ -927,7 +927,7 @@ class CustomBottomView @JvmOverloads constructor(
             } else {
                 // Draw text for non-selected items
                 textPaint.textAlign = Paint.Align.CENTER
-                canvas.drawText(cbnMenuItems[i].title, itemCenterX, textY, textPaint)
+               // canvas.drawText(cbnMenuItems[i].title, itemCenterX, textY, textPaint)
             }
         }
 

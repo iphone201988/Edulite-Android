@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.edu.lite.utils.BaseCustomDialog.Listener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_20ssp"
+        android:background="@drawable/dailog_bg"
+        android:backgroundTint="@color/white">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCancel"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:padding="@dimen/_9sdp"
+            android:src="@drawable/cancle_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/circularProgressBar"
+            style="@style/TextView.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:textColor="@color/red_E44343"
+            android:textSize="@dimen/_18ssp"
+            android:text="@string/missed_it"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivCancel" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvGreat"
+            style="@style/TextView.regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:gravity="center"
+            android:text="@string/almost_there_don_t_give_up_you_can_ntry_again"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/circularProgressBar" />
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnTryAgain"
+            style="@style/TextView.semibold"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_9sdp"
+            android:background="@drawable/wrong_answer_btn_bg"
+            android:paddingHorizontal="@dimen/_19ssp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:text="@string/try_again"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toStartOf="@+id/btnGetHint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGreat" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/btnGetHint"
+            style="@style/TextView.semibold"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="@dimen/_32sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/gradient_btn_bg"
+            android:backgroundTint="@color/red_color_58"
+            android:textSize="@dimen/_11ssp"
+            android:gravity="center"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:text="@string/get_a_hint_10_xp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnTryAgain"
+            app:layout_constraintTop_toBottomOf="@+id/tvGreat" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

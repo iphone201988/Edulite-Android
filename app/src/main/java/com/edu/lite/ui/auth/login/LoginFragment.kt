@@ -1,7 +1,7 @@
 package com.edu.lite.ui.auth.login
 
 import android.graphics.Color
-import android.os.Bundle
+import android.os.Build
 import android.text.InputType
 import android.text.SpannableString
 import android.text.Spanned
@@ -12,6 +12,7 @@ import android.text.style.TypefaceSpan
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
@@ -20,19 +21,15 @@ import com.edu.lite.R
 import com.edu.lite.base.BaseFragment
 import com.edu.lite.base.BaseViewModel
 import com.edu.lite.data.api.Constants
-import com.edu.lite.data.model.CommonApiResponse
 import com.edu.lite.data.model.SignupResponse
 import com.edu.lite.databinding.FragmentLoginBinding
 import com.edu.lite.ui.auth.AuthCommonVM
-import com.edu.lite.ui.auth.dash_board.home.HomeFragmentDirections
-import com.edu.lite.ui.auth.forgot.OtpFragmentDirections
 import com.edu.lite.utils.BindingUtils
 import com.edu.lite.utils.Status
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.serialization.EncodeDefault
 
-
+@RequiresApi(Build.VERSION_CODES.P)
 @AndroidEntryPoint
 class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     private val viewModel: AuthCommonVM by viewModels()
@@ -58,7 +55,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 return@addOnCompleteListener
             }
             token = it.result
-            Log.d("gfdffd", "onCreateView: $token")
         }
 
     }
@@ -78,7 +74,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                                 val jsonData = it.data?.toString().orEmpty()
                                 val model: SignupResponse? = BindingUtils.parseJson(jsonData)
                                 val loginData = model?.user
-                                if (loginData!=null) {
+                                if (loginData != null) {
                                     loginData.let { it1 ->
                                         sharedPrefManager.setLoginData(it1)
                                     }
@@ -88,17 +84,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
                                     if (loginData.isEmailVerified == false) {
                                         val action = LoginFragmentDirections.navigateToOtpFragment(
-                                            email = loginData.email.toString(),
-                                            type = 1
+                                            email = loginData.email.toString(), type = 1
                                         )
                                         BindingUtils.navigateWithSlide(findNavController(), action)
                                     } else {
                                         findNavController().popBackStack(R.id.auth_navigation, true)
-                                        BindingUtils.navigateWithSlide(findNavController(), HomeFragmentDirections.navigateToHomeFragment())
+                                        BindingUtils.navigateWithSlide(
+                                            findNavController(),
+                                            LoginFragmentDirections.navigateToHomeFragment()
+                                        )
                                     }
 
                                 } else {
-                                    showErrorToast("Something went wrong")
+                                    showErrorToast(getString(R.string.something_went_wrong))
                                 }
                             }.onFailure { e ->
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
@@ -135,23 +133,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
                 }
 
-                R.id.btnLogin->{
-                  if (validate()){
-                      val email = binding.etEmail.text.toString().trim()
-                      val password = binding.etPassword.text.toString().trim()
-                      val language  = sharedPrefManager.getLanguage()
-                      val data = HashMap<String, Any>()
-                      data["email"] = email
-                      data["password"] = password
-                      data["deviceToken"] = token
-                      data["language"] = language  //en:english,\ar:Arabic\fr:French
-                      data["deviceType"] = "2"   // IOS: 1,ANDROID: 2, WEB: 3
-                      viewModel.loginApi(Constants.LOGIN, data)
-                  }
+                R.id.btnLogin -> {
+                    if (validate()) {
+                        val email = binding.etEmail.text.toString().trim()
+                        val password = binding.etPassword.text.toString().trim()
+                        val language = sharedPrefManager.getLanguage()
+                        val data = HashMap<String, Any>()
+                        data["email"] = email
+                        data["password"] = password
+                        data["deviceToken"] = token
+                        data["language"] = language  //en:english,\ar:Arabic\fr:French
+                        data["deviceType"] = "2"   // IOS: 1,ANDROID: 2, WEB: 3
+                        viewModel.loginApi(Constants.LOGIN, data)
+                    }
                 }
 
-                R.id.ivHidePassword->{
-                    if (binding.etPassword.text.toString().trim().isNotEmpty()){
+                R.id.ivHidePassword -> {
+                    if (binding.etPassword.text.toString().trim().isNotEmpty()) {
                         showOrHidePassword()
                     }
 
@@ -187,12 +185,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
      * text color change
      */
     fun initOnTextColorChange() {
-        // text color change
-        val text = "Don’t have an account, Sign up"
-        val spannable = SpannableString(text)
+        val fullText = getString(R.string.don_t_have_an_account_sign_up)
+        val spannable = SpannableString(fullText)
 
-        val startIndex = text.indexOf("Sign up")
-        val endIndex = startIndex + "Sign up".length
+        val signUpText = getString(R.string.sign_up)
+        val startIndex = fullText.indexOf(signUpText)
+
+        if (startIndex == -1) {
+            // Text not found → avoid crash
+            binding.tvSignup.text = fullText
+            return
+        }
+
+        val endIndex = startIndex + signUpText.length
 
         val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {
@@ -201,14 +206,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
 
             override fun updateDrawState(ds: TextPaint) {
-                super.updateDrawState(ds)
                 ds.color = ContextCompat.getColor(requireActivity(), R.color.start_color)
                 ds.isUnderlineText = false
             }
         }
-        spannable.setSpan(clickableSpan, startIndex, endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        val typeface = ResourcesCompat.getFont(requireContext(), R.font.open_sans_bold)
-        typeface?.let {
+
+        spannable.setSpan(
+            clickableSpan,
+            startIndex,
+            endIndex,
+            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        ResourcesCompat.getFont(requireContext(), R.font.open_sans_bold)?.let {
             spannable.setSpan(
                 TypefaceSpan(it),
                 startIndex,
@@ -216,10 +226,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
             )
         }
+
         binding.tvSignup.text = spannable
         binding.tvSignup.movementMethod = LinkMovementMethod.getInstance()
         binding.tvSignup.highlightColor = Color.TRANSPARENT
     }
+
 
 
     /*** show or confirm hide password **/
@@ -231,7 +243,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             binding.etPassword.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
         } else {
             binding.ivHidePassword.setImageResource(R.drawable.hide_password)
-            binding.etPassword.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.etPassword.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
         }
 
 

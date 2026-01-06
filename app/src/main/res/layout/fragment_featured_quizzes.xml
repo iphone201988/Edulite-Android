@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.home.quiz.FeaturedQuizzesVM" />
+            type="com.edu.lite.ui.dash_board.home.quiz.FeaturedQuizzesVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

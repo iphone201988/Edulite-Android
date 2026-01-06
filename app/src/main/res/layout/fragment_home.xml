@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.home.HomeFragmentVM" />
+            type="com.edu.lite.ui.dash_board.home.HomeFragmentVM" />
 
         <variable
             name="type"
@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:paddingHorizontal="@dimen/_12sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +74,7 @@
                 android:layout_height="@dimen/_18sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:src="@drawable/filter_icon"
-                android:visibility="@{type==2?View.VISIBLE:View.GONE}"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/tvProgress"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvProgress" />
@@ -83,7 +84,7 @@
                 android:layout_height="0dp"
                 android:clipToPadding="false"
                 android:fillViewport="true"
-                android:paddingBottom="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_65sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -97,8 +98,6 @@
                         android:id="@+id/clStudent"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:visibility="@{type==1?View.VISIBLE:View.GONE}"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -365,7 +364,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="2/5 "
+                            android:text="0/5 "
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11ssp"
                             app:layout_constraintBottom_toBottomOf="@+id/tvCompleted"
@@ -377,6 +376,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:clipToPadding="false"
+                            android:minHeight="@dimen/_200sdp"
                             android:orientation="vertical"
                             android:paddingHorizontal="@dimen/_12sdp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -386,6 +386,141 @@
                             tools:itemCount="5"
                             tools:listitem="@layout/rv_question_item" />
 
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvEmpty"
+                            style="@style/TextView.medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:gravity="center"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="@string/no_practice_here_yet"
+                            android:visibility="gone"
+                            android:textColor="@color/black"
+                            app:layout_constraintBottom_toBottomOf="@+id/rvQuestion"
+                            android:textSize="@dimen/_13ssp"
+                            app:layout_constraintEnd_toEndOf="@+id/rvQuestion"
+                            app:layout_constraintStart_toStartOf="@+id/rvQuestion"
+                            app:layout_constraintTop_toTopOf="@+id/rvQuestion" />
+
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvDailyTeamQuiz"
+                            style="@style/TextView.bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:text="@string/daily_team_quests"
+                            android:visibility="gone"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11ssp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rvQuestion" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTeamCompleted"
+                            style="@style/TextView.regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:gravity="center"
+                            android:text="@string/completed"
+                            android:textColor="@color/black"
+                            android:visibility="gone"
+                            android:textSize="@dimen/_11ssp"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvDailyTeamQuiz"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvDailyTeamQuiz" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvCompletedTeamPoint"
+                            style="@style/TextView.regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:visibility="gone"
+                            android:text="0/5 "
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11ssp"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvTeamCompleted"
+                            app:layout_constraintEnd_toStartOf="@+id/tvTeamCompleted"
+                            app:layout_constraintTop_toTopOf="@+id/tvTeamCompleted" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvTeamQuestion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="@dimen/_12sdp"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvDailyTeamQuiz"
+                            tools:itemCount="5"
+                            tools:listitem="@layout/rv_team_question_item" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/clRoasterSnapshot"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:visibility="gone"
+                            android:background="@drawable/quests_first_bg"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/rvTeamQuestion">
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvRoasterSnap"
+                                style="@style/TextView.bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_22sdp"
+                                android:layout_marginTop="@dimen/_14sdp"
+                                android:gravity="center"
+                                android:text="@string/roaster_snapshot"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_11ssp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvRoasterSnap"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_18sdp"
+                                android:layout_marginTop="-3dp"
+                                android:clipToPadding="false"
+                                android:orientation="vertical"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/tvRoasterSnap"
+                                tools:itemCount="5"
+                                tools:listitem="@layout/rv_snap_shot_item" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                style="@style/TextView.bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:gravity="center"
+                                android:text="@string/unit_mastery"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_11ssp"
+                                android:visibility="invisible"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/rvRoasterSnap" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -393,12 +528,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_5sdp"
-                        android:visibility="@{type==2?View.VISIBLE:View.GONE}"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-
+                        <!--                        android:visibility="@{type==2?View.VISIBLE:View.GONE}"-->
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/clUnity"
                             android:layout_width="match_parent"
@@ -518,11 +653,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_2sdp"
-                        android:visibility="@{type==3?View.VISIBLE:View.GONE}"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
-
+                        <!--                        android:visibility="@{type==2?View.VISIBLE:View.GONE}"-->
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:id="@+id/clWeekly"
@@ -537,8 +672,8 @@
                                 android:id="@+id/clStreakWeek"
                                 android:layout_width="0dp"
                                 android:layout_height="95dp"
-                                android:layout_marginEnd="@dimen/_4sdp"
                                 android:layout_marginStart="@dimen/_16sdp"
+                                android:layout_marginEnd="@dimen/_4sdp"
                                 android:background="@drawable/bg_weekly"
                                 app:layout_constraintEnd_toStartOf="@+id/clXPGained"
                                 app:layout_constraintStart_toStartOf="parent"
@@ -623,8 +758,8 @@
                                 android:id="@+id/clCurrentLevel"
                                 android:layout_width="0dp"
                                 android:layout_height="95dp"
-                                android:background="@drawable/bg_weekly"
                                 android:layout_marginEnd="@dimen/_16sdp"
+                                android:background="@drawable/bg_weekly"
                                 app:layout_constraintBottom_toBottomOf="@+id/clStreakWeek"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toEndOf="@+id/clXPGained"

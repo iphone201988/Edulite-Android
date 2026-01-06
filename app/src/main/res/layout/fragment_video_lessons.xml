@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.home.HomeFragmentVM" />
+            type="com.edu.lite.ui.dash_board.home.video_lessons.VideoLessonsFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,17 +59,14 @@
                 app:layout_constraintTop_toTopOf="@+id/tvChoose" />
 
 
-
-
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvVideoCategory1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:paddingHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -83,8 +80,8 @@
                 android:id="@+id/clNested"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:fillViewport="true"
                 android:layout_marginTop="@dimen/_5sdp"
+                android:fillViewport="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -99,8 +96,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_18sdp"
-                        android:background="@drawable/video_lessons_bg"
                         android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/video_lessons_bg"
                         android:paddingBottom="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -196,6 +193,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clipToPadding="false"
+                        android:minHeight="@dimen/_200sdp"
                         android:orientation="vertical"
                         android:paddingHorizontal="@dimen/_12sdp"
                         android:paddingBottom="@dimen/_18sdp"
@@ -205,6 +203,38 @@
                         app:layout_constraintTop_toBottomOf="@+id/rvVideoCategory"
                         tools:itemCount="5"
                         tools:listitem="@layout/rv_video_lessons_item" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvVideoDownload"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:minHeight="@dimen/_200sdp"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingBottom="@dimen/_18sdp"
+                        android:visibility="gone"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/rvVideoCategory"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/rv_video_download_item" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/listEmpty"
+                        style="@style/TextView.regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/no_video_here_yet"
+                        android:textColor="@color/start_color"
+                        android:textSize="@dimen/_13ssp"
+                        app:layout_constraintBottom_toBottomOf="@+id/rvVideoLessons"
+                        app:layout_constraintEnd_toEndOf="@+id/rvVideoLessons"
+                        app:layout_constraintStart_toStartOf="@+id/rvVideoLessons"
+                        app:layout_constraintTop_toTopOf="@+id/rvVideoLessons" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

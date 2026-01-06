@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.profile.ProfileFragmentVM" />
+            type="com.edu.lite.ui.dash_board.profile.ProfileFragmentVM" />
     </data>
 
     <androidx.core.widget.NestedScrollView

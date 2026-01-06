@@ -1,5 +1,6 @@
 package com.edu.lite.ui.auth.languages
 
+import android.content.res.Configuration
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -9,9 +10,9 @@ import com.edu.lite.base.BaseFragment
 import com.edu.lite.base.BaseViewModel
 import com.edu.lite.databinding.FragmentLanguageBinding
 import com.edu.lite.ui.auth.AuthCommonVM
-import com.edu.lite.ui.auth.dash_board.home.play_learn.LetPlayLearnFragmentDirections
 import com.edu.lite.utils.BindingUtils
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
@@ -28,8 +29,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
     }
 
     override fun onCreateView(view: View) {
-        sharedPrefManager.saveLanguage("en")
-        binding.selectType = 1
         // click
         initOnClick()
         // get data bundle
@@ -38,13 +37,25 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
             binding.ivBackButton.visibility = View.VISIBLE
             binding.tvNext.text = getString(R.string.change)
             type = 1
-        } else {
+        }
+        else {
             type = 0
             binding.tvNext.text = getString(R.string.next)
             binding.ivBackButton.visibility = View.GONE
         }
+        val language = sharedPrefManager.getLanguage()
+        when(language){
+            "en"->{
+                binding.selectType = 1
+            }
+            "fr"->{
+                binding.selectType = 2
+            }
+            "ar" -> {
+                binding.selectType = 3
+            }
+        }
     }
-
     /**
      * click event handel
      */
@@ -53,34 +64,40 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
             when (it?.id) {
                 R.id.tvNext -> {
                     if (type == 1) {
-                        findNavController().popBackStack()
+                        val data = sharedPrefManager.getLanguage()
+                        setLocale(data)
                     } else {
                         val action = LanguageFragmentDirections.navigateToLoginFragment()
                         BindingUtils.navigateWithSlide(findNavController(), action)
-
+                        val data = sharedPrefManager.getLanguage()
+                        setLocale(data)
                     }
-
                 }
-
                 R.id.clEnglish -> {
                     sharedPrefManager.saveLanguage("en")
                     binding.selectType = 1
                 }
-
                 R.id.clFrench -> {
                     sharedPrefManager.saveLanguage("fr")
                     binding.selectType = 2
                 }
-
                 R.id.clArabic -> {
                     sharedPrefManager.saveLanguage("ar")
                     binding.selectType = 3
                 }
-
                 R.id.ivBackButton -> {
                     findNavController().popBackStack()
                 }
             }
         }
+    }
+    /** language change **/
+    private fun setLocale(languageCode: String) {
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val config = Configuration(resources.configuration)
+        config.setLocale(locale)
+        resources.updateConfiguration(config, resources.displayMetrics)
+        requireActivity().startActivity(requireActivity().intent)
     }
 }

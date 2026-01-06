@@ -63,7 +63,7 @@ class NewPasswordFragment : BaseFragment<FragmentNewPasswordBinding>() {
                                     val action = NewPasswordFragmentDirections.navigateToLoginFragment()
                                     BindingUtils.navigateWithSlide(findNavController(), action)
                                 } else {
-                                    showErrorToast("Something went wrong")
+                                      showErrorToast(getString(R.string.something_went_wrong))
                                 }
                             }.onFailure { e ->
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)

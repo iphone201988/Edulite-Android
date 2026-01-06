@@ -67,6 +67,7 @@
                     android:gravity="start"
                     android:hint="@string/your_name"
                     android:imeOptions="actionNext"
+                    android:inputType="textPersonName"
                     android:nextFocusForward="@+id/etEmail"
                     android:onClick="@{v->vm.onClick(v)}"
                     android:paddingVertical="@dimen/_14sdp"
@@ -99,6 +100,7 @@
                     android:gravity="start"
                     android:hint="@string/your_email"
                     android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
                     android:nextFocusForward="@+id/etDob"
                     android:onClick="@{v->vm.onClick(v)}"
                     android:paddingVertical="@dimen/_14sdp"
@@ -161,6 +163,8 @@
                     android:gravity="start"
                     android:hint="@string/phone_number"
                     android:imeOptions="actionNext"
+                    android:maxLength="10"
+                    android:inputType="phone"
                     android:nextFocusForward="@+id/etPassword"
                     android:onClick="@{v->vm.onClick(v)}"
                     android:paddingVertical="@dimen/_14sdp"
@@ -169,6 +173,17 @@
                     app:layout_constraintEnd_toEndOf="@+id/etName"
                     app:layout_constraintStart_toEndOf="@+id/tvPhone"
                     app:layout_constraintTop_toBottomOf="@+id/etDob" />
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivPhone"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:src="@drawable/phone"
+                    app:layout_constraintBottom_toBottomOf="@+id/etPhone"
+                    app:layout_constraintStart_toStartOf="@+id/etPhone"
+                    app:layout_constraintTop_toTopOf="@+id/etPhone" />
 
 
                 <androidx.appcompat.widget.AppCompatImageView

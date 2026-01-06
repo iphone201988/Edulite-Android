@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.home.practice.PracticeTestFragmentVM" />
+            type="com.edu.lite.ui.dash_board.home.practice.PracticeTestFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,6 +91,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/rvCategory"
                 tools:itemCount="5"
                 tools:listitem="@layout/rv_practice_text_item" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvEmpty"
+                style="@style/TextView.medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:text="@string/no_practice_here_yet"
+                android:visibility="gone"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

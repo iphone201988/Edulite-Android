@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.download.DownloadFragmentVM" />
+            type="com.edu.lite.ui.dash_board.download.DownloadFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,6 +45,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivBackButton"
                 android:layout_width="@dimen/_32sdp"
@@ -64,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:paddingHorizontal="@dimen/_12sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +84,7 @@
                 android:orientation="vertical"
                 android:layout_marginTop="@dimen/_4sdp"
                 android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_18sdp"
+                android:paddingBottom="@dimen/_65sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +92,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/rvCategory"
                 tools:itemCount="5"
                 tools:listitem="@layout/rv_download_item" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/listEmpty"
+                style="@style/TextView.medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:text="video dowload list empty"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,6 +14,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/transparent"
         tools:context=".ui.auth.WelcomeActivity">
 
 
@@ -23,13 +24,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:defaultNavHost="true"
-            app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.edu.lite.utils.bottomnavigationview.CustomBottomView
             android:id="@+id/bottomNavigation"
@@ -43,13 +43,15 @@
             app:cbn_iconSize="14dp"
             app:cbn_selectedColor="@color/white"
             app:cbn_startColor="@color/start_color"
+            android:background="@color/transparent"
+            android:backgroundTint="@color/transparent"
             app:cbn_textColor="@color/transparent"
+            android:layoutDirection="ltr"
             app:cbn_textSize="@dimen/_12sdp"
             app:cbn_unSelectedColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

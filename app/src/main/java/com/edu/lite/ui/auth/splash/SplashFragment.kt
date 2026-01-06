@@ -9,7 +9,6 @@ import com.edu.lite.base.BaseFragment
 import com.edu.lite.base.BaseViewModel
 import com.edu.lite.databinding.FragmentSplashBinding
 import com.edu.lite.ui.auth.AuthCommonVM
-import com.edu.lite.ui.auth.dash_board.home.HomeFragmentDirections
 import com.edu.lite.utils.BindingUtils
 import dagger.hilt.android.AndroidEntryPoint
 

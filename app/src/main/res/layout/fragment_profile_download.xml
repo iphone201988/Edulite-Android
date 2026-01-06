@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.profile.ProfileFragmentVM" />
+            type="com.edu.lite.ui.dash_board.profile.ProfileFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,6 +65,7 @@
                 android:clipToPadding="false"
                 android:orientation="horizontal"
                 android:paddingHorizontal="@dimen/_12sdp"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -89,6 +90,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/rvCategory"
                 tools:itemCount="5"
                 tools:listitem="@layout/rv_download_item" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/listEmpty"
+                style="@style/TextView.medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:text="video dowload list empty"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

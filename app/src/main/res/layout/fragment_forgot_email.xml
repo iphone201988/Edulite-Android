@@ -72,6 +72,7 @@
                 android:imeOptions="actionDone"
                 android:gravity="start"
                 android:paddingStart="@dimen/_38sdp"
+                android:inputType="textEmailAddress"
                 android:hint="@string/your_email"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:textSize="@dimen/_13ssp"

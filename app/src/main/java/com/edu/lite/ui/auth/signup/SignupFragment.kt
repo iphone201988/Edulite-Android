@@ -197,7 +197,7 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>() {
                                     BindingUtils.navigateWithSlide(findNavController(), action)
 
                                 } else {
-                                    showErrorToast("Something went wrong")
+                                      showErrorToast(getString(R.string.something_went_wrong))
                                 }
                             }.onFailure { e ->
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
@@ -371,11 +371,11 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>() {
      * text color change
      */
     fun initOnTextColorChange() {
-        val text = "Already have an account, Login"
+        val text = getString(R.string.already_have_an_account_login)
         val spannable = SpannableString(text)
 
-        val startIndex = text.indexOf("Login")
-        val endIndex = startIndex + "Login".length
+        val startIndex = text.indexOf(getString(R.string.login))
+        val endIndex = startIndex + getString(R.string.login).length
 
         val clickableSpan = object : ClickableSpan() {
             override fun onClick(widget: View) {

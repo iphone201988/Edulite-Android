@@ -20,7 +20,8 @@ import android.widget.TextView;
 
 import com.edu.lite.R;
 
-public class CircularProgressBar extends View {
+public class CircularProgressBar extends View
+{
 
     private int mViewWidth;
     private int mViewHeight;
@@ -215,4 +216,13 @@ public class CircularProgressBar extends View {
     public void setTextView(TextView textView) {
         this.textView = textView;
     }
+
+
+    public void setMaxProgress(int maxProgress) {
+        this.mMaxProgress = maxProgress;
+        invalidate();
+    }
+
+
+
 }

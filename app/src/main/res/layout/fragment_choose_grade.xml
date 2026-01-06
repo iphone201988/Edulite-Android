@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.home.HomeFragmentVM" />
+            type="com.edu.lite.ui.dash_board.home.HomeFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

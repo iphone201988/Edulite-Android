@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.profile.ProfileFragmentVM" />
+            type="com.edu.lite.ui.dash_board.profile.ProfileFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,75 +19,501 @@
             android:id="@+id/clHeader"
             layout="@layout/header_item_layout" />
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/bg_icon"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/_20sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clHeader">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivCircle"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
-                android:layout_marginTop="18dp"
-                android:onClick="@{v->vm.onClick(v)}"
-                android:src="@drawable/circle_color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ivUSer"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:onClick="@{v->vm.onClick(v)}"
-                android:src="@drawable/person_holder"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                app:layout_constraintBottom_toBottomOf="@+id/ivCircle"
-                app:layout_constraintEnd_toEndOf="@+id/ivCircle"
-                app:layout_constraintStart_toStartOf="@+id/ivCircle"
-                app:layout_constraintTop_toTopOf="@+id/ivCircle" />
-
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvName"
-                style="@style/TextView.bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:gravity="center"
-                android:onClick="@{v->vm.onClick(v)}"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivCircle" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProfile"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_14sdp"
-                android:clipToPadding="false"
-                android:orientation="vertical"
-                android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_18sdp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:background="@drawable/bg_icon"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvName"
-                tools:itemCount="5"
-                tools:listitem="@layout/rv_profile_item" />
+                app:layout_constraintTop_toBottomOf="@+id/clHeader">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivSettings"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:padding="@dimen/_7sdp"
+                    android:src="@drawable/settings_icon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivCircle"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="-25dp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:src="@drawable/circle_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivSettings" />
+
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivUSer"
+                    android:layout_width="125dp"
+                    android:layout_height="125dp"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/person_holder"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivCircle"
+                    app:layout_constraintEnd_toEndOf="@+id/ivCircle"
+                    app:layout_constraintStart_toStartOf="@+id/ivCircle"
+                    app:layout_constraintTop_toTopOf="@+id/ivCircle"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clProgress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_22sdp"
+                    android:background="@drawable/profile_bg_12"
+                    android:paddingVertical="@dimen/_16sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivUSer">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvDaily"
+                        style="@style/TextView.regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_18sdp"
+                        android:gravity="center"
+                        android:text="@string/daily_goal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvProblems"
+                        style="@style/TextView.bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:text="@string/finish_5_problems"
+                        android:textColor="@color/start_color"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintStart_toStartOf="@+id/tvDaily"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDaily" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvStreak"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_18sdp"
+                        android:gravity="center"
+                        android:text="@string/streak"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvDaily"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvDaily" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivStreak"
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:gravity="center"
+                        android:src="@drawable/streak"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvProblems"
+                        app:layout_constraintEnd_toEndOf="@+id/tvStreak"
+                        app:layout_constraintTop_toTopOf="@+id/tvProblems" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvStreakPoint"
+                        style="@style/TextView.bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvProblems"
+                        app:layout_constraintEnd_toStartOf="@+id/ivStreak"
+                        app:layout_constraintTop_toTopOf="@+id/tvProblems" />
+
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/passwordStrengthBar"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_6sdp"
+                        android:background="@drawable/progress_bar_blue"
+                        app:layout_constraintBottom_toBottomOf="@+id/progress"
+                        app:layout_constraintEnd_toEndOf="@+id/tvStreak"
+                        app:layout_constraintStart_toStartOf="@+id/tvProblems"
+                        app:layout_constraintTop_toTopOf="@+id/progress">
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/progress"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_7sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintEnd_toEndOf="@+id/passwordStrengthBar"
+                        app:layout_constraintStart_toStartOf="@+id/passwordStrengthBar"
+                        app:layout_constraintTop_toBottomOf="@+id/tvProblems">
+
+                        <androidx.constraintlayout.widget.Guideline
+                            android:id="@+id/progressionGuideline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            app:layout_constraintGuide_percent="100" />
+
+                        <View
+                            android:id="@+id/viewBackgroundProgression"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:background="@drawable/blue_bg"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/progressionGuideline"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clXP"
+                        android:layout_width="0dp"
+                        android:layout_height="75dp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="@drawable/start_btn_bg"
+                        android:backgroundTint="@color/start_color_25"
+                        app:layout_constraintEnd_toStartOf="@+id/clBadges"
+                        app:layout_constraintStart_toStartOf="@+id/tvProblems"
+                        app:layout_constraintTop_toBottomOf="@+id/passwordStrengthBar">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvXP"
+                            style="@style/TextView.semibold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:gravity="center"
+                            android:text="@string/xp"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvXPoint"
+                            style="@style/TextView.bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:gravity="center"
+                            android:text="1240"
+                            android:textColor="@color/start_color"
+                            android:textSize="@dimen/_17ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvXP" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clBadges"
+                        android:layout_width="0dp"
+                        android:layout_height="75dp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_4sdp"
+                        android:background="@drawable/start_btn_bg"
+                        android:backgroundTint="@color/start_color_25"
+                        app:layout_constraintBottom_toBottomOf="@+id/clXP"
+                        app:layout_constraintEnd_toStartOf="@+id/clToken"
+                        app:layout_constraintStart_toEndOf="@+id/clXP"
+                        app:layout_constraintTop_toTopOf="@+id/clXP">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBadges"
+                            style="@style/TextView.semibold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:gravity="center"
+                            android:text="@string/badges"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBadgesPoint"
+                            style="@style/TextView.bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:gravity="center"
+                            android:text="12"
+                            android:textColor="@color/start_color"
+                            android:textSize="@dimen/_17ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvBadges" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/clToken"
+                        android:layout_width="0dp"
+                        android:layout_height="75dp"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:background="@drawable/start_btn_bg"
+                        android:backgroundTint="@color/start_color_25"
+                        app:layout_constraintBottom_toBottomOf="@+id/clXP"
+                        app:layout_constraintEnd_toEndOf="@+id/tvStreak"
+                        app:layout_constraintStart_toEndOf="@+id/clBadges"
+                        app:layout_constraintTop_toTopOf="@+id/clXP">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvToken"
+                            style="@style/TextView.semibold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:gravity="center"
+                            android:text="@string/tokens"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvTokenPoint"
+                            style="@style/TextView.bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:layout_marginEnd="@dimen/_3sdp"
+                            android:gravity="center"
+                            android:text="2"
+                            android:textColor="@color/start_color"
+                            android:textSize="@dimen/_17ssp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tvToken" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clBadges1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:background="@drawable/profile_bg_12"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingVertical="@dimen/_13sdp"
+                    app:layout_constraintEnd_toStartOf="@+id/clRewards"
+                    app:layout_constraintStart_toStartOf="@+id/clProgress"
+                    app:layout_constraintTop_toBottomOf="@+id/clProgress">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBadges"
+                        android:layout_width="@dimen/_32sdp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:src="@drawable/batch_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBadges1Point"
+                        style="@style/TextView.bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:gravity="center"
+                        android:text="@string/badges"
+                        android:textColor="@color/start_color"
+                        android:textSize="@dimen/_17ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivBadges" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clRewards"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:background="@drawable/profile_bg_12"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingVertical="@dimen/_13sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/clBadges1"
+                    app:layout_constraintEnd_toEndOf="@+id/clProgress"
+                    app:layout_constraintStart_toEndOf="@+id/clBadges1"
+                    app:layout_constraintTop_toTopOf="@+id/clBadges1">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivRewards"
+                        android:layout_width="@dimen/_32sdp"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:src="@drawable/rewards_icon"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvRewardsPoint"
+                        style="@style/TextView.bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:gravity="center"
+                        android:text="@string/rewards"
+                        android:textColor="@color/start_color"
+                        android:textSize="@dimen/_17ssp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivRewards" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clLevelUp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:background="@drawable/profile_bg_12"
+                    android:paddingVertical="@dimen/_9sdp"
+                    app:layout_constraintEnd_toEndOf="@+id/clProgress"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/clProgress"
+                    app:layout_constraintTop_toBottomOf="@+id/clBadges1">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvLevelUpReady"
+                        style="@style/TextView.semibold"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:gravity="start"
+                        android:text="@string/level_up_ready"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tvClaim"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvClaim"
+                        style="@style/TextView.semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_13sdp"
+                        android:background="@drawable/radius_with_gradiant"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_18sdp"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:text="@string/claim"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:background="@drawable/profile_bg_12"
+                    android:paddingVertical="@dimen/_13sdp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="@+id/clProgress"
+                    app:layout_constraintStart_toStartOf="@+id/clProgress"
+                    app:layout_constraintTop_toBottomOf="@+id/clLevelUp">
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/TextView.semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:text="Level Up Ready!"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/TextView.semibold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:background="@drawable/radius_with_gradiant"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_18sdp"
+                        android:paddingVertical="@dimen/_5sdp"
+                        android:text="Claim"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,7 +34,6 @@
             setIconFromUrl="@{bean.icon}"
             android:layout_width="@dimen/_27sdp"
             android:layout_height="@dimen/_27sdp"
-            android:src="@drawable/early_grades_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

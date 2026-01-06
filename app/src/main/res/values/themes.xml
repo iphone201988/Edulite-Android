@@ -14,6 +14,43 @@
     </style>
 
 
+    <!-- 🔹 THEME 1 – Green -->
+    <style name="AppTheme.Green" parent="Theme.MyApplication">
+        <item name="colorPrimary">@color/start_color</item>
+        <item name="colorPrimaryDark">@color/end_color</item>
+        <item name="colorAccent">@color/yellow</item>
+        <item name="android:statusBarColor">@color/start_color</item>
+        <item name="android:navigationBarColor">@color/start_color</item>
+    </style>
+
+    <!-- 🔹 THEME 2 – Purple -->
+    <style name="AppTheme.Purple" parent="Theme.MyApplication">
+        <item name="colorPrimary">@color/theme2_start_color</item>
+        <item name="colorPrimaryDark">@color/theme2_end_color</item>
+        <item name="colorAccent">@color/theme2_yellow_60</item>
+        <item name="android:statusBarColor">@color/theme2_start_color</item>
+        <item name="android:navigationBarColor">@color/theme2_start_color</item>
+    </style>
+
+    <!-- 🔹 THEME 3 – Blue -->
+    <style name="AppTheme.Blue" parent="Theme.MyApplication">
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryDark">@color/start_color_40</item>
+        <item name="colorAccent">@color/yellow_40</item>
+        <item name="android:statusBarColor">@color/blue</item>
+        <item name="android:navigationBarColor">@color/blue</item>
+    </style>
+
+    <!-- 🔹 THEME 4 – Orange -->
+    <style name="AppTheme.Orange" parent="Theme.MyApplication">
+        <item name="colorPrimary">#FFA500</item>
+        <item name="colorPrimaryDark">#FF8C00</item>
+        <item name="colorAccent">#FFD580</item>
+        <item name="android:statusBarColor">#FFA500</item>
+        <item name="android:navigationBarColor">#FFA500</item>
+    </style>
+
+
     <style name="FullScreenTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
@@ -133,7 +170,7 @@
     <style name="EditText" parent="Widget.AppCompat.EditText">
         <item name="android:layout_height">@dimen/_38sdp</item>
         <item name="android:layout_width">match_parent</item>
-        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
         <item name="android:singleLine">true</item>
         <item name="android:textCursorDrawable">@null</item>
         <item name="android:paddingStart">@dimen/_4sdp</item>
@@ -148,6 +185,10 @@
 
     <style name="ShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
         <item name="cornerSize">10%</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize12Percent" parent="">
+        <item name="cornerSize">12%</item>
     </style>
 
     <style name="ShapeAppearanceOverlay.App.CornerSize20Percent" parent="">

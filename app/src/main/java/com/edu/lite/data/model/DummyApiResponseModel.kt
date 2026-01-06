@@ -9,17 +9,16 @@ data class DummyApiItem(
 data class PreviewModel(
     val title: String, var isCheck: Boolean = false
 )
+
 data class QuestionModel(
-    val title: String,
-    var typeTitle: String,
-    var type: Int
+    val title: String, var typeTitle: String, var type: Int
 )
 
 data class UnitModel(
     val title: String,
     var progressValue: Int,
 
-)
+    )
 
 data class RoastedModel(
     val Ava: String,
@@ -27,18 +26,10 @@ data class RoastedModel(
     var level: String,
     var streak: String,
     var percetageValue: String,
+    var check: Boolean = false
 )
 
 
-data class GradeModel(
-    val title: String,
-    var image: Int
-)
-
-data class LetPlayModel(
-    val title: String,
-    var image: Int
-)
 
 data class QuestModel(
     val header: String,
@@ -61,27 +52,21 @@ data class PracticeTextModel(
     var desc: String,
     var questionCount: String,
     var time: String,
-    var progress:Int,
+    var progress: Int,
     var type: Int
 )
 
 data class VideoLessonsModel(
-    var title: String,
-    var desc: String,
-    var time: String,
-    var type: Int
+    var title: String, var desc: String, var time: String, var type: Int
 )
 
 data class ProfileModel(
-    var title: String,
-    var type: Int
+    var title: String, var type: Int
 
 )
 
 data class NotificationModel(
-    var title: String,
-    var type: Int,
-    var time: String
+    var title: String, var type: Int, var time: String
 
 )
 
@@ -93,4 +78,25 @@ data class CountryModel(
     val unicode: String,
     var isSelected: Boolean,
     var countryCode: String
+)
+
+
+data class RoadMapModel(
+    val isSent: Boolean,
+    val name: String,
+    val title: String,
+    val type: Int
+)
+data class RewardsModel(
+    val image: Int?,
+    val name: String?,
+    val title: String?,
+    val type :Int
+)
+
+data class BadgesModel(
+    val image: Int?,
+    val name: String?,
+    val title: String?,
+    val type :Int
 )

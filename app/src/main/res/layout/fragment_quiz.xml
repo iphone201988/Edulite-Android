@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.edu.lite.ui.auth.dash_board.quiz.QuizFragmentVM" />
+            type="com.edu.lite.ui.dash_board.quiz.QuizFragmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -128,7 +128,7 @@
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:paddingHorizontal="@dimen/_12sdp"
-                android:paddingBottom="@dimen/_18sdp"
+                android:paddingBottom="@dimen/_65sdp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -136,6 +136,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/rvCategory"
                 tools:itemCount="5"
                 tools:listitem="@layout/rv_quiz_item" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/TextView.regular"
+                android:id="@+id/listEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_quizzes_here_yet"
+                android:textColor="@color/start_color"
+                android:textSize="@dimen/_13ssp"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,17 +16,16 @@
 
         <variable
             name="bean"
-            type="com.edu.lite.data.model.VideoLessonsModel" />
+            type="com.edu.lite.data.room_moduel.DownloadVideoData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clLetPlay"
-        changeBgColor1="@{bean.type}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_7sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/quests_first_bg"
+        android:background="@drawable/quests_third_bg"
         android:onClick="@{v->callback.onItemClick(v,bean,pos)}">
 
 
@@ -44,12 +43,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBackButton"
-            changeImageColor1="@{bean.type}"
             android:layout_width="@dimen/_15sdp"
             android:layout_height="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_5sdp"
             android:layout_marginBottom="@dimen/_7sdp"
-            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
             android:src="@drawable/done_image"
             app:layout_constraintBottom_toBottomOf="@+id/ivVideoImage"
             app:layout_constraintEnd_toEndOf="@+id/ivVideoImage" />
@@ -82,7 +79,7 @@
             android:layout_marginTop="@dimen/_2sdp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{bean.desc}"
+            android:text="@{bean.subject}"
             android:textColor="@color/black"
             android:textSize="@dimen/_9ssp"
             app:layout_constraintEnd_toEndOf="@+id/tvHeader"
@@ -93,12 +90,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTime"
             style="@style/TextView.semibold"
-            changeTextColor1="@{bean.type}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:text="@{bean.time}"
-            android:textColor="@color/black"
+            android:text='@{String.valueOf(bean.time)+" mins"}'
+            android:textColor="@color/end_color"
             android:textSize="@dimen/_8ssp"
             app:layout_constraintEnd_toEndOf="@+id/tvHeader"
             app:layout_constraintStart_toStartOf="@+id/tvHeader"
@@ -113,10 +109,9 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_2sdp"
             android:background="@drawable/radius_6_blu"
-            android:backgroundTint="@{bean.type == 1 ? @color/start_color : (bean.type == 2 ? @color/yellow : @color/end_color)}"
+            android:backgroundTint="@color/end_color"
             android:gravity="center"
-            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
-            android:text="@{bean.type == 1 ? @string/watch_now_start : (bean.type == 2 ? @string/watch_now_resume : @string/watch_now_completed)}"
+            android:text="@string/watch_now_completed"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="@+id/ivVideoImage"
             app:layout_constraintEnd_toEndOf="@+id/tvHeader"

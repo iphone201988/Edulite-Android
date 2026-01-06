@@ -71,7 +71,7 @@ interface ApiService {
     @GET
     suspend fun apiGetWithQuery(
         @Header("Authorization") token: String,
-        @Url url: String, @QueryMap data: HashMap<String, String>
+        @Url url: String, @QueryMap data: HashMap<String, Any>
     ): Response<JsonObject>
 
 
@@ -81,9 +81,9 @@ interface ApiService {
     suspend fun apiForPostMultipart(
         @Url url: String,
         @Header("Authorization") token: String,
-        @PartMap data: Map<String, RequestBody>?,
         @Part parts: MultipartBody.Part?
     ): Response<JsonObject>
+
 
 
     @Headers(Constants.HEADER_API)
