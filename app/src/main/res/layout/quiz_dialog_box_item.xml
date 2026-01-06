@@ -40,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivCancel"
             app:progess="0"
             app:roundcorner="true"
-            app:startcolor="@color/start_color" />
+            app:startcolor="?attr/startColor" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -66,7 +66,7 @@
             android:gravity="center"
             android:text="+80 points"
             android:layout_marginStart="@dimen/_2sdp"
-            android:textColor="@color/start_color"
+            android:textColor="?attr/startColor"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="@+id/tvScored"
             app:layout_constraintStart_toEndOf="@+id/tvScored"
@@ -79,7 +79,7 @@
             android:layout_marginTop="@dimen/_22sdp"
             android:layout_marginEnd="@dimen/_4sdp"
             android:background="@drawable/start_btn_bg"
-            android:backgroundTint="@color/blue_20"
+            android:backgroundTint="?attr/blue20"
             app:layout_constraintEnd_toStartOf="@+id/clCorrect"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvScored">
@@ -108,7 +108,7 @@
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:gravity="center"
                 android:text="18"
-                android:textColor="@color/start_color"
+                android:textColor="?attr/startColor"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +152,7 @@
                 android:layout_marginEnd="@dimen/_3sdp"
                 android:gravity="center"
                 android:text="8"
-                android:textColor="@color/end_color"
+                android:textColor="?attr/endColor"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

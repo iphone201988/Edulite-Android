@@ -16,7 +16,7 @@
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginHorizontal="@dimen/_7sdp"
         android:background="@drawable/start_btn_bg"
-        android:backgroundTint="@color/blue_20"
+        android:backgroundTint="?attr/blue20"
         android:paddingVertical="@dimen/_10sdp">
 
 

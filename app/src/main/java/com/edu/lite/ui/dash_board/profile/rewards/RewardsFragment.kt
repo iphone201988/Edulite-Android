@@ -1,5 +1,6 @@
 package com.edu.lite.ui.dash_board.profile.rewards
 
+import android.content.Intent
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -10,10 +11,13 @@ import com.edu.lite.ThemeHelper
 import com.edu.lite.base.BaseFragment
 import com.edu.lite.base.BaseViewModel
 import com.edu.lite.base.SimpleRecyclerViewAdapter
+import com.edu.lite.data.api.Constants
 import com.edu.lite.data.model.RewardsModel
+import com.edu.lite.databinding.DialogDeleteLogoutBinding
 import com.edu.lite.databinding.FragmentRewardsBinding
 import com.edu.lite.databinding.RewardsDialogItemBinding
 import com.edu.lite.databinding.RvRewardsItemBinding
+import com.edu.lite.ui.auth.WelcomeActivity
 import com.edu.lite.ui.dash_board.profile.ProfileFragmentVM
 import com.edu.lite.utils.BaseCustomDialog
 import com.edu.lite.utils.DummyList
@@ -25,6 +29,9 @@ class RewardsFragment : BaseFragment<FragmentRewardsBinding>() {
     private val viewModel: ProfileFragmentVM by viewModels()
     private lateinit var rewardsAdapter: SimpleRecyclerViewAdapter<RewardsModel, RvRewardsItemBinding>
     private var getRewardsDialog: BaseCustomDialog<RewardsDialogItemBinding>? = null
+
+    private var themeChangeDialog: BaseCustomDialog<DialogDeleteLogoutBinding>? = null
+    private var selectedThemeIndex :Int?=null
 
     override fun getLayoutResource(): Int {
         return R.layout.fragment_rewards
@@ -41,6 +48,8 @@ class RewardsFragment : BaseFragment<FragmentRewardsBinding>() {
         initOnRewardsAdapter()
         // open dialog
         initDialog()
+        // theme dialog
+        initThemeDialog()
 
     }
 
@@ -64,20 +73,24 @@ class RewardsFragment : BaseFragment<FragmentRewardsBinding>() {
      */
     private fun initOnRewardsAdapter() {
         rewardsAdapter = SimpleRecyclerViewAdapter(R.layout.rv_rewards_item, BR.bean) { v, m, pos ->
-            when (pos) {
-                0 -> {
-                    changeTheme("green")
+            when (v.id) {
+                R.id.clBadges->{
 
-                }
+                    val currentTheme = ThemeHelper.getSavedThemeName(requireActivity())
 
-                1 -> {
-                    changeTheme("purple")
-                }
-                2 -> {
-                    changeTheme("blue")
-                }
-                3-> {
-                    changeTheme("orange")
+                    val selectedTheme = when (pos) {
+                        0 -> "green"
+                        1 -> "purple"
+                        2 -> "orange"
+                        3 -> "blue"
+                        else -> return@SimpleRecyclerViewAdapter
+                    }
+                    if (currentTheme.equals(selectedTheme, true)) {
+                        showErrorToast("Theme is already in use.")
+                        return@SimpleRecyclerViewAdapter
+                    }
+                    selectedThemeIndex = pos
+                    handleDialog()
                 }
 
             }
@@ -90,7 +103,7 @@ class RewardsFragment : BaseFragment<FragmentRewardsBinding>() {
 
     private fun changeTheme(themeName: String) {
         ThemeHelper.saveThemeName(requireActivity(), themeName)
-        requireActivity().recreate() // restart Activity with new theme
+        restartApp()
     }
 
     /**
@@ -111,5 +124,51 @@ class RewardsFragment : BaseFragment<FragmentRewardsBinding>() {
         Glide.with(requireContext()).load(R.drawable.congre)
             .into(getRewardsDialog?.binding?.congrateAnimate!!)
 
+    }
+
+    private fun initThemeDialog() {
+        themeChangeDialog = BaseCustomDialog(requireContext(), R.layout.dialog_delete_logout) {
+            when (it?.id) {
+                R.id.tvCancel -> {
+                    themeChangeDialog?.dismiss()
+                }
+
+                R.id.tvLogout -> {
+                    when(selectedThemeIndex){
+                        0 -> {
+                            changeTheme("green")
+                        }
+
+                        1 -> {
+                            changeTheme("purple")
+                        }
+                        2 -> {
+                            changeTheme("orange")
+                        }
+                        3-> {
+                            changeTheme("blue")
+                        }
+                    }
+                    themeChangeDialog?.dismiss()
+
+                }
+            }
+
+        }
+        themeChangeDialog?.setCancelable(false)
+    }
+
+    private fun restartApp() {
+        val intent = Intent(requireContext(), WelcomeActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+    }
+
+    private fun handleDialog(){
+        themeChangeDialog?.binding?.tvTitle?.text = "Change Theme"
+        themeChangeDialog?.binding?.tvSubHeading?.text = "Are you sure to change app theme ?"
+        themeChangeDialog?.binding?.tvLogout?.text = "Change Theme"
+        themeChangeDialog?.show()
     }
 }

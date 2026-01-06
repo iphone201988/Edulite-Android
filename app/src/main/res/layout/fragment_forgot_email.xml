@@ -40,7 +40,7 @@
                 android:gravity="center"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:text="@string/forgot_password"
-                android:textColor="@color/start_color"
+                android:textColor="?attr/startColor"
                 android:textSize="@dimen/_17ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

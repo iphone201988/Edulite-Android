@@ -144,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/no_quizzes_here_yet"
-                android:textColor="@color/start_color"
+                android:textColor="?attr/startColor"
                 android:textSize="@dimen/_13ssp"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"

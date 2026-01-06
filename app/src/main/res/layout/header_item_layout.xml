@@ -20,7 +20,8 @@
             android:layout_height="@dimen/_120sdp"
             android:onClick="@{v->vm.onClick(v)}"
             android:scaleType="centerCrop"
-            android:src="@drawable/edu_light"
+            android:src="@drawable/edu_light_theme_1"
+            setThemeHeaderImage="@{true}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

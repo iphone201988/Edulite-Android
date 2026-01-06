@@ -176,7 +176,7 @@
                     android:gravity="center"
                     android:onClick="@{v->vm.onClick(v)}"
                     android:text="Question 1 of 10"
-                    android:textColor="@color/start_color"
+                    android:textColor="?attr/startColor"
                     android:textSize="@dimen/_9ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvQuestion" />
@@ -227,7 +227,7 @@
                 android:layout_marginEnd="@dimen/_16sdp"
                 android:layout_marginBottom="@dimen/_18sdp"
                 android:background="@drawable/gradient_btn_bg"
-                android:backgroundTint="@color/end_color"
+                android:backgroundTint="?attr/endColor"
                 android:gravity="center"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:text="@string/next"
