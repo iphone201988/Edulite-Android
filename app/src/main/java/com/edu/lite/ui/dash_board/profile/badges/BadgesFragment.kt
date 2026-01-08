@@ -40,7 +40,7 @@ class BadgesFragment : BaseFragment<FragmentBadgesBinding>() {
         // adapter
         initOnBadgesAdapter()
         // dialog
-        initCorrectAnswerDialog()
+      //  initCorrectAnswerDialog()
     }
 
     /**

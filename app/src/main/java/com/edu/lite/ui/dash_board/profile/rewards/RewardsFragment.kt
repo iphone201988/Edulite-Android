@@ -47,7 +47,7 @@ class RewardsFragment : BaseFragment<FragmentRewardsBinding>() {
         // adapter
         initOnRewardsAdapter()
         // open dialog
-        initDialog()
+      //  initDialog()
         // theme dialog
         initThemeDialog()
 
