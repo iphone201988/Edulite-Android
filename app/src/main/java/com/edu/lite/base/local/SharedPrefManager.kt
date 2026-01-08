@@ -55,9 +55,7 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
 
     fun clearAllExceptLanguage() {
         val lang = getLanguage()
-
         sharedPreferences.edit().clear().apply()
-
         saveLanguage(lang)
     }
 

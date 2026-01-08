@@ -161,10 +161,10 @@
         android:name="com.edu.lite.ui.auth.forgot.OtpFragment"
         tools:layout="@layout/fragment_otp">
 
-        <argument
-            android:name="email"
-            android:defaultValue=""
-            app:argType="string" />
+            <argument
+                android:name="email"
+                android:defaultValue=""
+                app:argType="string" />
 
         <argument
             android:name="type"

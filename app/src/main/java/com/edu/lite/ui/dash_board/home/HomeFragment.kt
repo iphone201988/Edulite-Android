@@ -1,10 +1,14 @@
 package com.edu.lite.ui.dash_board.home
 
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
+import android.os.Build
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.edu.lite.BR
@@ -29,7 +33,7 @@ import java.util.Locale
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val viewModel: HomeFragmentVM by viewModels()
     private lateinit var questionAdapter: SimpleRecyclerViewAdapter<GetHomeQuest, RvQuestionItemBinding>
-
+    private var PERMISSION_REQUEST_CODE = 16
     override fun getLayoutResource(): Int {
         return R.layout.fragment_home
     }
@@ -39,6 +43,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun onCreateView(view: View) {
+        // check permission
+        if (Build.VERSION.SDK_INT > 32) {
+            if (!shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
+                getNotificationPermission()
+            }
+        }
         // status bar color change
         binding.type = 1
         BindingUtils.setStatusBarGradient(requireActivity())
@@ -178,6 +188,38 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             }
         }
         binding.rvQuestion.adapter = questionAdapter
+    }
+
+
+    private fun getNotificationPermission() {
+        try {
+            if (Build.VERSION.SDK_INT > 32) {
+                ActivityCompat.requestPermissions(
+                    requireActivity(), arrayOf(Manifest.permission.POST_NOTIFICATIONS), PERMISSION_REQUEST_CODE
+                )
+            }
+        } catch (e: Exception) {
+            Log.e("fsds", "setUpObserver: $e")
+        }
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            PERMISSION_REQUEST_CODE -> {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted
+                } else {
+                    showErrorToast("Notification Permission Denied")
+                }
+            }
+        }
     }
 
     /*
