@@ -229,7 +229,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/no_video_here_yet"
-                        android:textColor="@color/start_color"
+                        android:textColor="?attr/startColor"
                         android:textSize="@dimen/_13ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/rvVideoLessons"
                         app:layout_constraintEnd_toEndOf="@+id/rvVideoLessons"

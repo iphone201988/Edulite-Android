@@ -25,6 +25,7 @@ import com.edu.lite.data.model.SignupResponse
 import com.edu.lite.databinding.FragmentLoginBinding
 import com.edu.lite.ui.auth.AuthCommonVM
 import com.edu.lite.utils.BindingUtils
+import com.edu.lite.utils.BindingUtils.resolveAttrColor
 import com.edu.lite.utils.Status
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
@@ -206,7 +207,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             }
 
             override fun updateDrawState(ds: TextPaint) {
-                ds.color = ContextCompat.getColor(requireActivity(), R.color.start_color)
+                ds.color = requireContext().resolveAttrColor(R.attr.startColor)
                 ds.isUnderlineText = false
             }
         }

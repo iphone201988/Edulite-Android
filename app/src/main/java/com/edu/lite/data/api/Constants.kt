@@ -2,8 +2,8 @@ package com.edu.lite.data.api
 
 
 object Constants {
-    const val BASE_URL = "https://louise-junior-spreading-particles.trycloudflare.com/api/v1/"
-    const val BASE_URL_IMAGE = "https://louise-junior-spreading-particles.trycloudflare.com"
+    const val BASE_URL = "https://operations-summaries-climbing-personnel.trycloudflare.com/api/v1/"
+    const val BASE_URL_IMAGE = "https://operations-summaries-climbing-personnel.trycloudflare.com"
     const val GOOGLE_API_KEY = "AIzaSyD5Jt2e9ocVmXovnsOsdmtdhPRkP8m9IhQ"
 
     /**************** API LIST *****************/

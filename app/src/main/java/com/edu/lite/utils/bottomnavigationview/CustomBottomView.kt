@@ -21,6 +21,7 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavOptions
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.edu.lite.R
+import com.edu.lite.utils.BindingUtils.resolveAttrColor
 import kotlin.math.abs
 
 
@@ -934,11 +935,14 @@ class CustomBottomView @JvmOverloads constructor(
         // Draw circle for FAB (Selected item indicator)
         val fabRadius = fabSize / 2f
 
+        val startColor = context.resolveAttrColor(R.attr.startColor)
+        val endColor = context.resolveAttrColor(R.attr.endColor)
+
         val gradient = LinearGradient(
             centerX - fabRadius, curCenterY - fabRadius,
             centerX + fabRadius, curCenterY + fabRadius,
-            Color.parseColor("#4DA0F9"), // start
-            Color.parseColor("#76F48A"), // end
+            startColor,
+            endColor,
             Shader.TileMode.CLAMP
         )
 

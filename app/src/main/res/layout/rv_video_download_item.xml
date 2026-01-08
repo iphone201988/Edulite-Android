@@ -93,7 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
             android:text='@{String.valueOf(bean.time)+" mins"}'
-            android:textColor="@color/end_color"
+            android:textColor="?attr/endColor"
             android:textSize="@dimen/_8ssp"
             app:layout_constraintEnd_toEndOf="@+id/tvHeader"
             app:layout_constraintStart_toStartOf="@+id/tvHeader"
@@ -107,7 +107,7 @@
             android:layout_height="@dimen/_32sdp"
             android:layout_marginTop="@dimen/_2sdp"
             android:background="@drawable/radius_6_blu"
-            android:backgroundTint="@color/end_color"
+            android:backgroundTint="?attr/endColor"
             android:gravity="center"
             android:text="@string/watch_now_completed"
             android:textSize="@dimen/_11ssp"

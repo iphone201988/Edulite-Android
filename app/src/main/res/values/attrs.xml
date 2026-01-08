@@ -32,4 +32,26 @@
         <attr name="circlestrokewidth" format="dimension"/>
     </declare-styleable>
 
+    <attr name="headerImage" format="reference"/>
+    <attr name="splashImage" format="reference"/>
+    <attr name="profileImage" format="reference"/>
+
+
+
+
+
+    <attr name="startColor" format="color"/>
+    <attr name="endColor" format="color"/>
+    <attr name="startColor40" format="color"/>
+    <attr name="startColor25" format="color"/>
+    <attr name="questBg" format="color"/>
+    <attr name="borderColor" format="color"/>
+    <attr name="previewColor" format="color"/>
+    <attr name="green60" format="color"/>
+    <attr name="yellow60" format="color"/>
+    <attr name="blue20" format="color"/>
+    <attr name="splashBtnStartColor" format="color"/>
+    <attr name="splashBtnEndColor" format="color"/>
+    <attr name="splashTextColor" format="color"/>
+
 </resources>

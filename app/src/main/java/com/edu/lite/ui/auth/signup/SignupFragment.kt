@@ -42,6 +42,7 @@ import com.edu.lite.ui.auth.forgot.OtpFragmentDirections
 import com.edu.lite.ui.auth.login.LoginFragmentDirections
 import com.edu.lite.utils.BaseCustomDialog
 import com.edu.lite.utils.BindingUtils
+import com.edu.lite.utils.BindingUtils.resolveAttrColor
 import com.edu.lite.utils.Status
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
@@ -385,7 +386,7 @@ class SignupFragment : BaseFragment<FragmentSignupBinding>() {
 
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
-                ds.color = ContextCompat.getColor(requireActivity(), R.color.start_color)
+                ds.color = requireContext().resolveAttrColor(R.attr.startColor)
                 ds.isUnderlineText = false
             }
         }

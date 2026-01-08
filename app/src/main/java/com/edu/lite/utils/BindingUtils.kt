@@ -4,12 +4,14 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.PictureDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -18,12 +20,14 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.PopupWindow
+import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.databinding.BindingAdapter
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
@@ -443,72 +447,69 @@ object BindingUtils {
     fun quizImageBg(imageView: AppCompatImageView, type: String?) {
         if (type != null) {
             when (type) {
-                "completed" -> imageView.setColorFilter(imageView.context.getColor(R.color.end_color))
+                "completed" -> imageView.setColorFilter(imageView.context.getColor(R.color.theme1_start_color))
                 "in-progress" -> imageView.setColorFilter(imageView.context.getColor(R.color.yellow))
-                "pending" -> imageView.setColorFilter(imageView.context.getColor(R.color.start_color))
-                else -> imageView.setColorFilter(imageView.context.getColor(R.color.start_color))
+                "pending" -> imageView.setColorFilter(imageView.context.getColor(R.color.theme1_start_color))
+                else -> imageView.setColorFilter(imageView.context.getColor(R.color.theme1_start_color))
             }
-        } else imageView.setColorFilter(imageView.context.getColor(R.color.start_color))
+        } else imageView.setColorFilter(imageView.context.getColor(R.color.theme1_start_color))
     }
+
 
 
     @BindingAdapter("changeTextColor")
     @JvmStatic
     fun changeTextColor(textView: AppCompatTextView, type: String?) {
-        if (type != null) {
-            when (type) {
-                "completed" -> textView.setTextColor(textView.context.getColor(R.color.end_color))
-                "in-progress" -> textView.setTextColor(textView.context.getColor(R.color.yellow))
-                "pending" -> textView.setTextColor(textView.context.getColor(R.color.start_color))
-                else -> textView.setTextColor(textView.context.getColor(R.color.start_color))
-            }
-        } else {
-            textView.setTextColor(textView.context.getColor(R.color.start_color))
+        val context = textView.context
+        val color = when(type) {
+            "completed" -> context.resolveAttrColor(R.attr.endColor)
+            "in-progress" -> context.getColor(R.color.yellow)
+            "pending" -> context.resolveAttrColor(R.attr.startColor)
+            else -> context.resolveAttrColor(R.attr.startColor)
         }
+        textView.setTextColor(color)
     }
 
 
     @BindingAdapter("changeTextColor12")
     @JvmStatic
     fun changeTextColor12(textView: AppCompatTextView, type: Boolean?) {
-        if (type == true) textView.setTextColor(textView.context.getColor(R.color.end_color))
-        else textView.setTextColor(textView.context.getColor(R.color.start_color))
+        if (type == true) textView.setTextColor(textView.context.resolveAttrColor(R.attr.endColor))
+        else textView.setTextColor(textView.context.resolveAttrColor(R.attr.startColor))
     }
 
     @BindingAdapter("changeTextColor1")
     @JvmStatic
     fun changeTextColor1(textView: AppCompatTextView, type: Int?) {
-        if (type != null) {
-            when (type) {
-                1 -> textView.setTextColor(textView.context.getColor(R.color.start_color))
-                2 -> textView.setTextColor(textView.context.getColor(R.color.yellow))
-                3 -> textView.setTextColor(textView.context.getColor(R.color.end_color))
-                else -> textView.setTextColor(textView.context.getColor(R.color.start_color))
-            }
-
+        val context = textView.context
+        val color = when(type) {
+            1 -> context.resolveAttrColor(R.attr.startColor)
+            2 -> context.getColor(R.color.yellow)
+            3 -> context.resolveAttrColor(R.attr.endColor)
+            else -> context.resolveAttrColor(R.attr.startColor)
         }
+        textView.setTextColor(color)
     }
 
 
     @BindingAdapter("changeImageColor1")
     @JvmStatic
     fun changeImageColor1(imageView: AppCompatImageView, type: Int?) {
-        if (type != null) {
-            when (type) {
-                1 -> imageView.setColorFilter(imageView.context.getColor(R.color.start_color))
-                2 -> imageView.setColorFilter(imageView.context.getColor(R.color.yellow))
-                3 -> imageView.setColorFilter(imageView.context.getColor(R.color.end_color))
-                else -> imageView.setColorFilter(imageView.context.getColor(R.color.start_color))
-            }
-
+        val context = imageView.context
+        val color = when (type) {
+            1 -> context.resolveAttrColor(R.attr.startColor)
+            2 -> context.getColor(R.color.yellow)
+            3 -> context.resolveAttrColor(R.attr.endColor)
+            else -> context.resolveAttrColor(R.attr.startColor)
         }
+        imageView.setColorFilter(color)
     }
 
     @BindingAdapter("changeImageTint")
     @JvmStatic
     fun changeImageTint(imageView: AppCompatImageView, type: Boolean?) {
-        if (type == true) imageView.setColorFilter(imageView.context.getColor(R.color.end_color))
-        else imageView.setColorFilter(imageView.context.getColor(R.color.start_color))
+        if (type == true) imageView.setColorFilter(imageView.context.resolveAttrColor(R.attr.endColor))
+        else imageView.setColorFilter(imageView.context.resolveAttrColor(R.attr.startColor))
     }
 
 
@@ -550,11 +551,11 @@ object BindingUtils {
     fun setColorBadges(layout: ConstraintLayout, type: Int?) {
         if (type != null) {
             when (type) {
-                1 -> layout.setBackgroundResource(R.drawable.grade_green_stroke)
+                1 -> layout.setBackgroundResource(R.drawable.rewards_green_bg)
                 2 -> layout.setBackgroundResource(R.drawable.badges_blue_40_bg)
-                3 -> layout.setBackgroundResource(R.drawable.grade_yellow_stroke)
+                3 -> layout.setBackgroundResource(R.drawable.rewards_yellow_bg)
                 4 -> layout.setBackgroundResource(R.drawable.rewards_blur_bg_40)
-                else -> layout.setBackgroundResource(R.drawable.grade_green_stroke)
+                else -> layout.setBackgroundResource(R.drawable.rewards_green_bg)
             }
 
         }
@@ -667,6 +668,83 @@ object BindingUtils {
         )
         popupWindow.showAsDropDown(anchor, 0, 0, Gravity.END)
 
+    }
+
+    fun Context.resolveAttrColor(attr: Int): Int {
+        val typedValue = TypedValue()
+        theme.resolveAttribute(attr, typedValue, true)
+        return typedValue.data
+    }
+
+    @BindingAdapter("setThemeHeaderImage")
+    @JvmStatic
+    fun setThemeHeaderImage(appCompatImageView: AppCompatImageView,enabled: Boolean = true) {
+        if (!enabled) return
+
+        val typedValue = TypedValue()
+        val theme = appCompatImageView.context.theme
+
+        if (theme.resolveAttribute(R.attr.headerImage, typedValue, true)) {
+            if (typedValue.resourceId != 0) {
+                appCompatImageView.setImageResource(typedValue.resourceId)
+            }
+        }
+    }
+
+    @BindingAdapter("setSplashBackground")
+    @JvmStatic
+    fun setSplashBackground(layout: ConstraintLayout, enabled: Boolean = true) {
+        if (!enabled) return
+
+        val typedValue = TypedValue()
+        val theme = layout.context.theme
+
+        if (theme.resolveAttribute(R.attr.splashImage, typedValue, true)) {
+            when {
+                typedValue.resourceId != 0 -> {
+                    // drawable resource
+                    layout.setBackgroundResource(typedValue.resourceId)
+                }
+                typedValue.data != 0 -> {
+                    // color value
+                    layout.setBackgroundColor(typedValue.data)
+                }
+            }
+        }
+    }
+
+    @BindingAdapter("setThemeProfileImage")
+    @JvmStatic
+    fun setThemeProfileImage(appCompatImageView: AppCompatImageView,enabled: Boolean = true) {
+        if (!enabled) return
+
+        val typedValue = TypedValue()
+        val theme = appCompatImageView.context.theme
+
+        if (theme.resolveAttribute(R.attr.profileImage, typedValue, true)) {
+            if (typedValue.resourceId != 0) {
+                appCompatImageView.setImageResource(typedValue.resourceId)
+            }
+        }
+    }
+
+    @BindingAdapter("setDownloadTint")
+    @JvmStatic
+    fun setDownloadTint(view: TextView, isDownloaded: Boolean?) {
+        val colorAttr = if (isDownloaded == true)
+            R.attr.endColor
+        else
+            R.attr.startColor
+
+        val typedValue = TypedValue()
+        view.context.theme.resolveAttribute(colorAttr, typedValue, true)
+
+        val color = if (typedValue.resourceId != 0)
+            ContextCompat.getColor(view.context, typedValue.resourceId)
+        else
+            typedValue.data
+
+        ViewCompat.setBackgroundTintList(view, ColorStateList.valueOf(color))
     }
 
 

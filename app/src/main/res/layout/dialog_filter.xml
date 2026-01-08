@@ -54,7 +54,7 @@
                 android:paddingVertical="@dimen/_12sdp"
                 android:paddingStart="@dimen/_14sdp"
                 android:paddingEnd="@dimen/_14sdp"
-                android:textColor="@color/start_color"
+                android:textColor="?attr/startColor"
                 android:textSize="@dimen/_11ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
