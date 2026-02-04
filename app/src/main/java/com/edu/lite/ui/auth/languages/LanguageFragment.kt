@@ -66,6 +66,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>() {
                     if (type == 1) {
                         val data = sharedPrefManager.getLanguage()
                         setLocale(data)
+                        findNavController().popBackStack()
                     } else {
                         val action = LanguageFragmentDirections.navigateToLoginFragment()
                         BindingUtils.navigateWithSlide(findNavController(), action)

@@ -2,11 +2,11 @@ package com.edu.lite.data.api
 
 
 object Constants {
-    const val BASE_URL = "https://navigate-archive-various-budapest.trycloudflare.com/api/v1/"
-    const val BASE_URL_IMAGE = "https://navigate-archive-various-budapest.trycloudflare.com"
-    const val GOOGLE_API_KEY = "AIzaSyD5Jt2e9ocVmXovnsOsdmtdhPRkP8m9IhQ"
+    const val BASE_URL = "http://3.18.8.225:8000/api/v1/"
+    const val BASE_URL_IMAGE = "https://edulite-s3.s3.us-east-2.amazonaws.com"
 
     /**************** API LIST *****************/
+
     const val HEADER_API = "X-API-Key:lkcMuYllSgc3jsFi1gg896mtbPxIBzYkEL"
     const val DEFAULT_FLAG_LINK: String = "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/IN.svg"
     const val REGISTER = "auth/register"

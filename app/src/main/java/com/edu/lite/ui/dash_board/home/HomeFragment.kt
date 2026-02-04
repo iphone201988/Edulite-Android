@@ -131,6 +131,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
 
     /** api response observer ***/
+    @SuppressLint("SetTextI18n")
     private fun initObserver() {
         viewModel.observeCommon.observe(viewLifecycleOwner) {
             when (it?.status) {
@@ -204,6 +205,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,

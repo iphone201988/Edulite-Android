@@ -139,7 +139,6 @@
                 android:id="@+id/clArabic"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_95sdp"
-
                 android:layout_marginTop="@dimen/_8sdp"
                 android:background="@{selectType==3?@drawable/selected_language_bg:@drawable/un_selected_language_bg}"
                 android:elevation="@dimen/_2sdp"
