@@ -33,8 +33,8 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivVideoImage"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
             android:layout_marginHorizontal="@dimen/_13sdp"
             android:layout_marginTop="@dimen/_12sdp"
             setImageInt="@{bean.image}"

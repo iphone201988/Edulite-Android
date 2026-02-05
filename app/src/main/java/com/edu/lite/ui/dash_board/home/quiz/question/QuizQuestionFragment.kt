@@ -175,6 +175,7 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
                                     BindingUtils.parseJson(jsonData)
                                 val question = model?.quiz
                                 if (question != null) {
+                                    binding.tvQuestion.text=question.name
                                     totalQuestions = question.numberOfQuestions ?: 0
                                     questionsList = question.questions ?: emptyList()
                                     binding.tvQuestionNumber.text = "Question ${currentIndex + 1} of $totalQuestions"

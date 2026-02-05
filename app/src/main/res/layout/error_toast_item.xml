@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:fitsSystemWindows="false"
     android:background="@drawable/toast_bg"
-    android:backgroundTint="#B2D50000"
+    android:backgroundTint="#FFD50000"
     android:gravity="center"
     android:paddingHorizontal="@dimen/_8sdp"
     android:paddingVertical="@dimen/_5sdp"
@@ -15,20 +15,31 @@
     tools:ignore="UseCompoundDrawables">
 
 
-    <com.airbnb.lottie.LottieAnimationView
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:layout_width="@dimen/_22sdp"-->
+<!--        android:layout_height="@dimen/_22sdp"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        android:scaleX="2.1"-->
+<!--        android:scaleY="2.1"-->
+<!--        android:layout_marginStart="@dimen/_2sdp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:lottie_loop="true"-->
+<!--        app:lottie_rawRes="@raw/payment_failed"-->
+<!-- />-->
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="@dimen/_22sdp"
         android:layout_height="@dimen/_22sdp"
-        app:lottie_autoPlay="true"
-        android:scaleX="2.1"
-        android:scaleY="2.1"
         android:layout_marginStart="@dimen/_2sdp"
+        android:src="@drawable/cancle_icon"
+        android:padding="@dimen/_5sdp"
+        android:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/payment_failed"
- />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvErrorToast"

@@ -21,7 +21,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clGrade"
         android:layout_width="match_parent"
-        android:layout_height="115dp"
+        android:layout_height="@dimen/_89sdp"
         android:layout_marginTop="@dimen/_13sdp"
         android:layout_marginHorizontal="@dimen/_7sdp"
         changeBackgroundStroke="@{bean.grade}"

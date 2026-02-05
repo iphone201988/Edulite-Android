@@ -35,7 +35,7 @@
                 style="@style/TextView.bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="@dimen/_11sdp"
                 android:gravity="center"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:text="@string/featured_quizzes"

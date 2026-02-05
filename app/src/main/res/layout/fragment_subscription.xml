@@ -67,8 +67,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivCircle"
-                    android:layout_width="230dp"
-                    android:layout_height="230dp"
+                    android:layout_width="@dimen/_177sdp"
+                    android:layout_height="@dimen/_177sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:onClick="@{v->vm.onClick(v)}"
                     android:src="@drawable/subscription_icon"
@@ -86,7 +86,7 @@
                     android:onClick="@{v->vm.onClick(v)}"
                     android:text="$7.99"
                     android:textColor="?attr/startColor"
-                    android:textSize="36sp"
+                    android:textSize="@dimen/_28ssp"
                     app:layout_constraintBottom_toBottomOf="@+id/ivCircle"
                     app:layout_constraintEnd_toEndOf="@+id/ivCircle"
                     app:layout_constraintStart_toStartOf="@+id/ivCircle"
@@ -315,7 +315,7 @@
                     android:id="@+id/btnCreate"
                     style="@style/TextView.semibold"
                     android:layout_width="0dp"
-                    android:layout_height="58dp"
+                    android:layout_height="@dimen/_44sdp"
                     android:layout_marginHorizontal="@dimen/_18sdp"
                     android:background="@drawable/gradient_btn_bg"
                     android:gravity="center"

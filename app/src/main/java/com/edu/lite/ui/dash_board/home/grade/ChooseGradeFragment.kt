@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.edu.lite.BR
 import com.edu.lite.R
 import com.edu.lite.base.BaseFragment
@@ -13,18 +14,23 @@ import com.edu.lite.base.SimpleRecyclerViewAdapter
 import com.edu.lite.data.api.Constants
 import com.edu.lite.data.model.GradeData
 import com.edu.lite.data.model.GradeModelResponse
+import com.edu.lite.data.model.SignupResponse
 import com.edu.lite.databinding.FragmentChooseGradeBinding
 import com.edu.lite.databinding.RvGradeItemBinding
 import com.edu.lite.ui.auth.forgot.OtpFragmentDirections
+import com.edu.lite.ui.auth.languages.LanguageFragmentArgs
 import com.edu.lite.ui.dash_board.home.HomeFragmentVM
 import com.edu.lite.utils.BindingUtils
 import com.edu.lite.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.getValue
 
 @AndroidEntryPoint
 class ChooseGradeFragment : BaseFragment<FragmentChooseGradeBinding>() {
     private val viewModel: HomeFragmentVM by viewModels()
     private lateinit var gradeAdapter: SimpleRecyclerViewAdapter<GradeData, RvGradeItemBinding>
+    private val args: ChooseGradeFragmentArgs by navArgs()
+    private var from :String?=null
 
     override fun getLayoutResource(): Int {
         return R.layout.fragment_choose_grade
@@ -37,9 +43,16 @@ class ChooseGradeFragment : BaseFragment<FragmentChooseGradeBinding>() {
     override fun onCreateView(view: View) {
         // adapter
         initOnGradeAdapter()
+        //
+        from = args.from
+        if (from!=null && from !=""){
+            binding.tvChoose.text=getString(R.string.choose_grade)
+        }
+        else{
+            binding.tvChoose.text=getString(R.string.choose_your_grade)
+        }
         // click
         initOnClick()
-
         // observer
         initObserver()
         // api call
@@ -76,10 +89,24 @@ class ChooseGradeFragment : BaseFragment<FragmentChooseGradeBinding>() {
 
                         "updateProfileApi" -> {
                             runCatching {
-                                val action = OtpFragmentDirections.navigateToHomeFragment()
-                                BindingUtils.navigateWithSlide(
-                                    findNavController(), action
-                                )
+                                val jsonData = it.data?.toString().orEmpty()
+                                val model: SignupResponse? = BindingUtils.parseJson(jsonData)
+                                val loginData = model?.user
+                                if (loginData!=null) {
+                                    loginData.let { it1 ->
+                                        sharedPrefManager.setLoginData(it1)
+                                    }
+                                }
+                                if (from!=null && from !=""){
+                                    findNavController().popBackStack()
+                                }
+                                else{
+                                    val action = OtpFragmentDirections.navigateToHomeFragment()
+                                    BindingUtils.navigateWithSlide(
+                                        findNavController(), action
+                                    )
+                                }
+
                             }.onFailure { e ->
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
                                 showErrorToast(e.message.toString())

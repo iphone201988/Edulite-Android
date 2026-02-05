@@ -17,8 +17,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progress_wheel"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_77sdp"
+        android:layout_height="@dimen/_77sdp"
         app:lottie_autoPlay="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

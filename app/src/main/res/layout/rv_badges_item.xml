@@ -16,12 +16,12 @@
 
         <variable
             name="bean"
-            type="com.edu.lite.data.model.BadgesModel" />
+            type="com.edu.lite.data.model.Badge" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clBadges"
-        setColorBadges="@{bean.type}"
+        setHomeBg="@{pos}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_7sdp"
@@ -33,18 +33,17 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivVideoImage"
-            setImageInt="@{bean.image}"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            setImageFromUrlViewBadge="@{bean.image_url}"
+            android:layout_width="@dimen/_27sdp"
+            android:layout_height="@dimen/_27sdp"
             android:layout_marginHorizontal="@dimen/_13sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginBottom="@dimen/_12sdp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@drawable/nebula_theme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:setTintByType="@{bean.type}" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -52,18 +51,18 @@
             style="@style/TextView.bold"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="2"
             android:text="@{bean.name}"
-            android:textColor="@{bean.type==4?@color/gray:@color/black}"
+            android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivVideoImage"
-            tools:text="Nebula Theme" />
+            app:layout_constraintTop_toBottomOf="@+id/ivVideoImage"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDesc"
@@ -73,14 +72,15 @@
             android:layout_marginTop="@dimen/_2sdp"
             android:ellipsize="end"
             android:gravity="center"
-            android:maxLines="3"
-            android:text="@{bean.title}"
-            android:textColor="@{bean.type==4?@color/gray:@color/black}"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:maxLines="2"
+            android:text="@{bean.description}"
+            android:textColor="@color/black"
             android:textSize="@dimen/_9ssp"
             app:layout_constraintEnd_toEndOf="@+id/tvHeader"
             app:layout_constraintStart_toStartOf="@+id/tvHeader"
             app:layout_constraintTop_toBottomOf="@+id/tvHeader"
-            tools:text="Theme" />
+             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

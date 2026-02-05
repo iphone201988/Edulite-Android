@@ -12,6 +12,9 @@
         <variable
             name="type"
             type="Integer" />
+        <variable
+            name="bean"
+            type="com.edu.lite.data.model.Stats" />
 
         <import type="android.view.View" />
     </data>
@@ -134,7 +137,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/_2sdp"
                                 android:gravity="center"
-                                android:text="@string/finish_5_problems"
+                                android:text="No quest found"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_11ssp"
                                 app:layout_constraintStart_toStartOf="@+id/tvDaily"
@@ -174,7 +177,7 @@
                                 android:layout_marginTop="@dimen/_2sdp"
                                 android:layout_marginEnd="@dimen/_3sdp"
                                 android:gravity="center"
-                                android:text="5"
+                                android:text='@{bean.streak!=null?bean.streak.toString():"0"}'
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_11ssp"
                                 app:layout_constraintBottom_toBottomOf="@+id/tvProblems"
@@ -209,7 +212,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:orientation="vertical"
-                                    app:layout_constraintGuide_percent="100" />
+                                    app:layout_constraintGuide_percent="0" />
 
                                 <View
                                     android:id="@+id/viewBackgroundProgression"
@@ -228,7 +231,7 @@
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/clXP"
                                 android:layout_width="0dp"
-                                android:layout_height="80dp"
+                                android:layout_height="@dimen/_61sdp"
                                 android:layout_marginTop="@dimen/_12sdp"
                                 android:layout_marginEnd="@dimen/_4sdp"
                                 android:background="@drawable/progress_value_bg"
@@ -259,7 +262,7 @@
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:layout_marginEnd="@dimen/_3sdp"
                                     android:gravity="center"
-                                    android:text="1240"
+                                    android:text='@{bean.xp!=null?bean.xp.toString():"0"}'
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_17ssp"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -271,7 +274,7 @@
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:id="@+id/clBadges"
                                 android:layout_width="0dp"
-                                android:layout_height="80dp"
+                                android:layout_height="@dimen/_61sdp"
                                 android:layout_marginStart="@dimen/_4sdp"
                                 android:background="@drawable/progress_value_bg"
                                 app:layout_constraintBottom_toBottomOf="@+id/clXP"
@@ -302,7 +305,7 @@
                                     android:layout_marginTop="@dimen/_2sdp"
                                     android:layout_marginEnd="@dimen/_3sdp"
                                     android:gravity="center"
-                                    android:text="12"
+                                    android:text='@{bean.totalBadges!=null?bean.totalBadges.toString():"0"}'
                                     android:textColor="@color/white"
                                     android:textSize="@dimen/_17ssp"
                                     app:layout_constraintEnd_toEndOf="parent"
@@ -315,7 +318,7 @@
                                 android:id="@+id/btnStart"
                                 style="@style/TextView.semibold"
                                 android:layout_width="0dp"
-                                android:layout_height="55dp"
+                                android:layout_height="@dimen/_42sdp"
                                 android:layout_marginTop="@dimen/_18sdp"
                                 android:background="@drawable/start_btn_bg"
                                 android:gravity="center"

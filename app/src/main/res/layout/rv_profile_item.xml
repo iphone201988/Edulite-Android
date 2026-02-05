@@ -24,7 +24,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clProfile"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/_46sdp"
         android:layout_marginTop="@dimen/_4sdp"
         android:background="@{bean.type==1?@drawable/profile_bg_12:null}"
         android:onClick="@{v->callback.onItemClick(v,bean,pos)}">

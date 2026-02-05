@@ -40,7 +40,7 @@
                 style="@style/TextView.bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/_13sdp"
                 android:gravity="center"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:text="@string/creative_projects"
@@ -86,7 +86,7 @@
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivTestDetails"
                         android:layout_width="match_parent"
-                        android:layout_height="240dp"
+                        android:layout_height="@dimen/_184sdp"
 
                         android:onClick="@{v->vm.onClick(v)}"
                         android:scaleType="fitXY"

@@ -51,12 +51,12 @@
             android:layout_marginTop="@dimen/_9sdp"
             android:gravity="center"
             android:text="@string/you_have_been_scored"
-            android:layout_marginEnd="@dimen/_65sdp"
             android:textColor="@color/hint_color"
             android:textSize="@dimen/_11ssp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/circularProgressBar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/circularProgressBar" />
+            app:layout_constraintEnd_toStartOf="@id/tvScoredValue"
+            app:layout_constraintHorizontal_chainStyle="packed" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvScoredValue"
@@ -64,13 +64,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_marginStart="@dimen/_4sdp"
             android:text="+80 points"
-            android:layout_marginStart="@dimen/_2sdp"
             android:textColor="?attr/startColor"
             android:textSize="@dimen/_11ssp"
-            app:layout_constraintBottom_toBottomOf="@+id/tvScored"
-            app:layout_constraintStart_toEndOf="@+id/tvScored"
-            app:layout_constraintTop_toTopOf="@+id/tvScored" />
+            app:layout_constraintTop_toTopOf="@id/tvScored"
+            app:layout_constraintBottom_toBottomOf="@id/tvScored"
+            app:layout_constraintStart_toEndOf="@id/tvScored"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clQues"

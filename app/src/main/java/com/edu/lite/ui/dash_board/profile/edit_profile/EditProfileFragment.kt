@@ -86,7 +86,9 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
             }
 
 
-            Glide.with(this).load(Constants.BASE_URL_IMAGE+it?.profilePicture).placeholder(R.drawable.person_holder)
+//            Glide.with(this).load(Constants.BASE_URL_IMAGE+it?.profilePicture).placeholder(R.drawable.person_holder)
+//                .into(binding.ivUSer)
+            Glide.with(this).load(Constants.BASE_URL_IMAGE+it?.profilePicture).placeholder(R.drawable.iv_user_2)
                 .into(binding.ivUSer)
         }
 
@@ -113,6 +115,10 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
                     if (!dob.isNullOrEmpty()) {
                         data["dob"] = binding.etDob.text.toString().trim()
                     }
+                    if(!binding.etPhone.text.toString().trim().isNullOrEmpty()) {
+                        data["phone"] = binding.etPhone.text.toString().trim()
+                    }
+
 
                     if (!profileImage.isNullOrEmpty()) {
                         data["profilePicture"] = profileImage!!

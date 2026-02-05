@@ -183,5 +183,6 @@
     <string name="fun_quizzes">Fun Quizzes</string>
     <string name="submit">Submit</string>
     <string name="please_select_an_answer_before_proceeding">Please select an answer before proceeding</string>
+    <string name="choose_grade">Choose Grade</string>
 
 </resources>

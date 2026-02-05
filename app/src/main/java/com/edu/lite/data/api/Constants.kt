@@ -28,6 +28,8 @@ object Constants {
     const val VIDEO = "video"
     const val USER_RESPONSE = "user-reponse"
     const val NOTIFICATIONS = "notifications"
+    const val GET_PROFILE = "auth/get-profile"
+    const val GET_READING = "reading"
 
 
 

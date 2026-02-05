@@ -18,24 +18,26 @@
         <include
             android:id="@+id/clHeader"
             layout="@layout/header_item_layout" />
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/bg_icon"
+            android:fitsSystemWindows="true"
+            android:paddingTop="@dimen/_6sdp"
+            android:paddingBottom="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clHeader">
-
-
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_icon">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvLogin"
                 style="@style/TextView.bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_14sdp"
                 android:gravity="center"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:text="@string/edit_profile"
@@ -60,8 +62,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivCircle"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
+                android:layout_width="@dimen/_104sdp"
+                android:layout_height="@dimen/_104sdp"
                 android:layout_marginTop="18dp"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:src="@drawable/circle_color_1"
@@ -72,10 +74,10 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivUSer"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="@dimen/_92sdp"
+                android:layout_height="@dimen/_92sdp"
                 android:onClick="@{v->vm.onClick(v)}"
-                android:src="@drawable/user"
+                android:src="@drawable/iv_user_2"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="@+id/ivCircle"
                 app:layout_constraintEnd_toEndOf="@+id/ivCircle"
@@ -85,8 +87,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivCamera"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:src="@drawable/iv_camera"
                 app:layout_constraintBottom_toBottomOf="@+id/ivUSer"
@@ -109,7 +111,7 @@
                 android:onClick="@{v->vm.onClick(v)}"
                 android:paddingVertical="@dimen/_14sdp"
                 android:paddingStart="@dimen/_38sdp"
-                android:textColor="?attr/startColor"
+                android:textColor="@color/hint_color"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +146,7 @@
                 android:onClick="@{v->vm.onClick(v)}"
                 android:paddingVertical="@dimen/_14sdp"
                 android:paddingStart="@dimen/_38sdp"
-                android:textColor="?attr/startColor"
+                android:textColor="@color/hint_color"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -161,7 +163,7 @@
                 app:layout_constraintStart_toStartOf="@+id/etEmail"
                 app:layout_constraintTop_toTopOf="@+id/etEmail" />
 
-            <androidx.appcompat.widget.AppCompatEditText
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/etDob"
                 style="@style/EditText"
                 android:layout_width="match_parent"
@@ -200,9 +202,9 @@
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_14sdp"
                 android:background="@drawable/et_bg"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:gravity="start"
+                android:inputType="number"
+                android:maxLength="10"
                 android:hint="@string/phone_number"
                 android:imeOptions="actionDone"
                 android:paddingVertical="@dimen/_14sdp"
@@ -228,19 +230,21 @@
                 android:id="@+id/btnEdit"
                 style="@style/TextView.semibold"
                 android:layout_width="0dp"
-                android:layout_height="58dp"
+                android:layout_height="@dimen/_44sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_18sdp"
                 android:background="@drawable/gradient_btn_bg"
                 android:gravity="center"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:text="@string/edit"
                 android:textSize="@dimen/_14ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etPhone"
                 app:layout_constraintEnd_toEndOf="@+id/etEmail"
                 app:layout_constraintStart_toStartOf="@+id/etEmail" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

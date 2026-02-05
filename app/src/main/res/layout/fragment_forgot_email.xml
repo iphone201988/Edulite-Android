@@ -97,7 +97,7 @@
                 android:id="@+id/btnForgot"
                 style="@style/TextView.semibold"
                 android:layout_width="0dp"
-                android:layout_height="58dp"
+                android:layout_height="@dimen/_44sdp"
                 android:layout_marginTop="@dimen/_28sdp"
                 android:background="@drawable/gradient_btn_bg"
                 android:gravity="center"

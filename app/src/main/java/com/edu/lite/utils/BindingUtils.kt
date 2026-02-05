@@ -32,11 +32,13 @@ import androidx.databinding.BindingAdapter
 import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.caverock.androidsvg.SVG
 import com.caverock.androidsvg.SVGParseException
 import com.edu.lite.R
 import com.edu.lite.data.api.Constants
+import com.edu.lite.data.model.GetHomeQuest
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.gson.Gson
 import okhttp3.Call
@@ -59,6 +61,16 @@ object BindingUtils {
         if (url != null) {
             Glide.with(image.context).load(url).placeholder(R.drawable.person_holder)
                 .error(R.drawable.person_holder).into(image)
+        }
+    }
+
+
+    @BindingAdapter("setImageFromUrlViewBadge")
+    @JvmStatic
+    fun setImageFromUrlViewBadge(image: AppCompatImageView, url: String?) {
+        if (url != null) {
+            Glide.with(image.context).load(Constants.BASE_URL_IMAGE +url).placeholder(R.drawable.progress_drawable)
+                .error(R.drawable.batch_icon).into(image)
         }
     }
 
@@ -222,17 +234,22 @@ object BindingUtils {
 
     @BindingAdapter("setHomeBg")
     @JvmStatic
-    fun setHomeBg(image: ConstraintLayout, type: String?) {
-        if (type != null) {
-            when (type) {
-                "pending" -> image.setBackgroundResource(R.drawable.quests_first_bg)
-                "in-progress" -> image.setBackgroundResource(R.drawable.quests_second_bg)
-                "completed" -> image.setBackgroundResource(R.drawable.quests_third_bg)
-                else -> image.setBackgroundResource(R.drawable.quests_first_bg)
-            }
-        } else image.setBackgroundResource(R.drawable.quests_first_bg)
-    }
+    fun setHomeBg(layout: ConstraintLayout, position: Int) {
 
+        if (position == RecyclerView.NO_POSITION) {
+            layout.setBackgroundResource(R.drawable.quests_first_bg)
+            return
+        }
+
+        val bgRes = when (position % 3) {
+            0 -> R.drawable.quests_first_bg
+            1 -> R.drawable.quests_second_bg_home
+            2 -> R.drawable.quest_third_bg_home
+            else -> R.drawable.quests_first_bg
+        }
+
+        layout.setBackgroundResource(bgRes)
+    }
     @BindingAdapter("setRoadMapImage")
     @JvmStatic
     fun setRoadMapImage(image: AppCompatImageView, type: String?) {
@@ -312,21 +329,14 @@ object BindingUtils {
     fun setQuestionTypeBg(textView: AppCompatTextView, type: String?) {
         if (type != null) {
             when (type) {
-                "test" -> {
-                    textView.text = textView.context.getString(R.string.start)
-                    textView.setBackgroundResource(R.drawable.start_bg_btn)
-                }
-
-                "quiz" -> {
-                    textView.text = textView.context.getString(R.string.start)
-                    textView.setBackgroundResource(R.drawable.start_bg_btn)
-                }
-
-                else -> {
-                    textView.text = textView.context.getString(R.string.start)
-                    textView.setBackgroundResource(R.drawable.later_bg_btn)
-                }
+                "pending" -> textView.setText("Start")
+                "in-progress" -> textView.setText("Start")
+                "completed" -> textView.setText("Done")
+                else -> textView.setText("Start")
             }
+        }
+        else{
+            textView.setText("Start")
         }
     }
 
@@ -745,6 +755,24 @@ object BindingUtils {
             typedValue.data
 
         ViewCompat.setBackgroundTintList(view, ColorStateList.valueOf(color))
+    }
+
+    @BindingAdapter("setQuestHeading")
+    @JvmStatic
+    fun setQuestHeading(
+        textView: AppCompatTextView,
+        bean: GetHomeQuest?
+    ) {
+        if (bean == null) {
+            textView.text = ""
+            return
+        }
+
+        textView.text = when (bean.type) {
+            "questReading" -> bean.name.orEmpty()
+            "questQuiz" -> bean.testQuizId?.name.orEmpty()
+            else -> ""
+        }
     }
 
 

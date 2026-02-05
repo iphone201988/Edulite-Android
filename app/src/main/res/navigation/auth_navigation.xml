@@ -77,6 +77,9 @@
     <action
         android:id="@+id/navigateToQuizQuestionFragment"
         app:destination="@id/fragmentQuizQuestion" />
+    <action
+        android:id="@+id/navigateToReadingSessionFragment"
+        app:destination="@id/fragmentReadingQuest" />
 
     <action
         android:id="@+id/navigateToPracticeTestFragment"
@@ -208,6 +211,10 @@
         android:id="@+id/fragmentChooseGrade"
         android:name="com.edu.lite.ui.dash_board.home.grade.ChooseGradeFragment"
         tools:layout="@layout/fragment_choose_grade">
+        <argument
+            android:name="from"
+            android:defaultValue=""
+            app:argType="string" />
         <action
             android:id="@+id/navigateToTodayThemeFragment"
             app:destination="@id/fragmentTodayTheme" />
@@ -290,6 +297,18 @@
         android:id="@+id/fragmentQuizQuestion"
         android:name="com.edu.lite.ui.dash_board.home.quiz.question.QuizQuestionFragment"
         tools:layout="@layout/fragment_quiz_question">
+
+        <argument
+            android:name="quizId"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentReadingQuest"
+        android:name="com.edu.lite.ui.dash_board.home.reading.ReadingSessionFragment"
+        tools:layout="@layout/fragment_reading_session">
 
         <argument
             android:name="quizId"
@@ -408,7 +427,11 @@
     <fragment
         android:id="@+id/fragmentBadges"
         android:name="com.edu.lite.ui.dash_board.profile.badges.BadgesFragment"
-        tools:layout="@layout/fragment_badges" />
+        tools:layout="@layout/fragment_badges" >
+        <argument
+            android:name="statsData"
+            app:argType="com.edu.lite.data.model.Stats" />
+    </fragment>
 
 
     <fragment

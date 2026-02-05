@@ -34,7 +34,7 @@
 
             <com.edu.lite.ui.dash_board.road_map.VerticalLineView
                 android:id="@+id/ivView"
-                android:layout_width="154dp"
+                android:layout_width="@dimen/_119sdp"
                 android:layout_height="match_parent"
                 android:visibility="gone"
                 android:layout_gravity="center"

@@ -2,6 +2,7 @@ package com.edu.lite.base.local
 
 import android.content.SharedPreferences
 import com.edu.lite.data.model.SignupData
+import com.edu.lite.data.model.Stats
 import com.edu.lite.utils.saveValue
 import com.google.gson.Gson
 import javax.inject.Inject
@@ -12,6 +13,7 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         const val IS_FIRST = "is_first"
         const val LANGUAGE = "language"
         const val USER_DATA = "user_data"
+        const val STATS = "stats"
         const val TOKEN = "token"
         const val LOCALE = "locale_language"
     }

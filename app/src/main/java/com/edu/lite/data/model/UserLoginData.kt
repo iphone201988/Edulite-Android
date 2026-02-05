@@ -27,6 +27,7 @@ data class UploadProfileAPi(
 data class SignupResponse(
     val message: String?,
     val success: Boolean?,
+    val stats: Stats?,
     val user: SignupData?
 )
 
@@ -51,15 +52,30 @@ data class SignupData(
 
 )
 
+@Parcelize
+data class Stats(
+    val badges: List<Badge?>?,
+    val newlyEarnedBadges: List<Badge?>?,
+    val streak: Int?,
+    val totalBadges: Int?,
+    val xp: Int?,
+): Parcelable
+
+@Parcelize
+data class Badge(
+    val description: String?,
+    val earnedAt: String?,
+    val id: String?,
+    val image_url: String?,
+    val name: String?,
+    val requirement_type: String?,
+    val requirement_value: Int?,
+    val type: String?
+): Parcelable
 
 class Location(
 
 )
-
-
-
-
-
 
 
 /**

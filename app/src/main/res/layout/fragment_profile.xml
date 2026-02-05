@@ -8,6 +8,9 @@
         <variable
             name="vm"
             type="com.edu.lite.ui.dash_board.profile.ProfileFragmentVM" />
+        <variable
+            name="bean"
+            type="com.edu.lite.data.model.Stats" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,9 +56,9 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivCircle"
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="-25dp"
+                    android:layout_width="@dimen/_115sdp"
+                    android:layout_height="@dimen/_115sdp"
+                    android:layout_marginTop="@dimen/_minus19sdp"
                     android:onClick="@{v->vm.onClick(v)}"
                     setThemeProfileImage="@{true}"
                     android:src="@drawable/circle_color_1"
@@ -66,8 +69,8 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivUSer"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
+                    android:layout_width="@dimen/_96sdp"
+                    android:layout_height="@dimen/_96sdp"
                     android:onClick="@{v->vm.onClick(v)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/person_holder"
@@ -109,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:gravity="center"
-                        android:text="@string/finish_5_problems"
+                        android:text="No quest found"
                         android:textColor="?attr/startColor"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintStart_toStartOf="@+id/tvDaily"
@@ -137,6 +140,7 @@
                         android:layout_marginEnd="@dimen/_3sdp"
                         android:gravity="center"
                         android:src="@drawable/streak"
+                        android:tint="?attr/startColor"
                         app:layout_constraintBottom_toBottomOf="@+id/tvProblems"
                         app:layout_constraintEnd_toEndOf="@+id/tvStreak"
                         app:layout_constraintTop_toTopOf="@+id/tvProblems" />
@@ -149,8 +153,8 @@
                         android:layout_marginTop="@dimen/_2sdp"
                         android:layout_marginEnd="@dimen/_3sdp"
                         android:gravity="center"
-                        android:text="5"
-                        android:textColor="@color/white"
+                        android:text='@{bean.streak!=null?bean.streak.toString():"0"}'
+                        android:textColor="?attr/startColor"
                         android:textSize="@dimen/_11ssp"
                         app:layout_constraintBottom_toBottomOf="@+id/tvProblems"
                         app:layout_constraintEnd_toStartOf="@+id/ivStreak"
@@ -184,7 +188,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:orientation="vertical"
-                            app:layout_constraintGuide_percent="100" />
+                            app:layout_constraintGuide_percent="0" />
 
                         <View
                             android:id="@+id/viewBackgroundProgression"
@@ -203,7 +207,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clXP"
                         android:layout_width="0dp"
-                        android:layout_height="75dp"
+                        android:layout_height="@dimen/_58sdp"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:layout_marginEnd="@dimen/_4sdp"
                         android:background="@drawable/start_btn_bg"
@@ -235,7 +239,7 @@
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginEnd="@dimen/_3sdp"
                             android:gravity="center"
-                            android:text="1240"
+                            android:text='@{bean.xp!=null?bean.xp.toString():"0"}'
                             android:textColor="?attr/startColor"
                             android:textSize="@dimen/_17ssp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -247,7 +251,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clBadges"
                         android:layout_width="0dp"
-                        android:layout_height="75dp"
+                        android:layout_height="@dimen/_58sdp"
                         android:layout_marginStart="@dimen/_4sdp"
                         android:layout_marginEnd="@dimen/_4sdp"
                         android:background="@drawable/start_btn_bg"
@@ -280,7 +284,7 @@
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginEnd="@dimen/_3sdp"
                             android:gravity="center"
-                            android:text="12"
+                            android:text='@{bean.totalBadges!=null?bean.totalBadges.toString():"0"}'
                             android:textColor="?attr/startColor"
                             android:textSize="@dimen/_17ssp"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -292,7 +296,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clToken"
                         android:layout_width="0dp"
-                        android:layout_height="75dp"
+                        android:layout_height="@dimen/_58sdp"
                         android:layout_marginStart="@dimen/_4sdp"
                         android:background="@drawable/start_btn_bg"
                         android:backgroundTint="?attr/startColor25"
@@ -324,7 +328,7 @@
                             android:layout_marginTop="@dimen/_2sdp"
                             android:layout_marginEnd="@dimen/_3sdp"
                             android:gravity="center"
-                            android:text="2"
+                            android:text='@{bean.totalBadges!=null?bean.totalBadges.toString():"0"}'
                             android:textColor="?attr/startColor"
                             android:textSize="@dimen/_17ssp"
                             app:layout_constraintEnd_toEndOf="parent"

@@ -21,7 +21,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clLetPlay"
         android:layout_width="match_parent"
-        android:layout_height="118dp"
+        android:layout_height="@dimen/_91sdp"
         android:layout_marginTop="@dimen/_15sdp"
         android:layout_marginHorizontal="@dimen/_7sdp"
         changeBackgroundStrokePick="@{pos}"

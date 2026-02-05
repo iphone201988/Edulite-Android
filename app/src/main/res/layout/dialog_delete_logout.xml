@@ -70,6 +70,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:padding="@dimen/_8sdp"
             android:gravity="center"
+            android:singleLine="true"
             android:text="@string/delete"
             android:onClick="@{v->callback.onViewClick(v)}"
             android:textColor="@color/white"

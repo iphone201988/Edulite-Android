@@ -21,7 +21,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clPreview"
         handelCLick="@{bean.userProgress.status}"
-        setHomeBg="@{bean.userProgress.status}"
+        setHomeBg="@{pos}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_5sdp"
@@ -38,7 +38,7 @@
             android:gravity="start"
             android:paddingHorizontal="@dimen/_6sdp"
             android:paddingVertical="@dimen/_8sdp"
-            android:text="@{bean.testQuizId.name}"
+            setQuestHeading="@{bean}"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,7 +51,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvType"
             style="@style/TextView.regular"
-            setQuestionTypeBg="@{bean.testQuizId.type}"
+            setQuestionTypeBg="@{bean.userProgress.status}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_5sdp"

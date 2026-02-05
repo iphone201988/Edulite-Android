@@ -50,6 +50,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
         initDialog()
         // observer
         initObserver()
+
         // set data
         val userData = sharedPrefManager.getLoginData()
         userData.let {
@@ -58,8 +59,23 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
             } else {
                 binding.tvName.text = it.name
             }
-            Glide.with(this).load(Constants.BASE_URL_IMAGE+it?.profilePicture).placeholder(R.drawable.person_holder)
-                .into(binding.ivUSer)
+//            Glide.with(this).load(Constants.BASE_URL_IMAGE+it?.profilePicture).placeholder(R.drawable.person_holder)
+//                .into(binding.ivUSer)
+            if (it?.profilePicture.isNullOrEmpty()){
+                Glide.with(requireContext())
+                    .load(Constants.BASE_URL_IMAGE + it?.profilePicture)
+                    .placeholder(R.drawable.user)
+                    .error(R.drawable.user)
+                    .into(binding.ivUSer)
+            }
+            else{
+                Glide.with(requireContext())
+                    .load(Constants.BASE_URL_IMAGE + it?.profilePicture)
+                    .placeholder(R.drawable.progress_drawable)
+                    .error(R.drawable.user)
+                    .into(binding.ivUSer)
+            }
+
         }
     }
 
@@ -165,10 +181,17 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
 
                 }
 
-                getString(R.string.language) -> {
+//                getString(R.string.language) -> {
+//
+//                    val action =
+//                        ProfileFragmentDirections.navigateToLanguageFragment(title = "Language")
+//                    BindingUtils.navigateWithSlide(findNavController(), action)
+//                }
 
+                getString(R.string.choose_grade) -> {
+                    // handle back press
                     val action =
-                        ProfileFragmentDirections.navigateToLanguageFragment(title = "Language")
+                        ProfileFragmentDirections.navigateToChooseGradeFragment( from = "settings")
                     BindingUtils.navigateWithSlide(findNavController(), action)
                 }
 

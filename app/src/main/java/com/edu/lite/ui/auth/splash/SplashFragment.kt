@@ -42,7 +42,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         viewModel.onClick.observe(viewLifecycleOwner) {
             when (it?.id) {
                 R.id.tvStartLearning -> {
-                    val action = SplashFragmentDirections.navigateToLanguageFragment()
+//                    val action = SplashFragmentDirections.navigateToLanguageFragment()
+//                    BindingUtils.navigateWithSlide(findNavController(), action)
+                    val action = SplashFragmentDirections.navigateToLoginFragment()
                     BindingUtils.navigateWithSlide(findNavController(), action)
                 }
             }

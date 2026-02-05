@@ -159,4 +159,41 @@ class ProfileFragmentVM @Inject constructor(
             }
         }
     }
+
+    fun getHomeApi(data: HashMap<String, Any>, url: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            observeCommon.postValue(Resource.loading(null))
+            runCatching {
+                val response = apiHelper.apiGetWithQuery(data, url)
+                if (response.isSuccessful) {
+                    observeCommon.postValue(Resource.success("getHomeApi", response.body()))
+                } else {
+                    val errorMsg = handleErrorResponse(response.errorBody(), response.code())
+                    observeCommon.postValue(Resource.error(errorMsg, null))
+                }
+            }.onFailure { e ->
+                Log.e("apiErrorOccurred", "Error: ${e.message}", e)
+                observeCommon.postValue(Resource.error("Something went wrong: ${e.message}", null))
+            }
+        }
+    }
+
+    fun getProfileApi(url: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            observeCommon.postValue(Resource.loading(null))
+
+            runCatching {
+                val response = apiHelper.apiGetOnlyAuthToken(url)
+                if (response.isSuccessful) {
+                    observeCommon.postValue(Resource.success("getProfileApi", response.body()))
+                } else {
+                    val errorMsg = handleErrorResponse(response.errorBody(), response.code())
+                    observeCommon.postValue(Resource.error(errorMsg, null))
+                }
+            }.onFailure { e ->
+                Log.e("apiErrorOccurred", "Error: ${e.message}", e)
+                observeCommon.postValue(Resource.error("Something went wrong: ${e.message}", null))
+            }
+        }
+    }
 }
