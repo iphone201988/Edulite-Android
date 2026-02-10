@@ -100,6 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:gravity="center"
+                android:visibility="gone"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:text="Video dowload list empty"
                 android:textColor="@color/black"

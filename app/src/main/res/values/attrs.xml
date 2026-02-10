@@ -55,5 +55,8 @@
     <attr name="splashBtnStartColor" format="color"/>
     <attr name="splashBtnEndColor" format="color"/>
     <attr name="splashTextColor" format="color"/>
+    <attr name="roadMapInProgressColor" format="color"/>
+    <attr name="roadMapPendingColor" format="color"/>
+    <attr name="roadMapCompleteColor" format="color"/>
 
 </resources>

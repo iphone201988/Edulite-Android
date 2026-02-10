@@ -86,7 +86,13 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>() {
             if (sharedPrefManager.getLoginData() != null) {
                 R.id.fragmentHome
             } else {
-                R.id.fragmentSplash
+                if (sharedPrefManager.getOnBoarding()=="true"){
+                    R.id.fragmentLogin
+                }
+                else{
+                    R.id.fragmentSplash
+                }
+
             }
         )
 
@@ -94,6 +100,7 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>() {
     }
 
     private fun setupBottomNavigation() {
+        binding.bottomNavigation.isSaveEnabled = false
         val menuItems = arrayOf(
             CurvedModel(
                 R.drawable.un_selected_home, R.drawable.un_selected_home, R.id.fragmentHome

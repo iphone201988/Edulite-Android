@@ -60,24 +60,35 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clGrade"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_88sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_13sdp"
                 android:layout_marginHorizontal="@dimen/_17sdp"
                 android:visibility="gone"
                 android:background="@drawable/rounded_card_gradient_border"
                 app:layout_constraintTop_toBottomOf="@+id/ivBackButton"
                 android:padding="@dimen/_18sdp">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitleSelected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/TextView.bold"
+                    android:textSize="@dimen/_11ssp"
+                    android:text="@string/selected_grade"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivEarlyGrade"
                     android:layout_width="@dimen/_27sdp"
                     android:layout_height="@dimen/_27sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
                     android:src="@drawable/early_grades_icon"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/tvTitleSelected" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvGrade"
                     style="@style/TextView.bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

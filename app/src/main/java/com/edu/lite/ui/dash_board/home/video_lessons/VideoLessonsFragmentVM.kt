@@ -33,7 +33,7 @@ class VideoLessonsFragmentVM @Inject constructor(
         }
     }
 
-    fun deleteVideo(id: Int) {
+    fun deleteVideo(id: String?) {
         viewModelScope.launch {
             repository.deleteVideoById(id)
         }

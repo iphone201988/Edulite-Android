@@ -67,10 +67,14 @@ class CreativeProjectsFragment : BaseFragment<FragmentCreativeProjectsBinding>()
                                 val creative = model?.creativeProjects
                                 if (creative != null) {
                                     creativeAdapter.list = creative
+                                    binding.listEmpty.visibility =
+                                        if (creativeAdapter.list.isEmpty()) View.VISIBLE
+                                        else View.GONE
                                 } else {
                                       showErrorToast(getString(R.string.something_went_wrong))
                                 }
                             }.onFailure { e ->
+                                binding.listEmpty.visibility = View.VISIBLE
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
                                 showErrorToast(e.message.toString())
                             }.also {

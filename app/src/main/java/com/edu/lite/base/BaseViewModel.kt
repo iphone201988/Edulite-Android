@@ -13,6 +13,23 @@ open class BaseViewModel : ViewModel() {
 
     fun handleErrorResponse(errorBody: ResponseBody?, code: Int? = null): String {
         val text: String? = errorBody?.string()
+        if (code != null && code == 401 || code == 403) {
+            onUnAuth.postValue(code)
+        }
+        if (!text.isNullOrEmpty()) {
+            return try {
+                val obj = JSONObject(text)
+                obj.getString("message")
+            } catch (e: Exception) {
+                return text
+            }
+        }
+        return errorBody.toString()
+    }
+
+
+    fun handleErrorResponseForLogin(errorBody: ResponseBody?, code: Int? = null): String {
+        val text: String? = errorBody?.string()
         if (code != null && code == 401) {
             onUnAuth.postValue(code)
         }

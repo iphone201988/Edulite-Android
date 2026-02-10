@@ -1,7 +1,8 @@
 package com.edu.lite.base
 
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -12,17 +13,16 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.room.Room
 import com.edu.lite.BR
 import com.edu.lite.R
 import com.edu.lite.base.local.SharedPrefManager
-import com.edu.lite.data.room_moduel.AppDb
 import com.edu.lite.utils.hideKeyboard
 import javax.inject.Inject
 
 
 abstract class BaseFragment<Binding : ViewDataBinding> : Fragment() {
     lateinit var binding: Binding
+
     @Inject
     lateinit var sharedPrefManager: SharedPrefManager
     val parentActivity: BaseActivity<*>?
@@ -33,14 +33,20 @@ abstract class BaseFragment<Binding : ViewDataBinding> : Fragment() {
         onCreateView(view)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val layout: Int = getLayoutResource()
-        binding = DataBindingUtil.inflate(layoutInflater, layout,container,false)
+        binding = DataBindingUtil.inflate(layoutInflater, layout, container, false)
         val vm = getViewModel()
         binding.setVariable(BR.vm, vm)
         vm.onUnAuth.observe(viewLifecycleOwner) {
             val activity = requireActivity() as BaseActivity<*>
-            activity.showUnauthorised()
+            Handler(Looper.getMainLooper()).postDelayed({
+                activity.showUnauthorised()
+            }, 1500)
         }
         return binding.root
     }
@@ -64,7 +70,6 @@ abstract class BaseFragment<Binding : ViewDataBinding> : Fragment() {
     fun showLoading() {
         parentActivity?.showLoading()
     }
-
 
 
     fun showErrorToast(msg: String? = "Something went wrong !!") {
@@ -107,8 +112,6 @@ abstract class BaseFragment<Binding : ViewDataBinding> : Fragment() {
         toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, 50)
         toast.show()
     }
-
-
 
 
 }

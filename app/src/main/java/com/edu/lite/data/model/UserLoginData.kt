@@ -39,7 +39,7 @@ data class SignupData(
     val dob: String?,
     val email: String?,
     val grade: String?,
-    val gradeId: String?,
+    val gradeId: GradeDataProfile?,
     val isEmailVerified: Boolean?,
     val location: Location?,
     val name: String?,
@@ -50,6 +50,12 @@ data class SignupData(
     val role: Int?,
     val status: String?
 
+)
+
+data class GradeDataProfile(
+    val _id: String?,
+    val grade: String?,
+    val icon: String?
 )
 
 @Parcelize
@@ -177,7 +183,8 @@ data class RoadMapQuizze(
     val subject: String?,
     val time: Int?,
     val type: String?,
-    val userResponse: UserResponse?
+    val userResponse: UserResponse?,
+    var isExpanded: Boolean = false
 )
 
 /**
@@ -299,6 +306,7 @@ data class GetHomeQuest(
     val name: String?,
     val questType: String?,
     val testQuizId: TestQuizId?,
+    val readingId: ReadingQuestId?,
     val type: String?,
     val updatedAt: String?,
     val userProgress: UserProgress?
@@ -311,12 +319,30 @@ data class TestQuizId(
     val type: String?
 )
 
+data class ReadingQuestId(
+    val _id: String?,
+    val content: String?,
+    val title: String?,
+    val type: String?
+)
+
 data class UserProgress(
+    val quiz: Quiz?,
+    val reading: Reading?
+
+)
+data class Quiz(
     val completedAt: Any?,
     val progress: Any?,
     val startedAt: Any?,
     val status: String?,
-    val userResponseId: Any?
+    val userResponseId: Any?,
+    val correctCount: Int?,
+    val incorrectCount: Int?,
+    val points: Int?,
+)
+data class Reading(
+    val status: String?
 )
 
 data class HomeQuestion(
@@ -353,7 +379,8 @@ data class FeaturedQuizze(
     val subject: String?,
     val time: Int?,
     val type: String?,
-    val userResponse: UserResponse?
+    val userResponse: UserResponse?,
+    var isExpanded: Boolean = false
 )
 
 
@@ -454,6 +481,48 @@ data class NotificationData(
     val isRead: Boolean?,
     val title: String?,
     val type: String?,
+    val updatedAt: String?,
+    val userId: String?
+)
+
+/**
+ *  Reading Api response
+ */
+
+data class GetReadingApiResponse(
+    val `data`: GetReadingApiResponseData?,
+    val success: Boolean?
+)
+
+data class GetReadingApiResponseData(
+    val __v: Int?,
+    val _id: String?,
+    val `class`: String?,
+    val content: String?,
+    val createdAt: String?,
+    val readingType: String?,
+    val subject: String?,
+    val title: String?,
+    val type: String?,
+    val updatedAt: String?
+)
+
+data class UpdateReadingStatusModel(
+    val `data`: UpdateReadingStatusModelData?,
+    val message: String?,
+    val success: Boolean?
+)
+
+data class UpdateReadingStatusModelData(
+    val __v: Int?,
+    val _id: String?,
+    val answers: List<Any?>?,
+    val correctCount: Int?,
+    val createdAt: String?,
+    val incorrectCount: Int?,
+    val points: Int?,
+    val readingId: String?,
+    val status: String?,
     val updatedAt: String?,
     val userId: String?
 )

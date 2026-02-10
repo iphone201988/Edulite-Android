@@ -39,6 +39,9 @@
         <item name="splashBtnStartColor">@color/theme_1_splash_start_color</item>
         <item name="splashBtnEndColor">@color/theme_1_splash_start_color</item>
         <item name="splashTextColor">@color/white</item>
+        <item name="roadMapInProgressColor">@color/blue</item>
+        <item name="roadMapPendingColor">@color/theme1_start_color_40</item>
+        <item name="roadMapCompleteColor">@color/theme_1_green_60</item>
     </style>
 
     <!-- 🔹 THEME 2 – Purple -->
@@ -68,6 +71,9 @@
         <item name="splashBtnStartColor">@color/theme2_start_color</item>
         <item name="splashBtnEndColor">@color/theme2_end_color</item>
         <item name="splashTextColor">@color/white</item>
+        <item name="roadMapInProgressColor">@color/theme_in_progress_2</item>
+        <item name="roadMapPendingColor">@color/theme2_start_color_40</item>
+        <item name="roadMapCompleteColor">@color/theme_2_green_60</item>
     </style>
 
     <!-- 🔹 THEME 3 – Blue -->
@@ -97,6 +103,9 @@
         <item name="splashBtnStartColor">@color/white</item>
         <item name="splashBtnEndColor">@color/white</item>
         <item name="splashTextColor">@color/theme3_start_color</item>
+        <item name="roadMapInProgressColor">@color/theme_in_progress_3</item>
+        <item name="roadMapPendingColor">@color/theme3_start_color_40</item>
+        <item name="roadMapCompleteColor">@color/theme_3_green_60</item>
     </style>
 
     <!-- 🔹 THEME 4 – Orange -->
@@ -125,6 +134,9 @@
         <item name="splashBtnStartColor">@color/white</item>
         <item name="splashBtnEndColor">@color/white</item>
         <item name="splashTextColor">@color/theme4_end_color</item>
+        <item name="roadMapInProgressColor">@color/theme_in_progress_4</item>
+        <item name="roadMapPendingColor">@color/theme4_start_color_40</item>
+        <item name="roadMapCompleteColor">@color/theme4_end_color_40</item>
 
     </style>
 

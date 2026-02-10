@@ -57,23 +57,21 @@
                 app:layout_constraintTop_toTopOf="@+id/tvChoose" />
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvReading"
-                style="@style/EditText"
+                style="@style/TextView.regular"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:background="@drawable/et_bg"
-                android:gravity="start"
-                android:inputType="number"
-                android:maxLength="10"
-                android:imeOptions="actionDone"
-                android:padding="@dimen/_13sdp"
+                android:gravity="start|top"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingVertical="@dimen/_13sdp"
                 android:textSize="@dimen/_13ssp"
+                android:ellipsize="end"
                 app:layout_constraintBottom_toTopOf="@id/btnEdit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ivBackButton" />
-
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnEdit"

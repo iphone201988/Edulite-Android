@@ -146,6 +146,20 @@ class ProfileDownloadFragment : BaseFragment<FragmentProfileDownloadBinding>() {
                     BindingUtils.navigateWithSlide(findNavController(), action)
                 }
 
+                R.id.ivDelete -> {
+
+                    viewModel.deleteVideo(m._id)
+
+                    val index = downloadAdapter.list.indexOfFirst { it._id == m._id }
+                    if (index != -1) {
+                        downloadAdapter.list.removeAt(index)
+                        downloadAdapter.notifyItemRemoved(index)
+                    }
+
+                    binding.listEmpty.visibility =
+                        if (downloadAdapter.list.isEmpty()) View.VISIBLE else View.GONE
+                }
+
             }
         }
 
@@ -153,14 +167,14 @@ class ProfileDownloadFragment : BaseFragment<FragmentProfileDownloadBinding>() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if(data == 2) {
-            requireActivity().finish()
-        }else{
-            findNavController().popBackStack()
-        }
-
-    }
+//    override fun onDestroy() {
+//        super.onDestroy()
+//        if(data == 2) {
+//            requireActivity().finish()
+//        }else{
+//            findNavController().popBackStack()
+//        }
+//
+//    }
 }
 

@@ -1,9 +1,11 @@
 package com.edu.lite.ui.dash_board.profile.edit_profile
 
+import android.Manifest
 import android.app.Activity.RESULT_OK
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.provider.MediaStore
 import android.util.Log
@@ -11,6 +13,7 @@ import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -45,11 +48,12 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
     private val viewModel: ProfileFragmentVM by viewModels()
     private var imageDialog: BaseCustomDialog<VideoImagePickerDialogBoxBinding>? = null
     private val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    private var photoFile2: File? = null
-    private var photoURI: Uri? = null
-    private var multipartPart: MultipartBody.Part? = null
     private var profileImage: String? = null
     private var dob: String? = null
+
+    private var photoUri: Uri? = null
+    private var photoFile: File? = null
+    private var multipartPart: MultipartBody.Part? = null
     override fun getLayoutResource(): Int {
         return R.layout.fragment_edit_profile
     }
@@ -88,7 +92,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
 
 //            Glide.with(this).load(Constants.BASE_URL_IMAGE+it?.profilePicture).placeholder(R.drawable.person_holder)
 //                .into(binding.ivUSer)
-            Glide.with(this).load(Constants.BASE_URL_IMAGE+it?.profilePicture).placeholder(R.drawable.iv_user_2)
+            Glide.with(this).load(Constants.BASE_URL_IMAGE+it?.profilePicture).placeholder(R.drawable.placeholder)
                 .into(binding.ivUSer)
         }
 
@@ -215,33 +219,41 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
         }
 
     private fun openCamera() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if (cameraIntent.resolveActivity(requireActivity().packageManager) == null) {
-            showErrorToast("Camera not available")
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(arrayOf(Manifest.permission.CAMERA), 1001)
             return
         }
 
-        photoFile2 = AppUtils.createImageFile1(requireActivity())
-        photoURI = FileProvider.getUriForFile(
-            requireActivity(), "${requireActivity().packageName}.fileProvider", photoFile2!!
+        photoFile = AppUtils.createImageFile1(requireActivity())
+        if (photoFile == null) {
+            showErrorToast("Unable to create image file")
+            return
+        }
+
+        photoUri = FileProvider.getUriForFile(
+            requireActivity(),
+            "${requireActivity().packageName}.fileProvider",
+            photoFile!!
         )
 
-        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-        cameraIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-
-        try {
-            resultLauncherCamera.launch(cameraIntent)
-        } catch (e: Exception) {
-            showErrorToast("Unable to open camera")
-        }
+        cameraLauncher.launch(photoUri)
     }
 
-    private val resultLauncherCamera =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == RESULT_OK && photoURI != null) {
-                Glide.with(this).load(photoURI).into(binding.ivUSer)
-                multipartPart = convertMultipartPart(requireContext(), photoURI!!)
+    private val cameraLauncher =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+            if (success && photoUri != null) {
+                Glide.with(this)
+                    .load(photoUri)
+                    .into(binding.ivUSer)
+
+                multipartPart = convertMultipartPart(requireContext(), photoUri!!)
                 viewModel.uploadProfile(Constants.UPLOAD, multipartPart)
+            } else {
+                showErrorToast("Camera capture failed")
             }
         }
 

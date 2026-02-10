@@ -16,11 +16,22 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         const val STATS = "stats"
         const val TOKEN = "token"
         const val LOCALE = "locale_language"
+        const val ON_BOARDING = "onboarding"
     }
 
     private val gson = Gson()
 
     // ---------------------- User Data ---------------------- //
+
+    fun setOnBoarding(onBoarding: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(KEY.ON_BOARDING, onBoarding)
+        editor.apply()
+    }
+
+    fun getOnBoarding(): String? {
+        return sharedPreferences.getString(KEY.ON_BOARDING, "")
+    }
     fun setLoginData(data: SignupData) {
         sharedPreferences.edit().putString(KEY.USER_DATA, gson.toJson(data)).apply()
     }

@@ -33,6 +33,25 @@ class QuizFragmentVM @Inject constructor(private val apiHelper: ApiHelper): Base
         }
     }
 
+    fun postUserBack(url: String, request:HashMap<String, Any>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            observeCommon.postValue(Resource.loading(null))
+
+            runCatching {
+                val response = apiHelper.apiPostForRawBody(url,request)
+                if (response.isSuccessful) {
+                    observeCommon.postValue(Resource.success("postUserResponse", response.body()))
+                } else {
+                    val errorMsg = handleErrorResponse(response.errorBody(), response.code())
+                    observeCommon.postValue(Resource.error(errorMsg, null))
+                }
+            }.onFailure { e ->
+                Log.e("apiErrorOccurred", "Error: ${e.message}", e)
+                observeCommon.postValue(Resource.error("Something went wrong: ${e.message}", null))
+            }
+        }
+    }
+
 
     fun getGradeApi(url: String) {
         viewModelScope.launch(Dispatchers.IO) {

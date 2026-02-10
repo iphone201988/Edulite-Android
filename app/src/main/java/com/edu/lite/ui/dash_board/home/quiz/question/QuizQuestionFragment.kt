@@ -1,10 +1,8 @@
 package com.edu.lite.ui.dash_board.home.quiz.question
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.viewModels
@@ -47,9 +45,11 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
     override fun getLayoutResource(): Int {
         return R.layout.fragment_quiz_question
     }
+
     override fun getViewModel(): BaseViewModel {
         return viewModel
     }
+
     override fun onCreateView(view: View) {
         // api call
         viewModel.quizQuestionApi(Constants.TEST_QUIZ + "/${args.quizId}")
@@ -58,6 +58,7 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
         // observer
         initObserver()
     }
+
     /**
      * click event handel
      */
@@ -67,38 +68,42 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
             when (it?.id) {
                 R.id.ivBackButton -> {
                     val answers = buildAnswers()
-                    val status = getQuizStatus(answers.size)
+
+                    if (answers.isEmpty()) {
+                        requireActivity().onBackPressedDispatcher.onBackPressed()
+                        return@observe
+                    }
+
                     val timeTakenSeconds =
                         ((System.currentTimeMillis() - quizStartTimeMillis) / 1000).coerceAtLeast(0L)
                     val finalTime = timeTaking + timeTakenSeconds.toInt()
-                    findNavController().previousBackStackEntry
-                        ?.savedStateHandle
-                        ?.apply {
-                            set("quizId", args.quizId)
-                            set("status", status)
-                            set("timeTaken", finalTime)
-                            set("answers", ArrayList(answers))
-                        }
-                    requireActivity().onBackPressedDispatcher.onBackPressed()
+
+                    val data = HashMap<String, Any>().apply {
+                        put("quizId", args.quizId)
+                        put("answers", ArrayList(answers))
+                        put("status", getQuizStatus(answers.size))
+                        put("timeTaken", finalTime)
+                    }
+
+                    viewModel.postUserBack(Constants.USER_RESPONSE, data)
                 }
                 // Next button click
                 R.id.btnNext -> {
                     val currentQuestion = questionsList[currentIndex]
                     if (currentQuestion?.userSelectedOptionId == null) {
                         showErrorToast(getString(R.string.please_select_an_answer_before_proceeding))
-                    }
-                    else {
+                    } else {
                         if (currentIndex < questionsList.size - 1) {
                             currentIndex++
-                            binding.tvQuestionNumber.text = "Question ${currentIndex + 1} of $totalQuestions"
+                            binding.tvQuestionNumber.text =
+                                "Question ${currentIndex + 1} of $totalQuestions"
                             binding.tvChoose.text = "${currentIndex + 1} of $totalQuestions"
 
                             // Update adapter with new question
                             questionAdapter.updateQuestions(listOf(questionsList[currentIndex]))
                             updateNavigationButtons()
                             BindingUtils.setProgress(binding.progressionGuideline, 50)
-                        }
-                        else {
+                        } else {
                             BindingUtils.setProgress(binding.progressionGuideline, 100)
                             // stop timer
                             stopTimer()
@@ -149,10 +154,9 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
         // Previous button visibility
         binding.btnPrevious.visibility = if (currentIndex == 0) View.GONE else View.VISIBLE
         // Next button text
-        if (currentIndex == questionsList.size - 1)
-            binding.btnNext.text = getString(R.string.submit)
-         else
-             binding.btnNext.text = getString(R.string.next)
+        if (currentIndex == questionsList.size - 1) binding.btnNext.text =
+            getString(R.string.submit)
+        else binding.btnNext.text = getString(R.string.next)
 
     }
 
@@ -175,10 +179,11 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
                                     BindingUtils.parseJson(jsonData)
                                 val question = model?.quiz
                                 if (question != null) {
-                                    binding.tvQuestion.text=question.name
+                                    binding.tvQuestion.text = question.name
                                     totalQuestions = question.numberOfQuestions ?: 0
                                     questionsList = question.questions ?: emptyList()
-                                    binding.tvQuestionNumber.text = "Question ${currentIndex + 1} of $totalQuestions"
+                                    binding.tvQuestionNumber.text =
+                                        "Question ${currentIndex + 1} of $totalQuestions"
                                     binding.tvChoose.text = "${currentIndex + 1} of $totalQuestions"
                                     questionAdapter =
                                         QuestionAdapter(listOf(questionsList[currentIndex])) { questionPos, option ->
@@ -190,26 +195,25 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
                                     val seconds = model.responseData?.timeTaken ?: 0
                                     timeTaking = model.responseData?.timeTaken ?: 0
                                     val minutesTaken = seconds / 60.0
-                                      totalMinutes = model.quiz.time?.toDouble() ?: 0.0
-                                    val remainingMinutes = (totalMinutes - minutesTaken).coerceAtLeast(0.0)
+                                    totalMinutes = model.quiz.time?.toDouble() ?: 0.0
+                                    val remainingMinutes =
+                                        (totalMinutes - minutesTaken).coerceAtLeast(0.0)
                                     val remainingSeconds = (remainingMinutes * 60).toLong()
 
                                     // start timer
                                     startTimer(binding.tvTimer, remainingSeconds)
-                                }
-
-                                else showErrorToast(getString(R.string.something_went_wrong))
+                                } else showErrorToast(getString(R.string.something_went_wrong))
                             }.onFailure { e ->
                                 showErrorToast(e.message.toString())
                             }.also {
                                 hideLoading()
                             }
                         }
+
                         "postUserResponse" -> {
                             runCatching {
                                 val jsonData = it.data?.toString().orEmpty()
-                                val model: QuizAnswerApiResponse? =
-                                    BindingUtils.parseJson(jsonData)
+                                val model: QuizAnswerApiResponse? = BindingUtils.parseJson(jsonData)
                                 val question = model?.userResponse
                                 if (question != null) {
                                     // Show result dialog
@@ -221,6 +225,24 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
                                 showErrorToast(e.message.toString())
                             }.also {
                                 hideLoading()
+                            }
+                        }
+
+                        "postUserBack" -> {
+                            runCatching {
+                                val jsonData = it.data?.toString().orEmpty()
+                                val model: QuizAnswerApiResponse? = BindingUtils.parseJson(jsonData)
+                                val question = model?.userResponse
+                                if (question != null) {
+
+                                } else {
+                                    showErrorToast(getString(R.string.something_went_wrong))
+                                }
+                            }.onFailure { e ->
+                                showErrorToast(e.message.toString())
+                            }.also {
+                                hideLoading()
+                                requireActivity().onBackPressedDispatcher.onBackPressed()
                             }
                         }
                     }
@@ -257,8 +279,8 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
         quizEndDialog?.binding?.tvWrongPoint?.text = selectedAnswers.incorrectCount.toString()
         quizEndDialog?.binding?.circularProgressBar?.apply {
             setTextView(quizEndDialog?.binding?.tvScoredValue)
-            if (selectedAnswers.points!=null){
-                setProgress( selectedAnswers.points)
+            if (selectedAnswers.points != null) {
+                setProgress(selectedAnswers.points)
             }
         }
         // Set values in dialog views
@@ -269,14 +291,15 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
             val total = totalQuestions
             val correct = selectedAnswers.correctCount ?: 0
 
-            setMaxProgress(total*10)
-            setProgress(correct*10)
+            setMaxProgress(total * 10)
+            setProgress(correct * 10)
         }
         // call back
         quizEndDialog?.setOnDismissListener {
             findNavController().popBackStack()
         }
     }
+
     /*** start timer ***/
     fun startTimer(
         text: AppCompatTextView, remainingSeconds: Long, onTimerFinished: (() -> Unit)? = null
@@ -288,7 +311,7 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
             override fun run() {
                 if (remainingTimeMillis <= 0L) {
                     text.text = "00:00:00"
-                    val selectedAnswers = questionsList.mapNotNull { question ->
+                    questionsList.mapNotNull { question ->
                         question?.userSelectedOptionId?.let { selectedOptionId ->
                             val selectedOption =
                                 question.options?.find { it?._id == selectedOptionId }
@@ -300,7 +323,7 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
                         }
                     }
                     if (isAdded && !isDetached && context != null) {
-                      postApiCall()
+                        postApiCall()
                     }
                     onTimerFinished?.invoke()
                 } else {
@@ -337,15 +360,16 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
         if (questionsList.isEmpty()) return
         val answers = buildAnswers()
         val status = getQuizStatus(answers.size)
-        val timeTakenSeconds = ((System.currentTimeMillis() - quizStartTimeMillis) / 1000).coerceAtLeast(0L)
-        val finalTime = timeTaking+timeTakenSeconds.toInt()
+        val timeTakenSeconds =
+            ((System.currentTimeMillis() - quizStartTimeMillis) / 1000).coerceAtLeast(0L)
+        val finalTime = timeTaking + timeTakenSeconds.toInt()
         val data = HashMap<String, Any>().apply {
             put("quizId", args.quizId)
             put("answers", answers)
             put("status", status)
             put("timeTaken", finalTime)
         }
-         viewModel.postUserResponse(Constants.USER_RESPONSE, data)
+        viewModel.postUserResponse(Constants.USER_RESPONSE, data)
     }
 
     /**

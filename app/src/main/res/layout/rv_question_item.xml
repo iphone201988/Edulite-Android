@@ -20,7 +20,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clPreview"
-        handelCLick="@{bean.userProgress.status}"
         setHomeBg="@{pos}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +50,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvType"
             style="@style/TextView.regular"
-            setQuestionTypeBg="@{bean.userProgress.status}"
+            setQuestionTypeBg="@{bean.userProgress}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_5sdp"

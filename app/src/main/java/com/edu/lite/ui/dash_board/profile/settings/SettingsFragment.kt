@@ -64,15 +64,15 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
             if (it?.profilePicture.isNullOrEmpty()){
                 Glide.with(requireContext())
                     .load(Constants.BASE_URL_IMAGE + it?.profilePicture)
-                    .placeholder(R.drawable.user)
-                    .error(R.drawable.user)
+                    .placeholder(R.drawable.placeholder)
+                    .error(R.drawable.placeholder)
                     .into(binding.ivUSer)
             }
             else{
                 Glide.with(requireContext())
                     .load(Constants.BASE_URL_IMAGE + it?.profilePicture)
                     .placeholder(R.drawable.progress_drawable)
-                    .error(R.drawable.user)
+                    .error(R.drawable.placeholder)
                     .into(binding.ivUSer)
             }
 
@@ -113,6 +113,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                                 if (model?.success == true) {
                                     showSuccessToast(model.message.toString())
                                     sharedPrefManager.clearAllExceptLanguage()
+                                    sharedPrefManager.setOnBoarding("true")
                                     findNavController().popBackStack(R.id.auth_navigation, true)
                                     val action = ProfileFragmentDirections.navigateToLoginFragment()
                                     BindingUtils.navigateWithSlide(findNavController(), action)
@@ -134,6 +135,7 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                                 if (model?.success == true) {
                                     showSuccessToast(model.message.toString())
                                     sharedPrefManager.clearAllExceptLanguage()
+                                    sharedPrefManager.setOnBoarding("true")
                                     findNavController().popBackStack(R.id.auth_navigation, true)
 
                                     val action = ProfileFragmentDirections.navigateToLoginFragment()
@@ -180,6 +182,10 @@ class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
                     BindingUtils.navigateWithSlide(findNavController(), action)
 
                 }
+//                getString(R.string.change_theme) ->{
+//                    val action = ProfileFragmentDirections.navigateToChangeThemeFragment()
+//                    BindingUtils.navigateWithSlide(findNavController(), action)
+//                }
 
 //                getString(R.string.language) -> {
 //

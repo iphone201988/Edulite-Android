@@ -21,7 +21,6 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clPractise"
-        handelCLick="@{bean.userResponse.status}"
         quizBackground="@{bean.userResponse.status}"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,12 +63,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:text="@{bean.description}"
+            app:setExpandableText="@{bean}"
             android:layout_marginEnd="@dimen/_13sdp"
             android:textColor="@color/black"
             android:textSize="@dimen/_9ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/ivEarlyGrade"
             app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvShowMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show More"
+            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+            android:visibility="gone"
+            android:padding="@dimen/_6sdp"
+            android:textSize="@dimen/_8ssp"
+            android:textColor="?attr/startColor"
+            android:layout_marginEnd="@dimen/_13sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDesc" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -83,7 +96,7 @@
             android:textColor="?attr/startColor"
             android:textSize="@dimen/_8ssp"
             app:layout_constraintStart_toStartOf="@+id/ivEarlyGrade"
-            app:layout_constraintTop_toBottomOf="@+id/tvDesc" />
+            app:layout_constraintTop_toBottomOf="@+id/tvShowMore" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivDone"
@@ -110,23 +123,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvQuestionCount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvQuestionCount" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btnLetsStart"
-            style="@style/TextView.semibold"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_30sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/radius_6_blu"
-            android:gravity="center"
-            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
-            android:text="Let’s Start"
-            android:textSize="@dimen/_11ssp"
-            android:visibility='@{bean.userResponse.status=="completed"?View.VISIBLE:View.GONE}'
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvQuestionCount" />
 
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -161,7 +157,7 @@
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/progressionGuideline"
-                    setProgressValue="@{bean.userResponse.points}"
+                    setProgressValuePractice="@{bean}"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="vertical"

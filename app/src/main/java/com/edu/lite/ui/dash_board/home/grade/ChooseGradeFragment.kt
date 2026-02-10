@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.edu.lite.BR
 import com.edu.lite.R
 import com.edu.lite.base.BaseFragment
@@ -45,11 +46,24 @@ class ChooseGradeFragment : BaseFragment<FragmentChooseGradeBinding>() {
         initOnGradeAdapter()
         //
         from = args.from
-        if (from!=null && from !=""){
+        if (from!=null && from =="home"){
             binding.tvChoose.text=getString(R.string.choose_grade)
         }
         else{
             binding.tvChoose.text=getString(R.string.choose_your_grade)
+        }
+
+        if (from !=null && from =="settings"){
+            binding.clGrade.visibility = View.VISIBLE
+            if (sharedPrefManager.getLoginData()!=null){
+                val data = sharedPrefManager.getLoginData()?.gradeId
+                if ( data!= null) {
+                    Glide.with(requireContext()).load(Constants.BASE_URL_IMAGE + data.icon).placeholder(R.drawable.progress_drawable).into(binding.ivEarlyGrade)
+                    binding.tvGrade.text= data.grade
+                }
+
+            }
+
         }
         // click
         initOnClick()
@@ -97,7 +111,7 @@ class ChooseGradeFragment : BaseFragment<FragmentChooseGradeBinding>() {
                                         sharedPrefManager.setLoginData(it1)
                                     }
                                 }
-                                if (from!=null && from !=""){
+                                if (from!=null && from =="settings"){
                                     findNavController().popBackStack()
                                 }
                                 else{
@@ -150,19 +164,22 @@ class ChooseGradeFragment : BaseFragment<FragmentChooseGradeBinding>() {
         gradeAdapter = SimpleRecyclerViewAdapter(R.layout.rv_grade_item, BR.bean) { v, m, _ ->
             when (v?.id) {
                 R.id.clGrade -> {
-//                    val action = ChooseGradeFragmentDirections.navigateToTodayThemeFragment(
-//                        gradeId = m._id.toString(),
-//                        grade = m.grade.toString()
-//                    )
-//                    BindingUtils.navigateWithSlide(findNavController(), action)
-
                     if (!m._id.isNullOrEmpty() && !m.grade.isNullOrEmpty()) {
-                        val data = HashMap<String, Any>()
-                        val language = sharedPrefManager.getLanguage()
-                        data["preferredLanguage"] = language
-                        data["grade"] = m.grade
-                        data["gradeId"] = m._id
-                        viewModel.updateProfileApi(Constants.UPDATE_PROFILE, data)
+                        if (from=="home"){
+                        val action = ChooseGradeFragmentDirections.navigateToPickSubjectFragment(
+                            subjectId = m._id, grade = m.grade
+                        )
+                        BindingUtils.navigateWithSlide(findNavController(), action)
+                    }
+                        else{
+                            val data = HashMap<String, Any>()
+                            val language = sharedPrefManager.getLanguage()
+                            data["preferredLanguage"] = language
+                            data["grade"] = m.grade
+                            data["gradeId"] = m._id
+                            viewModel.updateProfileApi(Constants.UPDATE_PROFILE, data)
+                        }
+
                     }
                 }
             }

@@ -57,6 +57,7 @@
     <color name="theme_2_green_60">#999138EA</color>
     <color name="theme_2_green_60_home">#995045E5</color>
     <color name="theme_2_yellow_60">#995045E5</color>
+    <color name="theme_in_progress_2">#5045E5</color>
     <color name="theme_2_yellow_60_home">#999138EA</color>
     <color name="theme_2_blue_20">#33312E80</color>
 
@@ -70,6 +71,7 @@
     <color name="theme_3_green_60">#995DEAD4</color>
     <color name="theme_3_green_60_home">#995EC8E7</color>
     <color name="theme_3_yellow_60">#995EC8E7</color>
+    <color name="theme_in_progress_3">#5EC8E7</color>
     <color name="theme_3_yellow_60_home">#995DEAD4</color>
     <color name="theme_3_blue_20">#335EA7FA</color>
 
@@ -77,11 +79,13 @@
     <color name="theme4_start_color">#FB9045</color>
     <color name="theme4_end_color">#C384FA</color>
     <color name="theme4_start_color_40">#66FB9045</color>
+    <color name="theme4_end_color_40">#66C384FA</color>
     <color name="theme4_start_color_25">#40FB9045</color>
     <color name="theme_4_border_color">#99FB9045</color>
     <color name="theme_4_green_60">#99FA924A</color>
     <color name="theme_4_green_60_home">#99DD8AA6</color>
     <color name="theme_4_yellow_60">#99DD8AA6</color>
+    <color name="theme_in_progress_4">#DD8AA6</color>
     <color name="theme_4_yellow_60_home">#BFCF9DFA</color>
     <color name="theme_4_quest_color">#BFCF9DFA</color>
     <color name="theme_4_blue_20">#33CF9DFA</color>

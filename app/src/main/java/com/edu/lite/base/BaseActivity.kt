@@ -1,14 +1,17 @@
 package com.edu.lite.base
 
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -63,9 +66,6 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
         }
         val vm = getViewModel()
         binding.setVariable(BR.vm, vm)
-        vm.onUnAuth.observe(this) {
-            showUnauthorised()
-        }
     }
 
 
@@ -79,8 +79,9 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
 
     fun showUnauthorised() {
         sharedPrefManager.clearAllExceptLanguage()
-        // startActivity(LoginActivity.newIntent(this))
-        // finishAffinity()
+        sharedPrefManager.setOnBoarding("true")
+         startActivity(Intent(this, WelcomeActivity::class.java))
+         finishAffinity()
     }
 
     private fun setStatusBarColor(colorResId: Int) {
@@ -172,5 +173,19 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
 
     private fun ConnectivityProvider.NetworkState.hasInternet(): Boolean {
         return (this as? ConnectivityProvider.NetworkState.ConnectedState)?.hasInternet == true
+    }
+
+    fun showErrorToast(msg: String? = "Something went wrong !!") {
+        val inflater = layoutInflater
+        val layout = inflater.inflate(R.layout.error_toast_item, null)
+
+        val textView: AppCompatTextView = layout.findViewById(R.id.tvErrorToast)
+        textView.text = msg ?: "Showed null value !!"
+
+        val toast = Toast(this)
+        toast.duration = Toast.LENGTH_LONG
+        toast.view = layout
+        toast.setGravity(Gravity.TOP or Gravity.CENTER_HORIZONTAL, 0, 50)
+        toast.show()
     }
 }

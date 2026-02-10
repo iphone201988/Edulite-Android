@@ -19,6 +19,7 @@ import com.edu.lite.utils.BindingUtils
 import com.edu.lite.utils.DummyList
 import com.edu.lite.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.log
 
 
 @AndroidEntryPoint
@@ -133,14 +134,26 @@ class DownloadFragment : BaseFragment<FragmentDownloadBinding>() {
      * download video adapter
      */
     private fun initOnDownloadAdapter() {
-        downloadAdapter = SimpleRecyclerViewAdapter(R.layout.rv_download_item, BR.bean) { v, m, _ ->
+        downloadAdapter = SimpleRecyclerViewAdapter(R.layout.rv_download_item, BR.bean) { v, m, pos ->
             when (v?.id) {
                 R.id.clLetPlay -> {
                     val action =
                         VideoPlayFragmentDirections.navigateToVideoPlayFragment(videoPath = m.localPath.toString())
                     BindingUtils.navigateWithSlide(findNavController(), action)
                 }
+                R.id.ivDelete -> {
 
+                    viewModel.deleteVideo(m._id)
+
+                    val index = downloadAdapter.list.indexOfFirst { it._id == m._id }
+                    if (index != -1) {
+                        downloadAdapter.list.removeAt(index)
+                        downloadAdapter.notifyItemRemoved(index)
+                    }
+
+                    binding.listEmpty.visibility =
+                        if (downloadAdapter.list.isEmpty()) View.VISIBLE else View.GONE
+                }
             }
         }
 

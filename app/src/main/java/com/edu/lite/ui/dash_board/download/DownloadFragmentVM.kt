@@ -21,7 +21,7 @@ class DownloadFragmentVM @Inject constructor(private val repository: VideoReposi
         }
     }
 
-    fun deleteVideo(id: Int) {
+    fun deleteVideo(id: String?) {
         viewModelScope.launch {
             repository.deleteVideoById(id)
         }

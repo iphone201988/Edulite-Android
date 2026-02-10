@@ -77,10 +77,9 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/clIntro"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_240sdp"
                         android:layout_marginHorizontal="@dimen/_18sdp"
-                        android:paddingBottom="@dimen/_8sdp"
-                        android:background="@drawable/video_lessons_bg"
+                        android:background="@drawable/creative_project_bg"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -149,6 +148,21 @@
                         app:layout_constraintTop_toBottomOf="@+id/clIntro"
                         tools:itemCount="5"
                         tools:listitem="@layout/rv_creative_item" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        style="@style/TextView.regular"
+                        android:id="@+id/listEmpty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No projects yet."
+                        android:textColor="@color/black"
+                        android:visibility="gone"
+                        android:textSize="@dimen/_13ssp"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

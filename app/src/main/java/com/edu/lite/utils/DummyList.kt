@@ -1,6 +1,7 @@
 package com.edu.lite.utils
 
 import android.app.Activity
+import androidx.navigation.fragment.findNavController
 import com.edu.lite.R
 import com.edu.lite.data.model.BadgesModel
 import com.edu.lite.data.model.FeaturedQuizzesModel
@@ -15,6 +16,7 @@ import com.edu.lite.data.model.RoadMapModel
 import com.edu.lite.data.model.RoastedModel
 import com.edu.lite.data.model.UnitModel
 import com.edu.lite.data.model.VideoLessonsModel
+import com.edu.lite.ui.dash_board.profile.ProfileFragmentDirections
 import dagger.hilt.android.internal.Contexts
 
 object DummyList {
@@ -259,6 +261,16 @@ object DummyList {
         return list
 
     }
+    fun practiceCategoryListSession(context : Activity): ArrayList<PreviewModel> {
+        var list = ArrayList<PreviewModel>()
+        list.add(PreviewModel(context.getString(R.string.all), true))
+        list.add(PreviewModel(context.getString(R.string.news)))
+        list.add(PreviewModel(context.getString(R.string.in_progress)))
+        list.add(PreviewModel(context.getString(R.string.completed_1)))
+
+        return list
+
+    }
 
 
     fun videoCategoryList(context : Activity): ArrayList<PreviewModel> {
@@ -347,6 +359,7 @@ object DummyList {
         var list = ArrayList<ProfileModel>()
         list.add(ProfileModel(context.getString(R.string.edit_profile), 1))
         list.add(ProfileModel(context.getString(R.string.notification), 1))
+//        list.add(ProfileModel(context.getString(R.string.change_theme),1))
 //        list.add(ProfileModel(context.getString(R.string.language), 1))
         list.add(ProfileModel(context.getString(R.string.choose_grade), 1))
         list.add(ProfileModel(context.getString(R.string.downloads), 1))

@@ -68,7 +68,8 @@ class LetPlayLearnFragment : BaseFragment<FragmentLetPlayLearnBinding>() {
                                 val action =
                                     LetPlayLearnFragmentDirections.navigateToFeaturedQuizzesFragment(
                                         subject = args.subjectData.name.toString(),
-                                        m.name.toString()
+                                        m.name.toString(),
+                                        grade = args.grade
                                     )
                                 BindingUtils.navigateWithSlide(findNavController(), action)
                             }
@@ -77,7 +78,8 @@ class LetPlayLearnFragment : BaseFragment<FragmentLetPlayLearnBinding>() {
                                 val action =
                                     LetPlayLearnFragmentDirections.navigateToPracticeTestFragment(
                                         subject = args.subjectData.name.toString(),
-                                        m.name.toString()
+                                        m.name.toString(),
+                                        grade = args.grade
                                     )
                                 BindingUtils.navigateWithSlide(findNavController(), action)
                             }

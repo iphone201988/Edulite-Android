@@ -73,6 +73,26 @@ class FeaturedQuizzesVM @Inject constructor(private val apiHelper: ApiHelper): B
         }
     }
 
+
+    fun updateReadingResponse(url: String, request:HashMap<String, Any>) {
+        viewModelScope.launch(Dispatchers.IO) {
+            observeCommon.postValue(Resource.loading(null))
+
+            runCatching {
+                val response = apiHelper.apiPutForRawBody(url,request)
+                if (response.isSuccessful) {
+                    observeCommon.postValue(Resource.success("updateReadingProgress", response.body()))
+                } else {
+                    val errorMsg = handleErrorResponse(response.errorBody(), response.code())
+                    observeCommon.postValue(Resource.error(errorMsg, null))
+                }
+            }.onFailure { e ->
+                Log.e("apiErrorOccurred", "Error: ${e.message}", e)
+                observeCommon.postValue(Resource.error("Something went wrong: ${e.message}", null))
+            }
+        }
+    }
+
     fun postUserBack(url: String, request:HashMap<String, Any>) {
         viewModelScope.launch(Dispatchers.IO) {
             observeCommon.postValue(Resource.loading(null))
@@ -80,7 +100,7 @@ class FeaturedQuizzesVM @Inject constructor(private val apiHelper: ApiHelper): B
             runCatching {
                 val response = apiHelper.apiPostForRawBody(url,request)
                 if (response.isSuccessful) {
-                    observeCommon.postValue(Resource.success("postUserResponse", response.body()))
+                    observeCommon.postValue(Resource.success("postUserBack", response.body()))
                 } else {
                     val errorMsg = handleErrorResponse(response.errorBody(), response.code())
                     observeCommon.postValue(Resource.error(errorMsg, null))

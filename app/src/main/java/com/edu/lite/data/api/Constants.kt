@@ -29,7 +29,7 @@ object Constants {
     const val USER_RESPONSE = "user-reponse"
     const val NOTIFICATIONS = "notifications"
     const val GET_PROFILE = "auth/get-profile"
-    const val GET_READING = "reading"
+    const val UPDATE_READING_STATUS = "reading/progress"
 
 
 

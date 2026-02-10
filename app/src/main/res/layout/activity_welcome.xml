@@ -41,6 +41,7 @@
             app:cbn_fabEndColor="?attr/endColor"
             app:cbn_fabStartColor="?attr/startColor"
             app:cbn_iconSize="14dp"
+            android:saveEnabled="false"
             app:cbn_selectedColor="@color/white"
             app:cbn_startColor="?attr/startColor"
             android:background="@color/transparent"

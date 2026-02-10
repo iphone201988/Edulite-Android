@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-  <variable
-      name="callback"
-      type="com.edu.lite.utils.BaseCustomDialog.Listener" />
+        <variable
+            name="callback"
+            type="com.edu.lite.utils.BaseCustomDialog.Listener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +26,17 @@
             android:src="@drawable/cancle_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextView.bold"
+            android:text="Quiz Completed"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ivCancel"
+            app:layout_constraintBottom_toBottomOf="@id/ivCancel"/>
 
         <com.edu.lite.utils.CircularProgressBar
             android:id="@+id/circularProgressBar"

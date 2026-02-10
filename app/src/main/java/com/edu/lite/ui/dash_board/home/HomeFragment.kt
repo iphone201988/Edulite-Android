@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.Guideline
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,11 +20,13 @@ import com.edu.lite.base.SimpleRecyclerViewAdapter
 import com.edu.lite.data.api.Constants
 import com.edu.lite.data.model.GetHomeQuest
 import com.edu.lite.data.model.GetHomeQuestApi
+import com.edu.lite.data.model.Quiz
 import com.edu.lite.data.model.SignupResponse
+import com.edu.lite.databinding.DialogQuizCompletedBinding
 import com.edu.lite.databinding.FragmentHomeBinding
 import com.edu.lite.databinding.RvQuestionItemBinding
-import com.edu.lite.ui.auth.signup.SignupFragmentDirections
 import com.edu.lite.ui.dash_board.home.quiz.FeaturedQuizzesFragmentDirections
+import com.edu.lite.utils.BaseCustomDialog
 import com.edu.lite.utils.BindingUtils
 import com.edu.lite.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,6 +38,7 @@ import java.util.Locale
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val viewModel: HomeFragmentVM by viewModels()
     private lateinit var questionAdapter: SimpleRecyclerViewAdapter<GetHomeQuest, RvQuestionItemBinding>
+    private var quizEndDialog: BaseCustomDialog<DialogQuizCompletedBinding>? = null
     private var PERMISSION_REQUEST_CODE = 16
     override fun getLayoutResource(): Int {
         return R.layout.fragment_home
@@ -91,14 +93,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         viewModel.onClick.observe(viewLifecycleOwner) {
             when (it?.id) {
                 R.id.btnStart -> {
-                    val subjectId = sharedPrefManager.getLoginData()?.gradeId
-                    val grade = sharedPrefManager.getLoginData()?.grade
-                    if (!subjectId.isNullOrEmpty() && !grade.isNullOrEmpty()) {
-                        val action = HomeFragmentDirections.navigateToPickSubjectFragment(
-                            subjectId = subjectId, grade = grade
-                        )
-                        BindingUtils.navigateWithSlide(findNavController(), action)
-                    }
+//                    val subjectId = sharedPrefManager.getLoginData()?.gradeId
+//                    val grade = sharedPrefManager.getLoginData()?.grade
+//                    if (!subjectId.isNullOrEmpty() && !grade.isNullOrEmpty()) {
+//                        val action = HomeFragmentDirections.navigateToPickSubjectFragment(
+//                            subjectId = subjectId, grade = grade
+//                        )
+//                        BindingUtils.navigateWithSlide(findNavController(), action)
+//                    }
+
+                    val action = HomeFragmentDirections.navigateToChooseGradeFragment(from = "home")
+                    BindingUtils.navigateWithSlide(findNavController(), action)
 
                 }
             }
@@ -151,15 +156,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                                 questionAdapter.list = quests
                                 binding.tvEmpty.visibility =
                                     if (quests.isEmpty()) View.VISIBLE else View.GONE
-                                val completeCount = quests.count {
-                                    it?.userProgress?.status == "completed"
+                                val totalCount = quests.size
+                                val completeCount = quests.sumOf { quest ->
+                                    listOf(
+                                        quest?.userProgress?.quiz?.status,
+                                        quest?.userProgress?.reading?.status
+                                    ).count { it == "completed" }
                                 }
-                                binding.tvProblems.text = when {
-                                    completeCount <= 0 -> "No quest found"
-                                    completeCount == 1 -> "Finish 1 problem"
-                                    else -> "Finish $completeCount problems"
-                                }
+                                val remainingCount = totalCount - completeCount
 
+                                binding.tvProblems.text = when {
+                                    totalCount == 0 -> "No quest found"
+                                    remainingCount <= 0 -> "All problems completed"
+                                    remainingCount == 1 -> "Finish 1 problem"
+                                    else -> "Finish $remainingCount problems"
+                                }
                                 binding.tvCompletedPoint.text = "$completeCount/${quests.size} "
                                 setProgress(completed = completeCount, total = quests.size)
                             }.onFailure { e ->
@@ -170,17 +181,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                                 viewModel.getProfileApi(Constants.GET_PROFILE)
                             }
                         }
-                        "getProfileApi"->{
+
+                        "getProfileApi" -> {
                             runCatching {
                                 val jsonData = it.data?.toString().orEmpty()
                                 val model: SignupResponse? = BindingUtils.parseJson(jsonData)
                                 val loginData = model?.stats
-                                if (loginData!=null) {
+                                if (loginData != null) {
                                     binding.bean = loginData
                                 } else {
                                     showErrorToast(getString(R.string.something_went_wrong))
                                 }
-                            }.onFailure {e->
+                            }.onFailure { e ->
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
                                 showErrorToast(getString(R.string.something_went_wrong))
                             }.also {
@@ -208,15 +220,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         questionAdapter = SimpleRecyclerViewAdapter(R.layout.rv_question_item, BR.bean) { v, m, _ ->
             when (v?.id) {
                 R.id.clPreview -> {
-                    if (m.type=="questReading"){
-                        val action =
-                            FeaturedQuizzesFragmentDirections.navigateToReadingSessionFragment(quizId = m._id.toString())
-                        BindingUtils.navigateWithSlide(findNavController(), action)
-                    }
-                    else{
-                        val action =
-                            FeaturedQuizzesFragmentDirections.navigateToQuizQuestionFragment(quizId = m.testQuizId?._id.toString())
-                        BindingUtils.navigateWithSlide(findNavController(), action)
+                    if (m.type == "questReading") {
+                        if (m.userProgress?.reading?.status == "completed") {
+                            showInfoToast("You have completed this reading session.")
+                        } else {
+                            val action =
+                                FeaturedQuizzesFragmentDirections.navigateToReadingSessionFragment(
+                                    quizId = m.readingId?._id.toString(),
+                                    content = m.readingId?.content.toString()
+                                )
+                            BindingUtils.navigateWithSlide(findNavController(), action)
+                        }
+                    } else {
+                        if (m.userProgress?.quiz?.status == "completed") {
+                            initDialog(m.userProgress.quiz)
+                        } else {
+                            val action =
+                                FeaturedQuizzesFragmentDirections.navigateToQuizQuestionFragment(
+                                    quizId = m.testQuizId?._id.toString()
+                                )
+                            BindingUtils.navigateWithSlide(findNavController(), action)
+                        }
 
 
                     }
@@ -231,7 +255,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         try {
             if (Build.VERSION.SDK_INT > 32) {
                 ActivityCompat.requestPermissions(
-                    requireActivity(), arrayOf(Manifest.permission.POST_NOTIFICATIONS), PERMISSION_REQUEST_CODE
+                    requireActivity(),
+                    arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                    PERMISSION_REQUEST_CODE
                 )
             }
         } catch (e: Exception) {
@@ -263,13 +289,58 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         if (total <= 0) return 0f
         return completed.toFloat() / total.toFloat()
     }
+
     private fun setProgress(completed: Int, total: Int) {
         val percent = calculateProgressPercent(completed, total)
 
-        val params =
-            binding.progressionGuideline.layoutParams as ConstraintLayout.LayoutParams
+        val params = binding.progressionGuideline.layoutParams as ConstraintLayout.LayoutParams
         params.guidePercent = percent.coerceIn(0f, 1f)
         binding.progressionGuideline.layoutParams = params
+    }
+
+
+    /**
+     *  handel results dialog
+     **/
+    private fun initDialog(selectedAnswers: Quiz) {
+
+        quizEndDialog = BaseCustomDialog(requireActivity(), R.layout.dialog_quiz_completed) {
+            when (it?.id) {
+                R.id.ivCancel -> quizEndDialog?.dismiss()
+            }
+        }
+
+        quizEndDialog?.setCancelable(false)
+        quizEndDialog?.show()
+
+
+        val totalQuestions =
+            (selectedAnswers.correctCount ?: 0) + (selectedAnswers.incorrectCount ?: 0)
+
+        quizEndDialog?.binding?.tvQuesValue?.text = totalQuestions.toString()
+        quizEndDialog?.binding?.tvXCorrectPoint?.text = selectedAnswers.correctCount.toString()
+        quizEndDialog?.binding?.tvWrongPoint?.text = selectedAnswers.incorrectCount.toString()
+        quizEndDialog?.binding?.circularProgressBar?.apply {
+            setTextView(quizEndDialog?.binding?.tvScoredValue)
+            if (selectedAnswers.points != null) {
+                setProgress(selectedAnswers.points)
+            }
+        }
+        // Set values in dialog views
+        quizEndDialog?.binding?.tvScoredValue?.text = "+${selectedAnswers.points}"
+        quizEndDialog?.binding?.circularProgressBar?.apply {
+            setTextView(quizEndDialog?.binding?.tvScoredValue)
+
+            val total = totalQuestions
+            val correct = selectedAnswers.correctCount ?: 0
+
+            setMaxProgress(total * 10)
+            setProgress(correct * 10)
+        }
+        // call back
+        quizEndDialog?.setOnDismissListener {
+            quizEndDialog?.dismiss()
+        }
     }
 
     /*

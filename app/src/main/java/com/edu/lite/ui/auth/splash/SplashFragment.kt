@@ -46,6 +46,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 //                    BindingUtils.navigateWithSlide(findNavController(), action)
                     val action = SplashFragmentDirections.navigateToLoginFragment()
                     BindingUtils.navigateWithSlide(findNavController(), action)
+                    sharedPrefManager.setOnBoarding("true")
                 }
             }
         }

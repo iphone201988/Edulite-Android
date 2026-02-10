@@ -11,6 +11,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.TextUtils
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -38,7 +39,10 @@ import com.caverock.androidsvg.SVG
 import com.caverock.androidsvg.SVGParseException
 import com.edu.lite.R
 import com.edu.lite.data.api.Constants
+import com.edu.lite.data.model.FeaturedQuizze
 import com.edu.lite.data.model.GetHomeQuest
+import com.edu.lite.data.model.RoadMapQuizze
+import com.edu.lite.data.model.UserProgress
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.gson.Gson
 import okhttp3.Call
@@ -80,6 +84,15 @@ object BindingUtils {
     fun setIconFromUrl(image: ShapeableImageView, url: String?) {
         if (url != null) {
             Glide.with(image.context).load(Constants.BASE_URL_IMAGE + url).into(image)
+        }
+    }
+
+
+    @BindingAdapter("setIconFromUrlVideo")
+    @JvmStatic
+    fun setIconFromUrlVideo(image: ShapeableImageView, url: String?) {
+        if (url != null) {
+            Glide.with(image.context).load(Constants.BASE_URL_IMAGE + url).placeholder(R.drawable.progress_drawable).error(R.drawable.video_placeholder).into(image)
         }
     }
 
@@ -250,17 +263,40 @@ object BindingUtils {
 
         layout.setBackgroundResource(bgRes)
     }
+//    @BindingAdapter("setRoadMapImage")
+//    @JvmStatic
+//    fun setRoadMapImage(image: AppCompatImageView, type: String?) {
+//        if (type != null) {
+//            when (type) {
+//                "completed" -> image.setImageResource(R.drawable.green_right)
+//                "in-progress" -> image.setImageResource(R.drawable.iv_pending)
+//                "pending" -> image.setImageResource(R.drawable.iv_progress)
+//                else -> image.setImageResource(R.drawable.iv_progress)
+//            }
+//        } else image.setImageResource(R.drawable.iv_progress)
+//    }
+
     @BindingAdapter("setRoadMapImage")
     @JvmStatic
-    fun setRoadMapImage(image: AppCompatImageView, type: String?) {
-        if (type != null) {
-            when (type) {
-                "completed" -> image.setImageResource(R.drawable.green_right)
-                "in-progress" -> image.setImageResource(R.drawable.iv_pending)
-                "pending" -> image.setImageResource(R.drawable.iv_progress)
-                else -> image.setImageResource(R.drawable.iv_progress)
-            }
-        } else image.setImageResource(R.drawable.iv_progress)
+    fun setRoadMapImage(image: AppCompatImageView, status: String?) {
+
+        val (iconRes, tintAttr) = when (status) {
+            "completed" -> R.drawable.green_right to R.attr.roadMapCompleteColor
+            "in-progress" -> R.drawable.iv_pending to R.attr.roadMapInProgressColor
+            "pending" -> R.drawable.iv_progress to R.attr.roadMapPendingColor
+            else -> R.drawable.iv_progress to R.attr.roadMapPendingColor
+        }
+
+        image.setImageResource(iconRes)
+
+        val typedValue = TypedValue()
+        val theme = image.context.theme
+
+        if (theme.resolveAttribute(tintAttr, typedValue, true)) {
+            image.imageTintList = ColorStateList.valueOf(typedValue.data)
+        } else {
+            image.imageTintList = null
+        }
     }
 
     @BindingAdapter("setRoadMapRadius")
@@ -276,27 +312,29 @@ object BindingUtils {
         } else image.setBackgroundResource(R.drawable.blue_40_radius_12)
     }
 
-    @BindingAdapter("handelCLick")
+
+    @BindingAdapter("handelCLickRoadMap")
     @JvmStatic
-    fun handelCLick(image: ConstraintLayout, type: String?) {
+    fun handelCLickRoadMap(image: ConstraintLayout, type: String?) {
         if (type != null) {
             when (type) {
-                "completed" -> {
+                "in-progress" -> {
+                    image.isFocusable = true
+                    image.isClickable = true
+                    image.isEnabled = true
+
+                }
+
+                else -> {
                     image.isFocusable = false
                     image.isClickable = false
                     image.isEnabled = false
                 }
-
-                else -> {
-                    image.isFocusable = true
-                    image.isClickable = true
-                    image.isEnabled = true
-                }
             }
         } else {
-            image.isFocusable = true
-            image.isClickable = true
-            image.isEnabled = true
+            image.isFocusable = false
+            image.isClickable = false
+            image.isEnabled = false
         }
     }
 
@@ -326,19 +364,16 @@ object BindingUtils {
 
     @BindingAdapter("setQuestionTypeBg")
     @JvmStatic
-    fun setQuestionTypeBg(textView: AppCompatTextView, type: String?) {
-        if (type != null) {
-            when (type) {
-                "pending" -> textView.setText("Start")
-                "in-progress" -> textView.setText("Start")
-                "completed" -> textView.setText("Done")
-                else -> textView.setText("Start")
-            }
-        }
-        else{
-            textView.setText("Start")
-        }
+    fun setQuestionTypeBg(textView: AppCompatTextView, userProgress: UserProgress?) {
+
+        val quizStatus = userProgress?.quiz?.status
+        val readingStatus = userProgress?.reading?.status
+
+        val isCompleted = quizStatus == "completed" || readingStatus == "completed"
+
+        textView.text = if (isCompleted) "Done" else "Start"
     }
+
 
     @BindingAdapter("setLetsPlaySelection")
     @JvmStatic
@@ -389,6 +424,33 @@ object BindingUtils {
             layoutParams.guidePercent = percentage / 100f
             guideline.layoutParams = layoutParams
         }
+    }
+
+    @BindingAdapter("setProgressValuePractice")
+    @JvmStatic
+    fun setProgressValuePractice(guideline: Guideline, model: FeaturedQuizze?) {
+
+        val totalCount = model?.questions?.size ?: 0
+        val answeredCount = model?.userResponse?.answers?.size ?: 0
+
+        if (totalCount <= 0) {
+            setProgressPractice(guideline, 0)
+            return
+        }
+
+        val percentage =
+            ((answeredCount.toFloat() / totalCount.toFloat()) * 100).toInt()
+                .coerceIn(0, 100)
+
+        setProgressPractice(guideline, percentage)
+    }
+
+    fun setProgressPractice(guideline: Guideline, percentage: Int) {
+        val layoutParams = guideline.layoutParams as? ConstraintLayout.LayoutParams
+            ?: return
+
+        layoutParams.guidePercent = percentage / 100f
+        guideline.layoutParams = layoutParams
     }
 
 
@@ -558,17 +620,22 @@ object BindingUtils {
 
     @BindingAdapter("setColorBadges")
     @JvmStatic
-    fun setColorBadges(layout: ConstraintLayout, type: Int?) {
-        if (type != null) {
-            when (type) {
-                1 -> layout.setBackgroundResource(R.drawable.rewards_green_bg)
-                2 -> layout.setBackgroundResource(R.drawable.badges_blue_40_bg)
-                3 -> layout.setBackgroundResource(R.drawable.rewards_yellow_bg)
-                4 -> layout.setBackgroundResource(R.drawable.rewards_blur_bg_40)
-                else -> layout.setBackgroundResource(R.drawable.rewards_green_bg)
-            }
+    fun setColorBadges(layout: ConstraintLayout, position: Int) {
 
+        if (position == RecyclerView.NO_POSITION) {
+            layout.setBackgroundResource(R.drawable.quests_first_bg)
+            return
         }
+
+        val bgRes = when (position % 4) {
+            0 -> R.drawable.rewards_green_bg
+            1 -> R.drawable.badges_blue_40_bg
+            2 -> R.drawable.rewards_yellow_bg
+            3->R.drawable.rewards_blur_bg_40
+            else -> R.drawable.rewards_green_bg
+        }
+
+        layout.setBackgroundResource(bgRes)
     }
 
     @BindingAdapter("setTintByType")
@@ -770,8 +837,79 @@ object BindingUtils {
 
         textView.text = when (bean.type) {
             "questReading" -> bean.name.orEmpty()
-            "questQuiz" -> bean.testQuizId?.name.orEmpty()
+            "questQuiz" -> bean.name.orEmpty()
             else -> ""
+        }
+    }
+
+    @BindingAdapter("setExpandableText")
+    @JvmStatic
+    fun setExpandableText(
+        descText: AppCompatTextView,
+        item: FeaturedQuizze
+    ) {
+        val showMoreText =
+            (descText.parent as View).findViewById<AppCompatTextView>(R.id.tvShowMore)
+
+        if (item.isExpanded) {
+            // Expanded
+            descText.maxLines = Int.MAX_VALUE
+            descText.ellipsize = null
+            showMoreText.text = "Show Less"
+            showMoreText.visibility = View.VISIBLE
+        } else {
+            // Collapsed (measure safely)
+            descText.maxLines = Int.MAX_VALUE
+            descText.ellipsize = null
+
+            descText.post {
+                val lineCount = descText.layout?.lineCount ?: 0
+
+                if (lineCount > 2) {
+                    descText.maxLines = 2
+                    descText.ellipsize = TextUtils.TruncateAt.END
+                    showMoreText.visibility = View.VISIBLE
+                    showMoreText.text = "Show More"
+                } else {
+                    showMoreText.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+
+    @BindingAdapter("setExpandableText2")
+    @JvmStatic
+    fun setExpandableText2(
+        descText: AppCompatTextView,
+        item: RoadMapQuizze
+    ) {
+        val showMoreText =
+            (descText.parent as View).findViewById<AppCompatTextView>(R.id.tvShowMore)
+
+        if (item.isExpanded) {
+            // Expanded
+            descText.maxLines = Int.MAX_VALUE
+            descText.ellipsize = null
+            showMoreText.text = "Show Less"
+            showMoreText.visibility = View.VISIBLE
+        } else {
+            // Collapsed (measure safely)
+            descText.maxLines = Int.MAX_VALUE
+            descText.ellipsize = null
+
+            descText.post {
+                val lineCount = descText.layout?.lineCount ?: 0
+
+                if (lineCount > 2) {
+                    descText.maxLines = 2
+                    descText.ellipsize = TextUtils.TruncateAt.END
+                    showMoreText.visibility = View.VISIBLE
+                    showMoreText.text = "Show More"
+                } else {
+                    showMoreText.visibility = View.GONE
+                }
+            }
         }
     }
 

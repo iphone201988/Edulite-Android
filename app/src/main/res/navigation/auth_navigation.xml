@@ -121,12 +121,15 @@
 
 
     <action
-        android:id="@+id/navigateToRewardsFragment"
-        app:destination="@id/fragmentRewards" />
+        android:id="@+id/navigateToChangeThemeFragment"
+        app:destination="@id/fragmentChangeTheme" />
 
     <action
         android:id="@+id/navigateToBadgesFragment"
         app:destination="@id/fragmentBadges" />
+    <action
+        android:id="@+id/navigateToRewardsFragment"
+        app:destination="@id/fragmentRewards" />
 
     <!--    fragment   -->
 
@@ -289,6 +292,10 @@
             android:name="featuredType"
             android:defaultValue=""
             app:argType="string" />
+        <argument
+            android:name="grade"
+            android:defaultValue=""
+            app:argType="string" />
 
     </fragment>
 
@@ -314,6 +321,10 @@
             android:name="quizId"
             android:defaultValue=""
             app:argType="string" />
+        <argument
+            android:name="content"
+            android:defaultValue=""
+            app:argType="string" />
 
     </fragment>
 
@@ -330,6 +341,10 @@
 
         <argument
             android:name="practiceTest"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="grade"
             android:defaultValue=""
             app:argType="string" />
 
@@ -418,6 +433,11 @@
         android:name="com.edu.lite.ui.dash_board.profile.settings.SettingsFragment"
         tools:layout="@layout/fragment_settings" />
 
+
+    <fragment
+        android:id="@+id/fragmentChangeTheme"
+        android:name="com.edu.lite.ui.dash_board.profile.theme.ChangeThemeFragment"
+        tools:layout="@layout/fragment_change_theme" />
 
     <fragment
         android:id="@+id/fragmentRewards"

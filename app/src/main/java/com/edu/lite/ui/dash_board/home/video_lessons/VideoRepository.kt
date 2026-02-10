@@ -16,7 +16,7 @@ class VideoRepository @Inject constructor(
         return dao.getAllVideos()
     }
 
-    suspend fun deleteVideoById(id: Int) {
+    suspend fun deleteVideoById(id: String?) {
         dao.deleteById(id)
     }
 

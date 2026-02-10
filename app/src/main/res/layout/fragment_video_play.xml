@@ -15,33 +15,29 @@
         android:layout_height="match_parent"
         tools:context=".ui.dash_board.video_play.VideoPlayFragment">
 
-
         <include
             android:id="@+id/clHeader"
-            layout="@layout/header_item_layout" />
+            layout="@layout/header_item_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:background="@drawable/bg_icon"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/clHeader">
 
-            <androidx.media3.ui.PlayerView
-                android:id="@+id/playerView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:keepScreenOn="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvChoose"
-                app:show_buffering="when_playing"
-                app:use_controller="true" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvChoose"
                 style="@style/TextView.bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
                 android:onClick="@{v->vm.onClick(v)}"
@@ -64,6 +60,48 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tvChoose" />
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/videoContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivBackButton">
+
+                <androidx.media3.ui.PlayerView
+                    android:id="@+id/playerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:keepScreenOn="true"
+                    app:show_buffering="when_playing"
+                    app:show_next_button="false"
+                    app:show_previous_button="false"
+                    app:use_controller="true" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivMute"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_marginBottom="@dimen/_14sdp"
+                        android:layout_marginEnd="@dimen/_40sdp"
+                        android:onClick="@{v->vm.onClick(v)}"
+                        android:src="@drawable/ic_sound_on"
+                        app:tint="@color/white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+<!--                    <androidx.appcompat.widget.AppCompatImageView-->
+<!--                        android:id="@+id/ivFullscreen"-->
+<!--                        android:layout_width="32dp"-->
+<!--                        android:layout_height="32dp"-->
+<!--                        android:onClick="@{v->vm.onClick(v)}"-->
+<!--                        android:visibility="gone"-->
+<!--                        android:layout_marginBottom="@dimen/_12sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                        android:src="@drawable/ic_tick"-->
+<!--                        app:layout_constraintEnd_toStartOf="@id/ivMute"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"/>-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

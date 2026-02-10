@@ -15,6 +15,6 @@ interface RoomDataBaseQueryPage {
     @Query("SELECT * FROM VideoDownload")
     suspend fun getAllVideos(): List<DownloadVideoData>
 
-    @Query("DELETE FROM VideoDownload WHERE id = :id")
-    suspend fun deleteById(id: Int)
+    @Query("DELETE FROM VideoDownload WHERE _id = :id")
+    suspend fun deleteById(id: String?)
 }

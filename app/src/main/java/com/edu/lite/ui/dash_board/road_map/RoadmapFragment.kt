@@ -38,7 +38,7 @@ class RoadmapFragment : BaseFragment<FragmentRoadmapBinding>() {
         initOnRoadMapAdapter()
         // api call
         val data = HashMap<String, Any>()
-        data["subject"] = "English"
+        data["subject"] = "Mathematics"
         data["type"] = "quiz"
         viewModel.getRoadMapApi(data, Constants.TEST_QUIZ_DATA)
         // click

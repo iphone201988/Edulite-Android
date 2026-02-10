@@ -47,7 +47,7 @@ class AuthCommonVM @Inject constructor(
                 if (response.isSuccessful) {
                     observeCommon.postValue(Resource.success("loginApi", response.body()))
                 } else {
-                    val errorMsg = handleErrorResponse(response.errorBody(), response.code())
+                    val errorMsg = handleErrorResponseForLogin(response.errorBody(), response.code())
                     observeCommon.postValue(Resource.error(errorMsg, null))
                 }
             }.onFailure { e ->

@@ -73,7 +73,7 @@ class VideoLessonsFragment : BaseFragment<FragmentVideoLessonsBinding>() {
         binding.clNested.setOnScrollChangedListener { who, l, t, old, olden ->
             val introBottom = binding.rvVideoCategory.bottom
             if (t >= introBottom) {
-                binding.rvVideoCategory1.visibility = View.VISIBLE
+                binding.rvVideoCategory1.visibility = View.GONE
             } else {
                 binding.rvVideoCategory1.visibility = View.GONE
             }

@@ -28,18 +28,22 @@
         android:background="@drawable/quests_third_bg"
         android:onClick="@{v->callback.onItemClick(v,bean,pos)}">
 
-
-        <androidx.appcompat.widget.AppCompatImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivVideoImage"
+            setIconFromUrlVideo="@{bean.thumbnailUrl}"
             android:layout_width="@dimen/_101sdp"
             android:layout_height="@dimen/_85sdp"
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:src="@drawable/video_image"
+            android:src="@drawable/video_placeholder"
+            android:background="?attr/endColor"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize12Percent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivBackButton"
@@ -66,10 +70,21 @@
             android:text="@{bean.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/_12ssp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivDelete"
             app:layout_constraintStart_toEndOf="@+id/ivVideoImage"
             app:layout_constraintTop_toTopOf="@+id/ivVideoImage"
             tools:text="SAT Math Section Practice" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:padding="@dimen/_3sdp"
+            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:src="@drawable/ic_trash"
+            app:layout_constraintTop_toTopOf="@id/ivVideoImage"
+           app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvDesc"
@@ -114,7 +129,7 @@
             android:text="@string/watch_now_completed"
             android:textSize="@dimen/_11ssp"
             app:layout_constraintBottom_toBottomOf="@+id/ivVideoImage"
-            app:layout_constraintEnd_toEndOf="@+id/tvHeader"
+            app:layout_constraintEnd_toEndOf="@+id/ivDelete"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvHeader"
             app:layout_constraintTop_toBottomOf="@+id/tvTime"

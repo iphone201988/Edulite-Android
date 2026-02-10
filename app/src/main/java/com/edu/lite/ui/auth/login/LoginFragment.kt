@@ -44,6 +44,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun onCreateView(view: View) {
+        BindingUtils.setStatusBarGradient(requireActivity())
+        requireActivity().window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
         // click
         initOnClick()
         // observer
@@ -83,7 +87,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                                         sharedPrefManager.setToken(it.toString())
                                     }
 
-                                    if (loginData.isEmailVerified == false) {
+                                    if (loginData.isEmailVerified == false || loginData.status =="pending") {
                                         val action = LoginFragmentDirections.navigateToOtpFragment(
                                             email = loginData.email.toString(), type = 1
                                         )

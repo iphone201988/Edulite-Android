@@ -17,6 +17,7 @@ import com.edu.lite.data.model.CommonApiResponse
 import com.edu.lite.data.model.SignupResponse
 import com.edu.lite.databinding.FragmentOtpBinding
 import com.edu.lite.ui.auth.AuthCommonVM
+import com.edu.lite.ui.auth.login.LoginFragmentDirections
 import com.edu.lite.utils.BindingUtils
 import com.edu.lite.utils.Status
 import dagger.hilt.android.AndroidEntryPoint
@@ -101,11 +102,11 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
                                     loginData.let { it1 ->
                                         sharedPrefManager.setLoginData(it1)
                                     }
-                                    loginData.token.let {
-                                        sharedPrefManager.setToken(it.toString())
-                                    }
                                     when (type) {
                                         2 -> {
+                                            loginData.token.let {
+                                                sharedPrefManager.setToken(it.toString())
+                                            }
                                             val action =
                                                 OtpFragmentDirections.navigateToNewPasswordFragment(
                                                     email = email.toString()
@@ -117,12 +118,24 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
                                         }
 
                                         1 -> {
-                                            val action =
-                                                OtpFragmentDirections.navigateToChooseGradeFragment()
-                                            BindingUtils.navigateWithSlide(
-                                                findNavController(),
-                                                action
-                                            )
+                                            if (model.message=="This email address has already been verified. You can log in to your account."){
+                                                findNavController().popBackStack(R.id.auth_navigation, true)
+                                                BindingUtils.navigateWithSlide(
+                                                    findNavController(),
+                                                    LoginFragmentDirections.navigateToHomeFragment()
+                                                )
+                                            }
+                                            else{
+                                                loginData.token.let {
+                                                    sharedPrefManager.setToken(it.toString())
+                                                }
+                                                val action =
+                                                    OtpFragmentDirections.navigateToChooseGradeFragment()
+                                                BindingUtils.navigateWithSlide(
+                                                    findNavController(),
+                                                    action
+                                                )
+                                            }
                                         }
                                     }
                                 } else {
