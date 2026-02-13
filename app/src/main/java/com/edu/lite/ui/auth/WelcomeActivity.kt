@@ -1,14 +1,18 @@
 package com.edu.lite.ui.auth
 
+import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import com.edu.lite.R
 import com.edu.lite.base.BaseActivity
 import com.edu.lite.base.BaseViewModel
 import com.edu.lite.databinding.ActivityWelcomeBinding
+import com.edu.lite.ui.auth.login.LoginFragmentDirections
 import com.edu.lite.ui.dash_board.profile.download.ProfileDownloadFragment
+import com.edu.lite.utils.BindingUtils
 import com.edu.lite.utils.Status
 import com.edu.lite.utils.bottomnavigationview.CurvedModel
 import com.edu.lite.utils.event.SingleRequestEvent
@@ -81,22 +85,28 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>() {
     private fun setupNavGraph() {
         val graph = navController.navInflater.inflate(R.navigation.auth_navigation)
 
+        val loginData = sharedPrefManager.getLoginData()
 
-        graph.setStartDestination(
-            if (sharedPrefManager.getLoginData() != null) {
-                R.id.fragmentHome
+        val bundle = Bundle()
+
+        if (loginData != null) {
+            if (loginData.isEmailVerified== false || loginData.status == "pending") {
+                graph.setStartDestination(R.id.fragmentOtp)
+                bundle.putString("email", loginData.email)
+                bundle.putInt("type", 1)
+                bundle.putBoolean("callResend",true)
             } else {
-                if (sharedPrefManager.getOnBoarding()=="true"){
-                    R.id.fragmentLogin
-                }
-                else{
-                    R.id.fragmentSplash
-                }
-
+                graph.setStartDestination(R.id.fragmentHome)
             }
-        )
+        } else {
+            if (sharedPrefManager.getOnBoarding() == "true") {
+                graph.setStartDestination(R.id.fragmentLogin)
+            } else {
+                graph.setStartDestination(R.id.fragmentSplash)
+            }
+        }
 
-        navController.graph = graph
+        navController.setGraph(graph, bundle)
     }
 
     private fun setupBottomNavigation() {

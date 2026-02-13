@@ -22,10 +22,12 @@ import com.edu.lite.data.model.GetHomeQuest
 import com.edu.lite.data.model.GetHomeQuestApi
 import com.edu.lite.data.model.Quiz
 import com.edu.lite.data.model.SignupResponse
+import com.edu.lite.databinding.DialogDeleteLogoutBinding
 import com.edu.lite.databinding.DialogQuizCompletedBinding
 import com.edu.lite.databinding.FragmentHomeBinding
 import com.edu.lite.databinding.RvQuestionItemBinding
 import com.edu.lite.ui.dash_board.home.quiz.FeaturedQuizzesFragmentDirections
+import com.edu.lite.ui.dash_board.profile.ProfileFragmentDirections
 import com.edu.lite.utils.BaseCustomDialog
 import com.edu.lite.utils.BindingUtils
 import com.edu.lite.utils.Status
@@ -39,6 +41,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private val viewModel: HomeFragmentVM by viewModels()
     private lateinit var questionAdapter: SimpleRecyclerViewAdapter<GetHomeQuest, RvQuestionItemBinding>
     private var quizEndDialog: BaseCustomDialog<DialogQuizCompletedBinding>? = null
+
+    private var chooseGradeDialog :BaseCustomDialog<DialogDeleteLogoutBinding>? = null
     private var PERMISSION_REQUEST_CODE = 16
     override fun getLayoutResource(): Int {
         return R.layout.fragment_home
@@ -64,15 +68,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         initOnQuestionAdapter()
 
         // api call
-        val data = HashMap<String, Any>()
-        val grade = sharedPrefManager.getLoginData()?.grade
-        val todayDate = getCurrentDate()
-        if (!grade.isNullOrEmpty()) {
-            data["class"] = grade
-            data["date"] = todayDate
-            viewModel.getHomeApi(data, Constants.DAILY_QUEST)
-        }
-
+        viewModel.getProfileApi(Constants.GET_PROFILE)
+        selectGradeDialog()
 
         // observer
         initObserver()
@@ -178,7 +175,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                                 binding.tvEmpty.visibility = View.VISIBLE
                                 showErrorToast(getString(R.string.something_went_wrong))
                             }.also {
-                                viewModel.getProfileApi(Constants.GET_PROFILE)
+                                hideLoading()
+//                                viewModel.getProfileApi(Constants.GET_PROFILE)
                             }
                         }
 
@@ -196,7 +194,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
                                 showErrorToast(getString(R.string.something_went_wrong))
                             }.also {
-                                hideLoading()
+                                val data = HashMap<String, Any>()
+                                val grade = sharedPrefManager.getLoginData()?.grade
+                                val todayDate = getCurrentDate()
+                                if (!grade.isNullOrEmpty()) {
+                                    data["class"] = grade
+                                    data["date"] = todayDate
+                                    viewModel.getHomeApi(data, Constants.DAILY_QUEST)
+                                }
+                                else{
+                                    hideLoading()
+                                    chooseGradeDialog?.show()
+                                    binding.tvEmpty.visibility = View.VISIBLE
+                                }
                             }
                         }
                     }
@@ -341,6 +351,25 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         quizEndDialog?.setOnDismissListener {
             quizEndDialog?.dismiss()
         }
+    }
+
+    private fun selectGradeDialog(){
+        chooseGradeDialog = BaseCustomDialog(requireActivity(), R.layout.dialog_delete_logout) {
+            when (it?.id) {
+                R.id.tvCancel -> chooseGradeDialog?.dismiss()
+                R.id.tvLogout -> {
+                    chooseGradeDialog?.dismiss()
+                    val action =
+                        ProfileFragmentDirections.navigateToChooseGradeFragment( from = "settings")
+                    BindingUtils.navigateWithSlide(findNavController(), action)
+
+                }
+            }
+        }
+        chooseGradeDialog?.binding?.tvTitle?.text = "Select your Grade"
+        chooseGradeDialog?.binding?.tvSubHeading?.text = "Select your grade to track your XP progress and badge rewards."
+        chooseGradeDialog?.binding?.tvLogout?.text = "Continue"
+        chooseGradeDialog?.setCancelable(false)
     }
 
     /*

@@ -89,7 +89,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
                                     if (loginData.isEmailVerified == false || loginData.status =="pending") {
                                         val action = LoginFragmentDirections.navigateToOtpFragment(
-                                            email = loginData.email.toString(), type = 1
+                                            email = loginData.email.toString(), type = 1, callResend = true
                                         )
                                         BindingUtils.navigateWithSlide(findNavController(), action)
                                     } else {

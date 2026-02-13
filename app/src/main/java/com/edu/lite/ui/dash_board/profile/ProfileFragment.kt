@@ -60,15 +60,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         }
 
         // api call
-        val data = HashMap<String, Any>()
-        val grade = sharedPrefManager.getLoginData()?.grade
-        val todayDate = getCurrentDate()
-        if (!grade.isNullOrEmpty()) {
-            data["class"] = grade
-            data["date"] = todayDate
-            viewModel.getHomeApi(data, Constants.DAILY_QUEST)
-        }
-
+        viewModel.getProfileApi(Constants.GET_PROFILE)
         // observer
         initObserver()
     }
@@ -108,7 +100,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
                                 showErrorToast(getString(R.string.something_went_wrong))
                             }.also {
-                                viewModel.getProfileApi(Constants.GET_PROFILE)
+                               hideLoading()
                             }
                         }
 
@@ -126,7 +118,17 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                                 Log.e("apiErrorOccurred", "Error: ${e.message}", e)
                                 showErrorToast(getString(R.string.something_went_wrong))
                             }.also {
-                                hideLoading()
+                                val data = HashMap<String, Any>()
+                                val grade = sharedPrefManager.getLoginData()?.grade
+                                val todayDate = getCurrentDate()
+                                if (!grade.isNullOrEmpty()) {
+                                    data["class"] = grade
+                                    data["date"] = todayDate
+                                    viewModel.getHomeApi(data, Constants.DAILY_QUEST)
+                                }
+                                else{
+                                    hideLoading()
+                                }
                             }
                         }
 

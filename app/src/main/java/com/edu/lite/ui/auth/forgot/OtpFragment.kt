@@ -1,5 +1,6 @@
 package com.edu.lite.ui.auth.forgot
 
+import android.graphics.Color
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -30,6 +31,7 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
     private var email: String? = null
     private var type: Int = 0
     private var isOtpComplete = false
+    private var isResend = false
     private val args: OtpFragmentArgs by navArgs()
     override fun getLayoutResource(): Int {
         return R.layout.fragment_otp
@@ -40,6 +42,10 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
     }
 
     override fun onCreateView(view: View) {
+        BindingUtils.setStatusBarGradient(requireActivity())
+        requireActivity().window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
         // click
         initOnClick()
         // view
@@ -50,6 +56,16 @@ class OtpFragment : BaseFragment<FragmentOtpBinding>() {
         args.let { bundle ->
             email = bundle.email
             type = bundle.type
+            isResend = bundle.callResend
+        }
+
+        if (isResend){
+            val language = sharedPrefManager.getLanguage()
+            val data = HashMap<String, Any>()
+            data["email"] = email.toString()
+            data["type"] = type
+            data["language"] = language
+            viewModel.resendOtp(Constants.RESEND_OTP, data)
         }
     }
 

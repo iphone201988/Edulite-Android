@@ -54,14 +54,16 @@ class ChooseGradeFragment : BaseFragment<FragmentChooseGradeBinding>() {
         }
 
         if (from !=null && from =="settings"){
-            binding.clGrade.visibility = View.VISIBLE
             if (sharedPrefManager.getLoginData()!=null){
                 val data = sharedPrefManager.getLoginData()?.gradeId
-                if ( data!= null) {
+                if (data!= null) {
+                    binding.clGrade.visibility = View.VISIBLE
                     Glide.with(requireContext()).load(Constants.BASE_URL_IMAGE + data.icon).placeholder(R.drawable.progress_drawable).into(binding.ivEarlyGrade)
                     binding.tvGrade.text= data.grade
                 }
-
+                else{
+                    binding.clGrade.visibility = View.GONE
+                }
             }
 
         }
@@ -112,6 +114,7 @@ class ChooseGradeFragment : BaseFragment<FragmentChooseGradeBinding>() {
                                     }
                                 }
                                 if (from!=null && from =="settings"){
+                                    showSuccessToast(model?.message.toString())
                                     findNavController().popBackStack()
                                 }
                                 else{

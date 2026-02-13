@@ -1,10 +1,16 @@
 package com.edu.lite.ui.dash_board.video_play
 
 import android.content.pm.ActivityInfo
+import android.graphics.Color
 import android.net.Uri
 import android.util.Log
 import android.view.View
 import androidx.activity.addCallback
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.viewModels
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
@@ -57,7 +63,8 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
         viewModel.onClick.observe(viewLifecycleOwner) {
             when (it?.id) {
                 R.id.ivBackButton -> findNavController().popBackStack()
-//                R.id.ivFullscreen -> toggleFullscreen()
+                R.id.ivFullscreen -> { toggleFullscreen()
+                     }
                 R.id.ivMute -> toggleMute()
             }
         }
@@ -96,10 +103,10 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
 
                 if (show) {
                     binding.ivMute.fadeInSlideUp()
-//                    binding.ivFullscreen.fadeIn()
+                    binding.ivFullscreen.fadeInSlideUp()
                 } else {
                     binding.ivMute.fadeOutSlideDown()
-//                    binding.ivFullscreen.fadeOut()
+                    binding.ivFullscreen.fadeOutSlideDown()
                 }
             })
     }
@@ -108,19 +115,60 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
      * Fullscreen + rotation
      */
     private fun toggleFullscreen() {
+
         isFullscreen = !isFullscreen
 
         if (isFullscreen) {
-            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            hideSystemUI()
-            hideHeader(true)
+            enterFullscreen()
         } else {
-            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-            showSystemUI()
-            hideHeader(false)
+            exitFullscreen()
         }
     }
 
+    private fun enterFullscreen() {
+
+        isFullscreen = true
+
+        requireActivity().requestedOrientation =
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+
+//        hideHeader(true)
+        hideSystemUI()
+
+        val params = binding.videoContainer.layoutParams as ConstraintLayout.LayoutParams
+
+        // Clear previous constraints
+        params.topToBottom = ConstraintLayout.LayoutParams.UNSET
+        params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+        params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+
+        binding.videoContainer.layoutParams = params
+
+        binding.ivFullscreen.setImageResource(R.drawable.ic_minimise)
+    }
+
+
+    private fun exitFullscreen() {
+
+        isFullscreen = false
+
+        requireActivity().requestedOrientation =
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+//        hideHeader(false)
+        showSystemUI()
+
+        val params = binding.videoContainer.layoutParams as ConstraintLayout.LayoutParams
+
+        // Clear fullscreen constraints
+        params.topToTop = ConstraintLayout.LayoutParams.PARENT_ID
+//        params.topToBottom = R.id.ivBackButton
+        params.bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+
+        binding.videoContainer.layoutParams = params
+
+        binding.ivFullscreen.setImageResource(R.drawable.ic_maximise)
+    }
     /**
      * Mute / Unmute
      */
@@ -138,11 +186,13 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
      * Back press → exit fullscreen first
      */
     private fun handleBackPress() {
+
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner
         ) {
             if (isFullscreen) {
-                toggleFullscreen()
+                exitFullscreen()
+                isFullscreen = false
             } else {
                 findNavController().popBackStack()
             }
@@ -150,18 +200,29 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
     }
 
     private fun hideHeader(hide: Boolean) {
-//        binding.clHeader.visibility = if (hide) View.GONE else View.VISIBLE
+        binding.clHeader.root.visibility = if (hide) View.GONE else View.VISIBLE
         binding.tvChoose.visibility = if (hide) View.GONE else View.VISIBLE
         binding.ivBackButton.visibility = if (hide) View.GONE else View.VISIBLE
     }
 
     private fun hideSystemUI() {
-        requireActivity().window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+        WindowCompat.setDecorFitsSystemWindows(requireActivity().window, false)
+        WindowInsetsControllerCompat(
+            requireActivity().window,
+            requireActivity().window.decorView
+        ).apply {
+            hide(WindowInsetsCompat.Type.systemBars())
+            systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
     }
 
     private fun showSystemUI() {
-        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+        WindowCompat.setDecorFitsSystemWindows(requireActivity().window, true)
+        WindowInsetsControllerCompat(
+            requireActivity().window,
+            requireActivity().window.decorView
+        ).show(WindowInsetsCompat.Type.systemBars())
     }
 
     override fun onPause() {
@@ -172,6 +233,13 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+
+        // Reset system UI
+        requireActivity().window.decorView.systemUiVisibility =
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+        requireActivity().window.statusBarColor = Color.TRANSPARENT
+
         savePlayerState()
         releasePlayer()
     }
@@ -211,4 +279,14 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
                 translationY = 0f
             }.start()
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//
+//        requireActivity().window.decorView.systemUiVisibility =
+//            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+//                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//
+//        requireActivity().window.statusBarColor = Color.TRANSPARENT
+//    }
 }
