@@ -268,7 +268,12 @@ class VideoLessonsFragment : BaseFragment<FragmentVideoLessonsBinding>() {
         videoLessonsAdapter =
             SimpleRecyclerViewAdapter(R.layout.rv_video_lessons_item, BR.bean) { v, m, pos ->
                 when (v?.id) {
-                    R.id.btnWatchNow, R.id.ivBackButton -> {
+                    R.id.btnWatchNow->{
+                        val action =
+                            VideoPlayFragmentDirections.navigateToVideoPlayFragment(videoPath = m.videoUrl.toString())
+                        BindingUtils.navigateWithSlide(findNavController(), action)
+                    }
+                    R.id.ivBackButton -> {
                         if (m.videoDownload == true) {
                             val action =
                                 VideoPlayFragmentDirections.navigateToVideoPlayFragment(videoUrl = m.videoUrl.toString())

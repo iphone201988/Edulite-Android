@@ -48,6 +48,7 @@
     <attr name="borderColor" format="color"/>
     <attr name="previewColor" format="color"/>
     <attr name="green60" format="color"/>
+    <attr name="quizCompleteColor" format="color"/>
     <attr name="green60home" format="color"/>
     <attr name="yellow60" format="color"/>
     <attr name="yellow60home" format="color"/>

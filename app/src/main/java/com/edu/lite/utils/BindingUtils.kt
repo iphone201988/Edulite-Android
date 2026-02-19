@@ -456,15 +456,18 @@ object BindingUtils {
 
     @BindingAdapter("changeBackgroundStroke")
     @JvmStatic
-    fun changeBackgroundStroke(image: ConstraintLayout, type: String?) {
-        type?.toIntOrNull()?.let { number ->
-            val resId = when (number % 3) {
-                1 -> R.drawable.grade_green_stroke
-                2 -> R.drawable.grade_yellow_stroke
-                else -> R.drawable.quests_first_bg
-            }
-            image.setBackgroundResource(resId)
-        } ?: image.setBackgroundResource(R.drawable.quests_first_bg)
+    fun changeBackgroundStroke(layout: ConstraintLayout, position: Int?) {
+
+        val pos = position ?: 0
+
+        val resId = when (pos % 3) {
+            0 -> R.drawable.quests_first_bg
+            1 -> R.drawable.quests_third_bg
+            2 -> R.drawable.quests_second_bg
+            else -> R.drawable.quests_first_bg
+        }
+
+        layout.setBackgroundResource(resId)
     }
 
 
@@ -519,12 +522,12 @@ object BindingUtils {
     fun quizImageBg(imageView: AppCompatImageView, type: String?) {
         if (type != null) {
             when (type) {
-                "completed" -> imageView.setColorFilter(imageView.context.getColor(R.color.theme1_start_color))
-                "in-progress" -> imageView.setColorFilter(imageView.context.getColor(R.color.yellow))
-                "pending" -> imageView.setColorFilter(imageView.context.getColor(R.color.theme1_start_color))
-                else -> imageView.setColorFilter(imageView.context.getColor(R.color.theme1_start_color))
+                "completed" -> imageView.setColorFilter(imageView.context.resolveAttrColor(R.attr.quizCompleteColor))
+                "in-progress" -> imageView.setColorFilter(imageView.context.resolveAttrColor(R.attr.yellow60))
+                "pending" -> imageView.setColorFilter(imageView.context.resolveAttrColor(R.attr.borderColor))
+                else -> imageView.setColorFilter(imageView.context.resolveAttrColor(R.attr.borderColor))
             }
-        } else imageView.setColorFilter(imageView.context.getColor(R.color.theme1_start_color))
+        } else imageView.setColorFilter(imageView.context.resolveAttrColor(R.attr.borderColor))
     }
 
 
@@ -534,12 +537,27 @@ object BindingUtils {
     fun changeTextColor(textView: AppCompatTextView, type: String?) {
         val context = textView.context
         val color = when(type) {
-            "completed" -> context.resolveAttrColor(R.attr.endColor)
-            "in-progress" -> context.getColor(R.color.yellow)
-            "pending" -> context.resolveAttrColor(R.attr.startColor)
-            else -> context.resolveAttrColor(R.attr.startColor)
+            "completed" -> context.resolveAttrColor(R.attr.quizCompleteColor)
+            "in-progress" -> context.resolveAttrColor(R.attr.yellow60)
+            "pending" -> context.resolveAttrColor(R.attr.borderColor)
+            else -> context.resolveAttrColor(R.attr.borderColor)
         }
         textView.setTextColor(color)
+    }
+
+
+    @BindingAdapter("showCompletedTick")
+    @JvmStatic
+    fun showCompletedTick(imageView: ImageView, type: String?) {
+        if (type!=null) {
+            when (type) {
+                "completed" -> imageView.visibility = View.VISIBLE
+                "in-progress" -> imageView.visibility = View.GONE
+                "pending" -> imageView.visibility = View.GONE
+                else -> imageView.visibility = View.GONE
+            }
+        }
+        else imageView.visibility = View.GONE
     }
 
 
@@ -911,6 +929,41 @@ object BindingUtils {
                 }
             }
         }
+    }
+
+    @BindingAdapter("formatDurationSeconds")
+    @JvmStatic
+    fun formatDurationSeconds(textView: AppCompatTextView, totalSeconds: Int?) {
+
+        if (totalSeconds == null || totalSeconds < 0) {
+            textView.text = "0 sec"
+            return
+        }
+
+        val hours = totalSeconds / 3600
+        val minutes = (totalSeconds % 3600) / 60
+        val seconds = totalSeconds % 60
+
+        val parts = mutableListOf<String>()
+
+        if (hours > 0) {
+            parts.add("$hours ${if (hours == 1) "hour" else "hours"}")
+        }
+
+        if (minutes > 0) {
+            parts.add("$minutes min")
+        }
+
+        if (seconds > 0) {
+            parts.add("$seconds sec")
+        }
+
+        // If everything was 0
+        if (parts.isEmpty()) {
+            parts.add("0 sec")
+        }
+
+        textView.text = parts.joinToString(" ")
     }
 
 

@@ -188,5 +188,6 @@
     <string name="change_theme">Change Theme</string>
     <string name="are_you_sure_to_change_app_theme">Are you sure to change app theme ?</string>
     <string name="selected_grade">Selected Grade :</string>
+    <string name="no_daily_quest_found">No daily quest found</string>
 
 </resources>

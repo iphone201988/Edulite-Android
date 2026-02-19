@@ -24,7 +24,7 @@
         android:layout_height="@dimen/_89sdp"
         android:layout_marginTop="@dimen/_13sdp"
         android:layout_marginHorizontal="@dimen/_7sdp"
-        changeBackgroundStroke="@{bean.grade}"
+        changeBackgroundStroke="@{pos}"
         android:background="@drawable/quests_first_bg"
         android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
         android:padding="@dimen/_18sdp">

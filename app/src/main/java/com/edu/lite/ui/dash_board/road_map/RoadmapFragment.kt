@@ -40,6 +40,9 @@ class RoadmapFragment : BaseFragment<FragmentRoadmapBinding>() {
         val data = HashMap<String, Any>()
         data["subject"] = "Mathematics"
         data["type"] = "quiz"
+        if (sharedPrefManager.getLoginData()?.grade!=null){
+            data["grade"]= sharedPrefManager.getLoginData()?.grade.toString()
+        }
         viewModel.getRoadMapApi(data, Constants.TEST_QUIZ_DATA)
         // click
         initOnClick()
@@ -60,6 +63,9 @@ class RoadmapFragment : BaseFragment<FragmentRoadmapBinding>() {
                         val data = HashMap<String, Any>()
                         data["subject"] = selected.name
                         data["type"] = "quiz"
+                        if (sharedPrefManager.getLoginData()?.grade!=null){
+                            data["grade"]= sharedPrefManager.getLoginData()?.grade.toString()
+                        }
                         viewModel.getRoadMapApi(data, Constants.TEST_QUIZ_DATA)
                     }
                 }

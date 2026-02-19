@@ -74,63 +74,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/clIntro"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_240sdp"
+                        android:layout_height="@dimen/_230sdp"
                         android:layout_marginHorizontal="@dimen/_18sdp"
-                        android:background="@drawable/creative_project_bg"
+                        android:background="@drawable/creative_bg"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
-
-
-                        <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/ivTestDetails"
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_122sdp"
-                            android:layout_marginHorizontal="@dimen/_13sdp"
-                            android:layout_marginTop="@dimen/_13sdp"
-                            android:onClick="@{v->vm.onClick(v)}"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/creativity_details"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvHeader"
-                            style="@style/TextView.extraBold"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_14sdp"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:gravity="start"
-                            android:onClick="@{v->vm.onClick(v)}"
-                            android:text="@string/have_a_project_to_share"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_15ssp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/ivTestDetails" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tvDesc"
-                            style="@style/TextView.semibold"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:gravity="start"
-                            android:onClick="@{v->vm.onClick(v)}"
-                            android:text="@string/showcase_your_creativity"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_10ssp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="@id/tvHeader"
-                            app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </androidx.appcompat.widget.AppCompatImageView>
 
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -162,7 +115,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toBottomOf="@+id/clIntro" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -75,6 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Show More"
+            changeTextColor="@{bean.userResponse.status}"
             android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
             android:visibility="gone"
             android:padding="@dimen/_6sdp"
@@ -102,9 +103,9 @@
             android:id="@+id/ivDone"
             android:layout_width="@dimen/_9sdp"
             android:layout_height="@dimen/_9sdp"
-            android:layout_marginStart="@dimen/_4sdp"
-            android:src="@drawable/done_image"
-            android:visibility='@{bean.userResponse.status=="completed"?View.VISIBLE:View.GONE}'
+            android:layout_marginStart="@dimen/_5sdp"
+            android:src="@drawable/iv_tick"
+            showCompletedTick="@{bean.userResponse.status}"
             app:layout_constraintBottom_toBottomOf="@+id/tvQuestionCount"
             app:layout_constraintStart_toEndOf="@+id/tvQuestionCount"
             app:layout_constraintTop_toTopOf="@+id/tvQuestionCount" />
@@ -123,19 +124,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvQuestionCount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvQuestionCount" />
-
-
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/TextView.regular"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="10 Questions"
-            android:textColor="?attr/startColor"
-            android:textSize="@dimen/_10ssp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/ivEarlyGrade"
-            app:layout_constraintTop_toBottomOf="@+id/btnLetsStart" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout

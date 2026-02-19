@@ -96,7 +96,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:text='@{String.valueOf(bean.time)+" mins"}'
+            formatDurationSeconds="@{bean.time}"
             android:textColor="?attr/endColor"
             android:textSize="@dimen/_8ssp"
             app:layout_constraintEnd_toEndOf="@+id/tvHeader"

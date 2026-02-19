@@ -31,6 +31,7 @@
         <item name="borderColor">@color/theme_1_border_color</item>
         <item name="previewColor">@color/preview_start_color</item>
         <item name="green60">@color/theme_1_green_60</item>
+        <item name="quizCompleteColor">@color/theme_1_green_60</item>
         <item name="green60home">@color/theme_1_green_60_home</item>
         <item name="yellow60">@color/theme_1_yellow_60</item>
         <item name="yellow60home">@color/theme_1_yellow_60_home</item>
@@ -63,6 +64,7 @@
         <item name="borderColor">@color/theme_2_border_color</item>
         <item name="previewColor">@color/theme2_end_color</item>
         <item name="green60">@color/theme_2_green_60</item>
+        <item name="quizCompleteColor">@color/theme_2_green_60</item>
         <item name="green60home">@color/theme_2_green_60_home</item>
         <item name="yellow60">@color/theme_2_yellow_60</item>
         <item name="yellow60home">@color/theme_2_yellow_60_home</item>
@@ -95,6 +97,7 @@
         <item name="borderColor">@color/theme_3_border_color</item>
         <item name="previewColor">@color/theme3_end_color</item>
         <item name="green60">@color/theme_3_green_60</item>
+        <item name="quizCompleteColor">@color/theme_3_green_60</item>
         <item name="green60home">@color/theme_3_green_60_home</item>
         <item name="yellow60">@color/theme_3_yellow_60</item>
         <item name="yellow60home">@color/theme_3_yellow_60_home</item>
@@ -126,6 +129,7 @@
         <item name="borderColor">@color/theme_4_border_color</item>
         <item name="previewColor">@color/theme4_end_color</item>
         <item name="green60">@color/theme_4_green_60</item>
+        <item name="quizCompleteColor">@color/theme4_end_color</item>
         <item name="green60home">@color/theme_4_green_60_home</item>
         <item name="yellow60">@color/theme_4_yellow_60</item>
         <item name="yellow60home">@color/theme_4_yellow_60_home</item>

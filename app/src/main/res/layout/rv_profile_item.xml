@@ -25,8 +25,9 @@
         android:id="@+id/clProfile"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_46sdp"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:background="@{bean.type==1?@drawable/profile_bg_12:null}"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@{bean.type==1?@drawable/bg_settings_radius_12:null}"
+        android:elevation="@dimen/_2sdp"
         android:onClick="@{v->callback.onItemClick(v,bean,pos)}">
 
 

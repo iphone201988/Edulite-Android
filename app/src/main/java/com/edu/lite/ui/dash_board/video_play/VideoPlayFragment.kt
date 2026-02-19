@@ -51,6 +51,8 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
             args.videoPath
         }
 
+        Log.e("dfdfdf", "onCreateView: $videoUrl", )
+
         initializePlayer()
         initOnClick()
         handleBackPress()
@@ -74,14 +76,31 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
      * Initialize ExoPlayer
      */
     private fun initializePlayer() {
-        val url = videoUrl ?: run {
+
+        val rawUrl = videoUrl ?: run {
             showInfoToast("Video URL not found")
             return
         }
 
+        val finalUrl = when {
+            rawUrl.startsWith("http") -> rawUrl
+
+            rawUrl.startsWith("/") -> {
+                Constants.BASE_URL_IMAGE + rawUrl
+            }
+
+            rawUrl.endsWith(".webm", true) ||
+                    rawUrl.endsWith(".mp4", true) -> {
+                Constants.BASE_URL_IMAGE + rawUrl
+            }
+
+            else -> rawUrl
+        }
+
         player = ExoPlayer.Builder(requireContext()).build().apply {
+
             binding.playerView.player = this
-            setMediaItem(MediaItem.fromUri(Uri.parse(url)))
+            setMediaItem(MediaItem.fromUri(Uri.parse(finalUrl)))
             prepare()
             seekTo(playbackPosition)
             playWhenReady = this@VideoPlayFragment.playWhenReady

@@ -74,6 +74,7 @@
             android:id="@+id/tvShowMore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            changeTextColor="@{bean.userResponse.status}"
             android:text="Show More"
             android:visibility="gone"
             android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
@@ -96,6 +97,15 @@
             android:textSize="@dimen/_8ssp"
             app:layout_constraintStart_toStartOf="@+id/ivEarlyGrade"
             app:layout_constraintTop_toBottomOf="@+id/tvShowMore" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:src="@drawable/iv_tick"
+            showCompletedTick="@{bean.userResponse.status}"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="@id/tvQuestionCount"
+            app:layout_constraintTop_toTopOf="@id/tvQuestionCount"
+            app:layout_constraintStart_toEndOf="@id/tvQuestionCount"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTime"

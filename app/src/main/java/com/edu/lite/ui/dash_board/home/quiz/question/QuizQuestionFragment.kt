@@ -323,7 +323,7 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
                         }
                     }
                     if (isAdded && !isDetached && context != null) {
-                        postApiCall()
+                        postApiCallTimer()
                     }
                     onTimerFinished?.invoke()
                 } else {
@@ -367,6 +367,22 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
             put("quizId", args.quizId)
             put("answers", answers)
             put("status", status)
+            put("timeTaken", finalTime)
+        }
+        viewModel.postUserResponse(Constants.USER_RESPONSE, data)
+    }
+
+
+    private fun postApiCallTimer() {
+        if (questionsList.isEmpty()) return
+        val answers = buildAnswers()
+        val timeTakenSeconds =
+            ((System.currentTimeMillis() - quizStartTimeMillis) / 1000).coerceAtLeast(0L)
+        val finalTime = timeTaking + timeTakenSeconds.toInt()
+        val data = HashMap<String, Any>().apply {
+            put("quizId", args.quizId)
+            put("answers", answers)
+            put("status", "completed")
             put("timeTaken", finalTime)
         }
         viewModel.postUserResponse(Constants.USER_RESPONSE, data)
