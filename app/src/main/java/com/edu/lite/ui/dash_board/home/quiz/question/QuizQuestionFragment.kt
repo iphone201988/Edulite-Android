@@ -273,28 +273,26 @@ class QuizQuestionFragment : BaseFragment<FragmentQuizQuestionBinding>() {
         quizEndDialog?.setCancelable(false)
         quizEndDialog?.show()
 
+        val correct = selectedAnswers.correctCount ?: 0
+        val incorrect = selectedAnswers.incorrectCount ?: 0
+        val total = totalQuestions
+        val points = correct * 10
+        val maxPoints = total * 10
 
-        quizEndDialog?.binding?.tvQuesValue?.text = totalQuestions.toString()
-        quizEndDialog?.binding?.tvXCorrectPoint?.text = selectedAnswers.correctCount.toString()
-        quizEndDialog?.binding?.tvWrongPoint?.text = selectedAnswers.incorrectCount.toString()
+        // Set values
+        quizEndDialog?.binding?.tvQuesValue?.text = total.toString()
+        quizEndDialog?.binding?.tvXCorrectPoint?.text = correct.toString()
+        quizEndDialog?.binding?.tvWrongPoint?.text = incorrect.toString()
+        quizEndDialog?.binding?.tvScoredValue?.text = "+$points"
+
+        // Progress bar
         quizEndDialog?.binding?.circularProgressBar?.apply {
             setTextView(quizEndDialog?.binding?.tvScoredValue)
-            if (selectedAnswers.points != null) {
-                setProgress(selectedAnswers.points)
-            }
+            setMaxProgress(maxPoints)
+            setProgress(points)
         }
-        // Set values in dialog views
-        quizEndDialog?.binding?.tvScoredValue?.text = "+${selectedAnswers.points}"
-        quizEndDialog?.binding?.circularProgressBar?.apply {
-            setTextView(quizEndDialog?.binding?.tvScoredValue)
 
-            val total = totalQuestions
-            val correct = selectedAnswers.correctCount ?: 0
-
-            setMaxProgress(total * 10)
-            setProgress(correct * 10)
-        }
-        // call back
+        // On dismiss
         quizEndDialog?.setOnDismissListener {
             findNavController().popBackStack()
         }
