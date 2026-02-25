@@ -25,6 +25,7 @@ import com.edu.lite.base.BaseViewModel
 import com.edu.lite.data.api.Constants
 import com.edu.lite.databinding.FragmentVideoPlayBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.File
 
 @AndroidEntryPoint
 class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
@@ -82,25 +83,43 @@ class VideoPlayFragment : BaseFragment<FragmentVideoPlayBinding>() {
             return
         }
 
-        val finalUrl = when {
-            rawUrl.startsWith("http") -> rawUrl
+        val finalUri: Uri = when {
 
+            // ✅ Full network URL
+            rawUrl.startsWith("http", true) -> {
+                Uri.parse(rawUrl)
+            }
+
+            // ✅ Local internal storage file
+            rawUrl.startsWith("/data/") -> {
+                val file = File(rawUrl)
+                if (!file.exists()) {
+                    showInfoToast("Video file not found")
+                    return
+                }
+                Uri.fromFile(file)
+            }
+
+            // ✅ Relative server path
             rawUrl.startsWith("/") -> {
-                Constants.BASE_URL_IMAGE + rawUrl
+                Uri.parse(Constants.BASE_URL_IMAGE + rawUrl)
             }
 
-            rawUrl.endsWith(".webm", true) ||
-                    rawUrl.endsWith(".mp4", true) -> {
-                Constants.BASE_URL_IMAGE + rawUrl
+            // ✅ Plain filename (mp4/webm)
+            rawUrl.endsWith(".mp4", true) ||
+                    rawUrl.endsWith(".webm", true) -> {
+                Uri.parse(Constants.BASE_URL_IMAGE + rawUrl)
             }
 
-            else -> rawUrl
+            else -> {
+                Uri.parse(rawUrl)
+            }
         }
 
         player = ExoPlayer.Builder(requireContext()).build().apply {
 
             binding.playerView.player = this
-            setMediaItem(MediaItem.fromUri(Uri.parse(finalUrl)))
+            setMediaItem(MediaItem.fromUri(finalUri))
             prepare()
             seekTo(playbackPosition)
             playWhenReady = this@VideoPlayFragment.playWhenReady

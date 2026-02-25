@@ -140,6 +140,7 @@ class DownloadFragment : BaseFragment<FragmentDownloadBinding>() {
                 R.id.clLetPlay -> {
                     val action =
                         VideoPlayFragmentDirections.navigateToVideoPlayFragment(videoPath = m.localPath.toString())
+                    Log.e("dfdfd", "initOnDownloadAdapter: ${m.localPath}", )
                     BindingUtils.navigateWithSlide(findNavController(), action)
                 }
                 R.id.ivDelete -> {

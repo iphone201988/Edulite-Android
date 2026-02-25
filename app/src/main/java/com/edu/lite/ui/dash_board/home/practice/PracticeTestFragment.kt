@@ -251,7 +251,7 @@ class PracticeTestFragment : BaseFragment<FragmentPracticeTestBinding>() {
         return when (title) {
             "All" -> null
             "New" -> null
-            "In Progress" -> "in_progress"
+            "In Progress" -> "in-progress"
             "Completed" -> "completed"
             else -> null
         }
@@ -274,11 +274,11 @@ class PracticeTestFragment : BaseFragment<FragmentPracticeTestBinding>() {
                 list.filter { it.userResponse == null }
             }
 
-            "in_progress" -> {
+            "in-progress" -> {
                 // In Progress → ONLY started but not completed
                 list.filter {
                     it.userResponse != null &&
-                            it.userResponse.status == "in_progress"
+                            it.userResponse.status == "in-progress"
                 }
             }
 
